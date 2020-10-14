@@ -2,8 +2,9 @@ import React from 'react';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from '../src/theme';
+import theme from '../constant/theme';
 import type { AppProps } from 'next/app'
+import SiteLayout from '../components/SiteLayout'
 
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
@@ -22,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Component {...pageProps} />
+        <SiteLayout><Component {...pageProps} /></SiteLayout>
       </ThemeProvider>
     </React.Fragment>
   );
