@@ -11,11 +11,17 @@ import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
+    },
+    appButton: {
+      color: "white",
+      fontWeight: "bold",
+      fontSize: "1rem"
     }
   }),
 );
@@ -48,6 +54,11 @@ const NavBar = (props: NavBarProps) => {
               Clipped drawer
             </Typography>
           </Grid>
+        </Grid>
+        <Grid item>
+          <Button size="large" className={classes.appButton}>
+            登入
+          </Button>
         </Grid>
       </Toolbar>
     </AppBar>
