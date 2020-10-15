@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const drawerWidth = 230;
+const drawerWidth = 200;
 
 interface SideMenuProps {
   variant?: "temporary" | "permanent" | "persistent",

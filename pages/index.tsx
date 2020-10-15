@@ -1,9 +1,10 @@
 import React from 'react';
+import SimpleSlider from '../components/SimpleSlider';
 
 export default function Index() {
   return (
     <div>
-      body
+      testing123
     </div>
   );
 }

@@ -5,7 +5,7 @@ import {
   ThemeProvider,
   Theme
 } from '@material-ui/core/styles';
-
+import Toolbar from '@material-ui/core/Toolbar';
 import NavBar from './NavBar';
 import SideMenu from './SideMenu';
 import Hidden from '@material-ui/core/Hidden';
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       flexGrow: 1,
-      padding: theme.spacing(3),
+      padding: theme.spacing(8, 0),
     },
   }),
 );
@@ -54,6 +54,9 @@ const SiteLayout = ({children}: SiteLayoutProps) => {
         <Hidden xsDown implementation="css">
           <SideMenu></SideMenu>
         </Hidden>
+        <main className={classes.content}>
+          {children}
+        </main>
       </div>
     </ThemeProvider>
   )
