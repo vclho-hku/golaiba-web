@@ -1,11 +1,10 @@
 import React from 'react';
-import SimpleSlider from '../components/SimpleSlider';
+import CarouselSection from '../components/CarouselSection';
 
 export default function Index() {
   return (
     <div>
-      testing123
-      <SimpleSlider></SimpleSlider>
+      <CarouselSection title={'test'}></CarouselSection>;
     </div>
   );
 }
