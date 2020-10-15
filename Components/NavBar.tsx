@@ -6,7 +6,11 @@ import {
 } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Hidden from '@material-ui/core/Hidden';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,14 +20,35 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const NavBar = () => {
+interface NavBarProps {
+  onDrawerToggle: () => void;
+}
+
+const NavBar = (props: NavBarProps) => {
   const classes = useStyles();
+  const { onDrawerToggle } = props;
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar>
-        <Typography variant="h6" noWrap>
-          Clipped drawer
-        </Typography>
+        <Grid container spacing={1} alignItems="center">
+          <Hidden smUp>
+            <Grid item>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={onDrawerToggle}
+                edge="start"
+              >
+                <MenuIcon />
+              </IconButton>
+            </Grid>
+          </Hidden>
+          <Grid item>
+            <Typography variant="h6" noWrap>
+              Clipped drawer
+            </Typography>
+          </Grid>
+        </Grid>
       </Toolbar>
     </AppBar>
   )
