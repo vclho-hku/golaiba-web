@@ -12,6 +12,7 @@ import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
+import NavSearchBar from './NavSearchBar';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,29 +37,38 @@ const NavBar = (props: NavBarProps) => {
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar>
-        <Grid container spacing={1} alignItems="center">
-          <Hidden smUp>
-            <Grid item>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={onDrawerToggle}
-                edge="start"
-              >
-                <MenuIcon />
-              </IconButton>
+        <Grid container spacing={1} alignItems="center" wrap='nowrap'>
+          <Grid item xs>
+            <Grid container spacing={1} alignItems="center" wrap='nowrap'>
+              <Hidden smUp>
+                <Grid item>
+                  <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    onClick={onDrawerToggle}
+                    edge="start"
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                </Grid>
+              </Hidden>
+              <Grid item>
+                <Typography variant="h6" noWrap>
+                  Clipped drawer
+                </Typography>
+              </Grid>
             </Grid>
-          </Hidden>
-          <Grid item>
-            <Typography variant="h6" noWrap>
-              Clipped drawer
-            </Typography>
           </Grid>
-        </Grid>
-        <Grid item>
-          <Button size="large" className={classes.appButton}>
-            登入
-          </Button>
+          <Grid item xs={6}>
+            <NavSearchBar></NavSearchBar>
+          </Grid>
+          <Grid item xs>
+            <Grid container spacing={1} alignItems="center" wrap='nowrap' justify='flex-end'>
+              <Button size="large" className={classes.appButton}>
+                登入
+              </Button>
+            </Grid>
+          </Grid>
         </Grid>
       </Toolbar>
     </AppBar>
