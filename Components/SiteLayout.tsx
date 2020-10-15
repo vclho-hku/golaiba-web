@@ -33,18 +33,27 @@ export interface SiteLayoutProps {
 
 const SiteLayout = ({children}: SiteLayoutProps) => {
   const classes = useStyles();
-  // const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  // const handleDrawerToggle = () => {
-  //   setMobileOpen(!mobileOpen);
-  // };
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <NavBar></NavBar>
-        <SideMenu></SideMenu>
+        <Hidden smUp implementation="js">
+          <SideMenu
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+          />
+        </Hidden>
+        <NavBar onDrawerToggle={handleDrawerToggle} ></NavBar>
+        <Hidden xsDown implementation="css">
+          <SideMenu></SideMenu>
+        </Hidden>
       </div>
     </ThemeProvider>
   )
