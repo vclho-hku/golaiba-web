@@ -5,6 +5,7 @@ export default function Index() {
   return (
     <div>
       testing123
+      <SimpleSlider></SimpleSlider>
     </div>
   );
 }
