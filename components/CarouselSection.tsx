@@ -18,7 +18,7 @@ const CarouselSection: FunctionComponent<any> = (props) => {
     },
   ];
   return (
-    <section style={{ margin: '30px' }}>
+    <section style={{ margin: '10px' }}>
       {props.title}
       <Carousel data={data}>123</Carousel>
     </section>
