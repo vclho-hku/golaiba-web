@@ -55,6 +55,7 @@ const Carousel: FunctionComponent<any> = (props: any) => {
     dots: true,
     infinite: true,
     speed: 500,
+    adaptiveHeight: true,
     slidesToShow: 3,
     slidesToScroll: 3,
     variableWidth: true,
