@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Alert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { withStyles } from '@material-ui/core/styles';
-import SignInFormStyle from './SignInFormStyle';
+import LoginFormStyle from './LoginFormStyle';
 import SignUpLink from '../SignUp/SignUpLink';
 
 const translateErrorMessage = (error: any) => {
@@ -37,7 +37,7 @@ const INITIAL_STATE = {
   error: '',
 };
 
-const SignInForm: FunctionComponent = (props: any) => {
+const LoginForm: FunctionComponent = (props: any) => {
   const [state, setState] = useState(INITIAL_STATE);
   const { email, password, error } = state;
   const classes = props.classes;
@@ -119,4 +119,4 @@ const SignInForm: FunctionComponent = (props: any) => {
   );
 };
 
-export default withStyles(SignInFormStyle)(SignInForm);
+export default withStyles(LoginFormStyle)(LoginForm);

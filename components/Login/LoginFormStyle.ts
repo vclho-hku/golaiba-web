@@ -1,4 +1,4 @@
-const SignInFromStyle: any = (theme: any) => ({
+const LoginFormStyle: any = (theme: any) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -18,4 +18,4 @@ const SignInFromStyle: any = (theme: any) => ({
   },
 });
 
-export default SignInFromStyle;
+export default LoginFormStyle;
