@@ -10,7 +10,7 @@ import Alert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { withStyles } from '@material-ui/core/styles';
 import SignInFormStyle from './SignInFormStyle';
-import SignUpLink from '../SignUp/SingUpLink';
+import SignUpLink from '../SignUp/SignUpLink';
 
 const translateErrorMessage = (error: any) => {
   let msg = '';
