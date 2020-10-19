@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: 'white',
         borderRadius: '30px',
         paddingTop: '6px',
+        paddingLeft: '2px',
+        paddingRight: '2px',
         '&:hover': {
           backgroundColor: theme.palette.primary.main,
         },
@@ -44,7 +46,7 @@ function SlickNextArrow(props: any) {
   return (
     <div
       className={clsx(className, classes.root)}
-      style={{ ...style, display: "block", right: "10px" }}
+      style={{ ...style, display: "block", right: "15px" }}
       onClick={onClick}
     />
   );
