@@ -11,6 +11,7 @@ import SideMenu, {drawerWidth} from './SideMenu';
 import Hidden from '@material-ui/core/Hidden';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../constant/theme';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,7 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: theme.zIndex.drawer + 1,
     },
     main: {
-      paddingLeft: drawerWidth,
+      [theme.breakpoints.up('sm')]: {
+        paddingLeft: drawerWidth,
+      },
     },
   }),
 );
@@ -49,13 +52,15 @@ const SiteLayout = ({children}: SiteLayoutProps) => {
           />
         </Hidden>
         <NavBar onDrawerToggle={handleDrawerToggle} ></NavBar>
-        <Hidden xsDown implementation="css">
-          <SideMenu></SideMenu>
-        </Hidden>
         <Toolbar/>
-        <main className={classes.main}>
-          {children}
-        </main>
+        <div>
+          <Hidden xsDown implementation="css">
+            <SideMenu></SideMenu>
+          </Hidden>
+          <main className={classes.main}>
+            {children}
+          </main>
+        </div>
       </div>
     </ThemeProvider>
   )

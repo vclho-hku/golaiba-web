@@ -4,7 +4,7 @@ import CarouselSection from '../components/CarouselSection';
 export default function Index() {
   return (
     <div>
-      <CarouselSection title={'test'}></CarouselSection>;
+      <CarouselSection title={'test'}></CarouselSection>
     </div>
   );
 }
