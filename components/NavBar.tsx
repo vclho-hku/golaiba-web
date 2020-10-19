@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import NavSearchBar from './NavSearchBar';
+import Link from 'next/link'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -64,9 +65,11 @@ const NavBar = (props: NavBarProps) => {
           </Grid>
           <Grid item xs>
             <Grid container spacing={1} alignItems="center" wrap='nowrap' justify='flex-end'>
-              <Button size="large" className={classes.appButton}>
-                登入
-              </Button>
+              <Link href="/login">
+                <Button size="large" className={classes.appButton}>
+                  登入
+                </Button>
+              </Link>
             </Grid>
           </Grid>
         </Grid>
