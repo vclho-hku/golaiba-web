@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState } from 'react';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { compose } from 'recompose';
 import AccessibilityIcon from '@material-ui/icons/Accessibility';
 import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
@@ -9,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import SignUpFormStyle from './SignUpFormStyle';
 import { withStyles } from '@material-ui/core/styles';
+import { withFirebase } from '../../Firebase';
 
 const INITIAL_STATE = {
   username: '',
@@ -215,4 +217,7 @@ const SignUpForm: FunctionComponent = (props: any) => {
   );
 };
 
-export default withStyles(SignUpFormStyle)(SignUpForm);
+export default compose(
+  withFirebase,
+  withStyles(SignUpFormStyle),
+)(SignUpForm);
