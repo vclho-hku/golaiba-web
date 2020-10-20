@@ -14,7 +14,7 @@ const INITIAL_STATE = {
   username: '',
   email: '',
   userPassword: '',
-  comfirmPassword: '',
+  confirmPassword: '',
   invalidEmail: false,
   isSubmitting: false,
   passwordNotMatch: false,
@@ -69,7 +69,7 @@ const SignUpForm: FunctionComponent = (props: any) => {
     username,
     email,
     userPassword,
-    comfirmPassword,
+    confirmPassword,
     invalidEmail,
     isSubmitting,
     passwordNotMatch,
@@ -82,7 +82,7 @@ const SignUpForm: FunctionComponent = (props: any) => {
     passwordNotMatch ||
     userPassword === '' ||
     passwordTooShort ||
-    comfirmPassword === '' ||
+    confirmPassword === '' ||
     email === '' ||
     username === '';
 
@@ -95,7 +95,7 @@ const SignUpForm: FunctionComponent = (props: any) => {
           invalidEmail: checkEmail(event.target.value),
         });
         break;
-      case 'comfirmPassword':
+      case 'confirmPassword':
         setState({
           ...state,
           [event.target.name]: event.target.value,
@@ -188,11 +188,11 @@ const SignUpForm: FunctionComponent = (props: any) => {
             margin="normal"
             required
             fullWidth
-            name="comfirmPassword"
+            name="confirmPassword"
             error={passwordNotMatch}
             label="確認密碼"
             type="password"
-            id="comfirmPassword"
+            id="confirmPassword"
             onChange={onChange}
           />
           {passwordNotMatch && (
