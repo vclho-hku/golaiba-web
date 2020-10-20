@@ -11,6 +11,7 @@ import SideMenu, {drawerWidth} from './SideMenu';
 import Hidden from '@material-ui/core/Hidden';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../constant/theme';
+import { withAuthentication } from '../Session';
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -66,4 +67,4 @@ const SiteLayout = ({children}: SiteLayoutProps) => {
   )
 }
 
-export default SiteLayout;
+export default withAuthentication(SiteLayout);

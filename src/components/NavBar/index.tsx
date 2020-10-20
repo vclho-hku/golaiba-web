@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   createStyles,
   makeStyles,
@@ -13,7 +13,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import NavSearchBar from './NavSearchBar';
-import Link from 'next/link'
+import Link from 'next/link';
+import NavUserMenu from './NavUserMenu';
+import { AuthUserContext } from '../../Session';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,6 +36,7 @@ interface NavBarProps {
 
 const NavBar = (props: NavBarProps) => {
   const classes = useStyles();
+  const authUserContext: any = useContext(AuthUserContext);
   const { onDrawerToggle } = props;
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -65,11 +68,13 @@ const NavBar = (props: NavBarProps) => {
           </Grid>
           <Grid item xs>
             <Grid container spacing={1} alignItems="center" wrap='nowrap' justify='flex-end'>
+              {authUserContext ? ( <NavUserMenu /> ): (
               <Link href="/login">
                 <Button size="large" className={classes.appButton}>
                   登入
                 </Button>
               </Link>
+              )}
             </Grid>
           </Grid>
         </Grid>
