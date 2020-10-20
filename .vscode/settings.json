@@ -5,8 +5,18 @@
     "editor.formatOnSave": true
   },
   "cSpell.words": [
+    "Unmount",
+    "appspot",
     "clsx",
+    "firebaseapp",
+    "fontawesome",
+    "fortawesome",
     "mixins",
-    "readsline"
+    "readsline",
+    "yourapikey",
+    "yourappid",
+    "yourappname",
+    "yourmeasurementid",
+    "yoursenderid"
   ]
 }
