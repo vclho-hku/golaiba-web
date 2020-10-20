@@ -1,5 +1,5 @@
 import React from 'react';
-import CarouselSection from '../components/CarouselSection';
+import CarouselSection from '../src/components/CarouselSection';
 
 export default function Index() {
   return (
