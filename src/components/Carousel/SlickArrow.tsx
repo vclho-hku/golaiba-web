@@ -1,11 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
-import AccessibilityIcon from '@material-ui/icons/Accessibility';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import yellow from '@material-ui/core/colors/yellow';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       display: 'block',
@@ -30,6 +26,7 @@ const SlickArrow: FunctionComponent = (props: any) => {
       className={clsx(className, classes.root)}
       style={{ ...style }}
       onClick={onClick}
+      onKeyDown={onClick}
     ></div>
   );
 };

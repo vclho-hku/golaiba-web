@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -12,7 +12,7 @@ import PlaylistAdd from '@material-ui/icons/PlaylistAdd';
 import PlaylistAddCheck from '@material-ui/icons/PlaylistAddCheck';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       maxWidth: 345,
@@ -28,17 +28,14 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const SlickSlide = (props: any) => {
+const SlickSlide = () => {
   const classes = useStyles();
 
   const [isInPendingToReadlist, setIsInPendingToReadlist] = useState(false);
   const handleAddToPendingToReadlist = () => {
-    if (true) {
-      setIsInPendingToReadlist(true);
-    } else {
-    }
+    setIsInPendingToReadlist(true);
   };
-  
+
   return (
     <Card className={classes.root}>
       <CardHeader

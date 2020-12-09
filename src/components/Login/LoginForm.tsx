@@ -73,26 +73,23 @@ const LoginForm: FunctionComponent = (props: any) => {
   const isInvalid = password === '' || email === '';
 
   const onGoogleLogin = async () => {
-    let result = await props.firebase.doSignInWithGoogle();
+    await props.firebase.doSignInWithGoogle();
     // props.history.push(ROUTES.HOME);
   };
 
   const onFacebookLogin = async () => {
-    let result = await props.firebase.doSignInWithFacebook();
+    await props.firebase.doSignInWithFacebook();
     // props.history.push(ROUTES.HOME);
   };
 
   const onSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      let auth = await props.firebase.doSignInWithEmailAndPassword(
-        email,
-        password,
-      );
+      await props.firebase.doSignInWithEmailAndPassword(email, password);
       setState({ ...INITIAL_STATE });
     } catch (error) {
       console.log(error);
-      let errorMsg = translateErrorMessage(error);
+      const errorMsg = translateErrorMessage(error);
       setState({ ...state, error: errorMsg });
     }
   };
@@ -165,7 +162,4 @@ const LoginForm: FunctionComponent = (props: any) => {
   );
 };
 
-export default compose(
-  withFirebase,
-  withStyles(LoginFormStyle),
-)(LoginForm);
+export default compose(withFirebase, withStyles(LoginFormStyle))(LoginForm);

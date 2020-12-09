@@ -29,11 +29,11 @@ const checkEmail = (email: any) => {
   if (!includedAt) {
     return true;
   }
-  let emailArray = email.split('@');
+  const emailArray = email.split('@');
   if (emailArray.length !== 2) {
     return true;
   }
-  var emailDomain = emailArray[1].split('.');
+  const emailDomain = emailArray[1].split('.');
   if (emailDomain.length < 2 || emailDomain[1].length < 1) {
     return true;
   }
@@ -128,7 +128,7 @@ const SignUpForm: FunctionComponent = (props: any) => {
       setState({ ...INITIAL_STATE });
       // props.history.push(ROUTES.HOME);
     } catch (error) {
-      let errorMsg = translateErrorMessage(error);
+      const errorMsg = translateErrorMessage(error);
       setState({
         ...state,
         isSubmitting: false,
@@ -170,7 +170,7 @@ const SignUpForm: FunctionComponent = (props: any) => {
             label="電郵地址"
             name="email"
           />
-          {invalidEmail && <Alert severity="error">"電郵地址不符合規格"</Alert>}
+          {invalidEmail && <Alert severity="error">電郵地址不符合規格</Alert>}
           <TextField
             variant="outlined"
             margin="normal"
@@ -182,9 +182,7 @@ const SignUpForm: FunctionComponent = (props: any) => {
             id="userPassword"
             onChange={onChange}
           />
-          {passwordTooShort && (
-            <Alert severity="error">"密碼長度要大於6"</Alert>
-          )}
+          {passwordTooShort && <Alert severity="error">密碼長度要大於6</Alert>}
           <TextField
             variant="outlined"
             margin="normal"
@@ -198,7 +196,7 @@ const SignUpForm: FunctionComponent = (props: any) => {
             onChange={onChange}
           />
           {passwordNotMatch && (
-            <Alert severity="error">"確認密碼與密碼不同"</Alert>
+            <Alert severity="error">確認密碼與密碼不同</Alert>
           )}
           <Button
             type="submit"
@@ -217,7 +215,4 @@ const SignUpForm: FunctionComponent = (props: any) => {
   );
 };
 
-export default compose(
-  withFirebase,
-  withStyles(SignUpFormStyle),
-)(SignUpForm);
+export default compose(withFirebase, withStyles(SignUpFormStyle))(SignUpForm);

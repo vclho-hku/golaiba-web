@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme: Theme) =>
         '&:hover': {
           backgroundColor: theme.palette.primary.main,
         },
-      }
-    }
+      },
+    },
   }),
 );
 
@@ -33,7 +33,7 @@ function SlickPrevArrow(props: any) {
   return (
     <div
       className={clsx(className, classes.root)}
-      style={{ ...style, display: "block", left: "-5px"}}
+      style={{ ...style, display: 'block', left: '-5px' }}
       onClick={onClick}
     />
   );
@@ -46,13 +46,13 @@ function SlickNextArrow(props: any) {
   return (
     <div
       className={clsx(className, classes.root)}
-      style={{ ...style, display: "block", right: "15px" }}
+      style={{ ...style, display: 'block', right: '15px' }}
       onClick={onClick}
     />
   );
 }
 
-const Carousel: FunctionComponent<any> = (props: any) => {
+const Carousel: FunctionComponent<any> = () => {
   const settings = {
     dots: true,
     infinite: true,

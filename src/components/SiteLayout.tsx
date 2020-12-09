@@ -3,21 +3,19 @@ import {
   createStyles,
   makeStyles,
   ThemeProvider,
-  Theme
+  Theme,
 } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import NavBar from './NavBar';
-import SideMenu, {drawerWidth} from './SideMenu';
+import SideMenu, { drawerWidth } from './SideMenu';
 import Hidden from '@material-ui/core/Hidden';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../constant/theme';
 import { withAuthentication } from '../Session';
-import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-    },
+    root: {},
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
     },
@@ -30,10 +28,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export interface SiteLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
-const SiteLayout = ({children}: SiteLayoutProps) => {
+const SiteLayout = ({ children }: SiteLayoutProps) => {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -52,19 +50,17 @@ const SiteLayout = ({children}: SiteLayoutProps) => {
             onClose={handleDrawerToggle}
           />
         </Hidden>
-        <NavBar onDrawerToggle={handleDrawerToggle} ></NavBar>
-        <Toolbar/>
+        <NavBar onDrawerToggle={handleDrawerToggle}></NavBar>
+        <Toolbar />
         <div>
           <Hidden xsDown implementation="css">
             <SideMenu></SideMenu>
           </Hidden>
-          <main className={classes.main}>
-            {children}
-          </main>
+          <main className={classes.main}>{children}</main>
         </div>
       </div>
     </ThemeProvider>
-  )
-}
+  );
+};
 
 export default withAuthentication(SiteLayout);

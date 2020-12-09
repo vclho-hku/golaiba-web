@@ -1,9 +1,5 @@
 import React, { useContext } from 'react';
-import {
-  createStyles,
-  makeStyles,
-  Theme
-} from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
@@ -23,10 +19,10 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: theme.zIndex.drawer + 1,
     },
     appButton: {
-      color: "white",
-      fontWeight: "bold",
-      fontSize: "1rem"
-    }
+      color: 'white',
+      fontWeight: 'bold',
+      fontSize: '1rem',
+    },
   }),
 );
 
@@ -41,9 +37,9 @@ const NavBar = (props: NavBarProps) => {
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar>
-        <Grid container spacing={1} alignItems="center" wrap='nowrap'>
+        <Grid container spacing={1} alignItems="center" wrap="nowrap">
           <Grid item xs>
-            <Grid container spacing={1} alignItems="center" wrap='nowrap'>
+            <Grid container spacing={1} alignItems="center" wrap="nowrap">
               <Hidden smUp>
                 <Grid item>
                   <IconButton
@@ -67,20 +63,28 @@ const NavBar = (props: NavBarProps) => {
             <NavSearchBar></NavSearchBar>
           </Grid>
           <Grid item xs>
-            <Grid container spacing={1} alignItems="center" wrap='nowrap' justify='flex-end'>
-              {authUserContext ? ( <NavUserMenu /> ): (
-              <Link href="/login">
-                <Button size="large" className={classes.appButton}>
-                  登入
-                </Button>
-              </Link>
+            <Grid
+              container
+              spacing={1}
+              alignItems="center"
+              wrap="nowrap"
+              justify="flex-end"
+            >
+              {authUserContext ? (
+                <NavUserMenu />
+              ) : (
+                <Link href="/login">
+                  <Button size="large" className={classes.appButton}>
+                    登入
+                  </Button>
+                </Link>
               )}
             </Grid>
           </Grid>
         </Grid>
       </Toolbar>
     </AppBar>
-  )
-}
+  );
+};
 
 export default NavBar;

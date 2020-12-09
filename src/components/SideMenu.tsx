@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  createStyles,
-  makeStyles,
-  Theme
-} from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -30,17 +26,17 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     toolbar: {
       backgroundColor: theme.palette.primary.main,
-      color: 'white'
-    }
+      color: 'white',
+    },
   }),
 );
 
 export const drawerWidth = 200;
 
 interface SideMenuProps {
-  variant?: "temporary" | "permanent" | "persistent",
-  open?: boolean | undefined,
-  onClose?: any,
+  variant?: 'temporary' | 'permanent' | 'persistent';
+  open?: boolean | undefined;
+  onClose?: any;
 }
 
 const SideMenu = (props: SideMenuProps) => {
@@ -52,7 +48,6 @@ const SideMenu = (props: SideMenuProps) => {
       classes={{
         paper: classes.drawerPaper,
       }}
-
       {...props}
     >
       <Toolbar className={classes.toolbar}>
@@ -64,7 +59,9 @@ const SideMenu = (props: SideMenuProps) => {
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -73,14 +70,16 @@ const SideMenu = (props: SideMenuProps) => {
         <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
       </div>
     </Drawer>
-  )
-}
+  );
+};
 
 export default SideMenu;

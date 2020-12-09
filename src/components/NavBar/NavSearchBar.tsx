@@ -5,7 +5,7 @@ import {
   fade,
   createStyles,
   makeStyles,
-  Theme
+  Theme,
 } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -67,7 +67,7 @@ const NavSearchBar = () => {
         inputProps={{ 'aria-label': 'search' }}
       />
     </div>
-  )
-}
+  );
+};
 
 export default NavSearchBar;

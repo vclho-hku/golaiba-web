@@ -1,7 +1,7 @@
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import amber from '@material-ui/core/colors/amber';
 
-let theme = createMuiTheme({
+const theme = createMuiTheme({
   palette: {
     primary: {
       light: '#757ce8',
@@ -14,11 +14,10 @@ let theme = createMuiTheme({
       main: '#f44336',
       dark: '#ba000d',
       contrastText: '#000',
-    }
-  }
+    },
+  },
 });
 
 export default theme;
-
 
 //bar: backgroundColor: amber[700]
