@@ -52,7 +52,7 @@ const SideMenu = (props: SideMenuProps) => {
     >
       <Toolbar className={classes.toolbar}>
         <Typography variant="h6" noWrap>
-          Clipped drawer
+          上書房
         </Typography>
       </Toolbar>
       <div className={classes.drawerContainer}>

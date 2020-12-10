@@ -1,4 +1,5 @@
-# docker run -dit -P --name web-prod golaiba-web
+# docker build -t golaiba-web .
+# docker run -dit -p 3000:3000 --name web-prod golaiba-web
 FROM node:15.3.0-alpine
 
 ENV PORT 3000

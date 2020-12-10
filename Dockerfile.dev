@@ -1,5 +1,5 @@
 # docker build -f Dockerfile.dev -t golaiba-web-dev .
-# docker run -dit -p 3000:3000  --name web-dev golaiba-web-dev
+# docker run -dit -p 3000:3000 --name web-dev golaiba-web-dev
 FROM node:15.3.0-alpine
 
 ENV PORT 3000
