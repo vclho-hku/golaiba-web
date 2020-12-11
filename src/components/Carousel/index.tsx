@@ -52,7 +52,8 @@ function SlickNextArrow(props: any) {
   );
 }
 
-const Carousel: FunctionComponent<any> = () => {
+const Carousel: FunctionComponent<any> = (props: any) => {
+  const booklist = props.data;
   const settings = {
     dots: true,
     infinite: true,
@@ -67,18 +68,9 @@ const Carousel: FunctionComponent<any> = () => {
   return (
     <div style={{ margin: '20px' }}>
       <Slider {...settings}>
-        <SlickSlide />
-        <SlickSlide />
-        <SlickSlide />
-        <SlickSlide />
-        <SlickSlide />
-        <SlickSlide />
-        <SlickSlide />
-        <SlickSlide />
-        <SlickSlide />
-        <SlickSlide />
-        <SlickSlide />
-        <SlickSlide />
+        {booklist.map((value: any, index: any) => {
+          return <SlickSlide key={index} data={value} />;
+        })}
       </Slider>
     </div>
   );

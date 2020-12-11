@@ -15,11 +15,18 @@ import Tooltip from '@material-ui/core/Tooltip';
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      maxWidth: 345,
-      margin: '20px',
+      width: 300,
+      margin: '10px',
+    },
+    header: {
+      width: 200,
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
     },
     media: {
       height: '400px',
+      backgroundSize: 'contain',
       paddingTop: '0%', // 16:9
     },
     avatar: {
@@ -28,9 +35,9 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-const SlickSlide = () => {
+const SlickSlide = (props: any) => {
+  const bookInfo = props.data;
   const classes = useStyles();
-
   const [isInPendingToReadlist, setIsInPendingToReadlist] = useState(false);
   const handleAddToPendingToReadlist = () => {
     setIsInPendingToReadlist(true);
@@ -39,6 +46,10 @@ const SlickSlide = () => {
   return (
     <Card className={classes.root}>
       <CardHeader
+        classes={{
+          title: classes.header,
+          subheader: classes.header,
+        }}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
             <IconButton aria-label="settings">
@@ -46,13 +57,13 @@ const SlickSlide = () => {
             </IconButton>
           </Avatar>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={bookInfo.title}
+        subheader={bookInfo.author}
       />
       <CardMedia
         className={classes.media}
-        image="https://books.google.com/books/content/images/frontcover/JG1YDwAAQBAJ?fife=w400-h600"
-        title="Paella dish"
+        image={bookInfo.bookCoverImg}
+        title={bookInfo.title}
       />
       <CardActions disableSpacing>
         {isInPendingToReadlist ? (

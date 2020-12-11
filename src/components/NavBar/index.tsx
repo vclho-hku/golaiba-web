@@ -54,7 +54,7 @@ const NavBar = (props: NavBarProps) => {
               </Hidden>
               <Grid item>
                 <Typography variant="h6" noWrap>
-                  Clipped drawer
+                  上書房
                 </Typography>
               </Grid>
             </Grid>
