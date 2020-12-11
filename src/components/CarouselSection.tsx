@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { Typography } from '@material-ui/core';
 import Carousel from './Carousel';
 
 const CarouselSection: FunctionComponent<any> = (props) => {
@@ -66,8 +67,10 @@ const CarouselSection: FunctionComponent<any> = (props) => {
   ];
   return (
     <section style={{ margin: '10px' }}>
-      {props.title}
-      <Carousel data={data}>123</Carousel>
+      <div style={{ padding: '20px 0px 0px 20px' }}>
+        <Typography variant="h4">{props.title}</Typography>
+      </div>
+      <Carousel data={data}></Carousel>
     </section>
   );
 };
