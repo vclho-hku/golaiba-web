@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       fontSize: '1rem',
     },
+    appIcon: {
+      cursor: 'pointer',
+    },
   }),
 );
 
@@ -53,9 +56,11 @@ const NavBar = (props: NavBarProps) => {
                 </Grid>
               </Hidden>
               <Grid item>
-                <Typography variant="h6" noWrap>
-                  上書房
-                </Typography>
+                <Link href="/">
+                  <Typography variant="h6" noWrap className={classes.appIcon}>
+                    上書房
+                  </Typography>
+                </Link>
               </Grid>
             </Grid>
           </Grid>
