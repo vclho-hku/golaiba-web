@@ -18,6 +18,8 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Theme } from '@material-ui/core/styles';
 import { red, blue } from '@material-ui/core/colors';
 import { withFirebase } from '../../Firebase';
+import { useRouter } from 'next/router';
+import * as ROUTES from '../../constant/routes';
 
 const translateErrorMessage = (error: any) => {
   let msg = '';
@@ -68,18 +70,19 @@ const FacebookButton = withStyles((theme: Theme) => ({
 const LoginForm: FunctionComponent = (props: any) => {
   const [state, setState] = useState(INITIAL_STATE);
   const { email, password, error } = state;
+  const router = useRouter();
   const classes = props.classes;
 
   const isInvalid = password === '' || email === '';
 
   const onGoogleLogin = async () => {
     await props.firebase.doSignInWithGoogle();
-    // props.history.push(ROUTES.HOME);
+    router.push(ROUTES.HOME);
   };
 
   const onFacebookLogin = async () => {
     await props.firebase.doSignInWithFacebook();
-    // props.history.push(ROUTES.HOME);
+    router.push(ROUTES.HOME);
   };
 
   const onSubmit = async (event: any) => {
@@ -87,6 +90,7 @@ const LoginForm: FunctionComponent = (props: any) => {
     try {
       await props.firebase.doSignInWithEmailAndPassword(email, password);
       setState({ ...INITIAL_STATE });
+      router.push(ROUTES.HOME);
     } catch (error) {
       console.log(error);
       const errorMsg = translateErrorMessage(error);

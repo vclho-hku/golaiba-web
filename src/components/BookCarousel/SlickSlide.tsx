@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -12,6 +12,8 @@ import PlaylistAdd from '@material-ui/icons/PlaylistAdd';
 import PlaylistAddCheck from '@material-ui/icons/PlaylistAddCheck';
 import Tooltip from '@material-ui/core/Tooltip';
 import Link from 'next/link';
+import { AuthUserContext } from '../../Session';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -42,10 +44,16 @@ const useStyles = makeStyles(() =>
 
 const SlickSlide = (props: any) => {
   const bookInfo = props.data;
+  const authUser: any = useContext(AuthUserContext);
   const classes = useStyles();
+  const router = useRouter();
   const [isInPendingToReadlist, setIsInPendingToReadlist] = useState(false);
   const handleAddToPendingToReadlist = () => {
-    setIsInPendingToReadlist(true);
+    if (authUser) {
+      setIsInPendingToReadlist(true);
+    } else {
+      router.push('login');
+    }
   };
 
   return (
