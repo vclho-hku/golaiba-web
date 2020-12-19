@@ -11,6 +11,7 @@ import ThumbUp from '@material-ui/icons/ThumbUp';
 import PlaylistAdd from '@material-ui/icons/PlaylistAdd';
 import PlaylistAddCheck from '@material-ui/icons/PlaylistAddCheck';
 import Tooltip from '@material-ui/core/Tooltip';
+import Link from 'next/link';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -18,7 +19,10 @@ const useStyles = makeStyles(() =>
       width: 300,
       margin: '10px',
     },
-    header: {
+    cardHeader: {
+      cursor: 'pointer',
+    },
+    cardHeaderText: {
       width: 200,
       overflow: 'hidden',
       whiteSpace: 'nowrap',
@@ -28,6 +32,7 @@ const useStyles = makeStyles(() =>
       height: '400px',
       backgroundSize: 'contain',
       paddingTop: '0%', // 16:9
+      cursor: 'pointer',
     },
     avatar: {
       backgroundColor: red[500],
@@ -45,26 +50,31 @@ const SlickSlide = (props: any) => {
 
   return (
     <Card className={classes.root}>
-      <CardHeader
-        classes={{
-          title: classes.header,
-          subheader: classes.header,
-        }}
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            <IconButton aria-label="settings">
-              <ThumbUp style={{ color: 'white' }} />
-            </IconButton>
-          </Avatar>
-        }
-        title={bookInfo.title}
-        subheader={bookInfo.author}
-      />
-      <CardMedia
-        className={classes.media}
-        image={bookInfo.bookCoverImg}
-        title={bookInfo.title}
-      />
+      <Link href="/book-details">
+        <CardHeader
+          classes={{
+            root: classes.cardHeader,
+            title: classes.cardHeaderText,
+            subheader: classes.cardHeaderText,
+          }}
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+              <IconButton aria-label="settings">
+                <ThumbUp style={{ color: 'white' }} />
+              </IconButton>
+            </Avatar>
+          }
+          title={bookInfo.title}
+          subheader={bookInfo.author}
+        />
+      </Link>
+      <Link href="/book-details">
+        <CardMedia
+          className={classes.media}
+          image={bookInfo.bookCoverImg}
+          title={bookInfo.title}
+        />
+      </Link>
       <CardActions disableSpacing>
         {isInPendingToReadlist ? (
           <Tooltip title="已加到待閱清單" aria-label="已加到待閱清單">
