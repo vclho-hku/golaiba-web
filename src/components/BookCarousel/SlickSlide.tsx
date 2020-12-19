@@ -50,7 +50,7 @@ const SlickSlide = (props: any) => {
 
   return (
     <Card className={classes.root}>
-      <Link href="/book-details">
+      <Link href={`/book-details/${bookInfo.isbn}`}>
         <CardHeader
           classes={{
             root: classes.cardHeader,
@@ -68,7 +68,7 @@ const SlickSlide = (props: any) => {
           subheader={bookInfo.author}
         />
       </Link>
-      <Link href="/book-details">
+      <Link href={`/book-details/${bookInfo.isbn}`}>
         <CardMedia
           className={classes.media}
           image={bookInfo.bookCoverImg}
