@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { Typography } from '@material-ui/core';
-import Carousel from './Carousel';
+import BookCarousel from './BookCarousel';
 
-const CarouselSection: FunctionComponent<any> = (props) => {
+const BookCarouselSection: FunctionComponent<any> = (props) => {
   const data = [
     {
       title: '拖延心理學',
@@ -70,9 +70,9 @@ const CarouselSection: FunctionComponent<any> = (props) => {
       <div style={{ padding: '20px 0px 0px 20px' }}>
         <Typography variant="h4">{props.title}</Typography>
       </div>
-      <Carousel data={data}></Carousel>
+      <BookCarousel data={data}></BookCarousel>
     </section>
   );
 };
 
-export default CarouselSection;
+export default BookCarouselSection;
