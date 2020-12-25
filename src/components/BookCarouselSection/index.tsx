@@ -1,9 +1,41 @@
 import React, { FunctionComponent } from 'react';
 import { Typography } from '@material-ui/core';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import BookCarousel from '../BookCarousel';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { useQuery, gql } from '@apollo/client';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    loading: {
+      display: 'flex',
+      '& > * + *': {
+        marginLeft: theme.spacing(2),
+      },
+    },
+  }),
+);
+const EXCHANGE_RATES = gql`
+  query Test {
+    users {
+      uid
+    }
+  }
+`;
 
 const BookCarouselSection: FunctionComponent<any> = (props) => {
-  const data = [
+  const classes = useStyles();
+  const { loading, error, data } = useQuery(EXCHANGE_RATES);
+
+  if (loading)
+    return (
+      <div className={classes.loading}>
+        <CircularProgress />
+      </div>
+    );
+  if (error) return <p>系統出現問題 :(</p>;
+  console.log(data);
+  const dataHardcode = [
     {
       title: '拖延心理學',
       author: '珍‧博克（Jane B. Burka）& 萊諾拉‧袁（Lenora M. Yuen）',
@@ -77,7 +109,7 @@ const BookCarouselSection: FunctionComponent<any> = (props) => {
       <div style={{ padding: '20px 0px 0px 20px' }}>
         <Typography variant="h4">{props.title}</Typography>
       </div>
-      <BookCarousel data={data}></BookCarousel>
+      <BookCarousel data={dataHardcode}></BookCarousel>
     </section>
   );
 };
