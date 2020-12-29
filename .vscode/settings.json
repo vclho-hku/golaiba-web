@@ -2,7 +2,8 @@
   "editor.formatOnSave": true,
   // Enable per-language
   "[javascript]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "cSpell.words": [
     "Unmount",

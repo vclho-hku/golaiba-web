@@ -3,12 +3,7 @@ import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import SiteLayout from '../src/components/SiteLayout';
 import Firebase, { FirebaseContext } from '../src/Firebase';
-import {
-  ApolloProvider,
-  ApolloClient,
-  InMemoryCache,
-  gql,
-} from '@apollo/client';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import '../node_modules/slick-carousel/slick/slick.css';
 import '../node_modules/slick-carousel/slick/slick-theme.css';
 
@@ -16,18 +11,6 @@ const client = new ApolloClient({
   uri: 'http://localhost:8000/graphql',
   cache: new InMemoryCache(),
 });
-
-client
-  .query({
-    query: gql`
-      query Test {
-        users {
-          uid
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result));
 
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {

@@ -15,17 +15,28 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-const EXCHANGE_RATES = gql`
-  query Test {
-    users {
-      uid
+const BOOK_PROMOTION_LIST = gql`
+  query BookPromotionList($key: String!) {
+    bookPromotionList(key: $key) {
+      key
+      books {
+        isbn
+        title
+        authors {
+          name {
+            zh_hk
+          }
+        }
+      }
     }
   }
 `;
 
 const BookCarouselSection: FunctionComponent<any> = (props) => {
   const classes = useStyles();
-  const { loading, error, data } = useQuery(EXCHANGE_RATES);
+  const { loading, error, data } = useQuery(BOOK_PROMOTION_LIST, {
+    variables: { key: props.sectionKey },
+  });
 
   if (loading)
     return (
