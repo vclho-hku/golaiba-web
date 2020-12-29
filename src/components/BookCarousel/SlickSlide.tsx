@@ -14,6 +14,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Link from 'next/link';
 import { AuthUserContext } from '../../Session';
 import { useRouter } from 'next/router';
+import authorToString from '../../util/authorToString';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -44,6 +45,7 @@ const useStyles = makeStyles(() =>
 
 const SlickSlide = (props: any) => {
   const bookInfo = props.data;
+  const author = authorToString(bookInfo.authors);
   const authUser: any = useContext(AuthUserContext);
   const classes = useStyles();
   const router = useRouter();
@@ -73,13 +75,13 @@ const SlickSlide = (props: any) => {
             </Avatar>
           }
           title={bookInfo.title}
-          subheader={bookInfo.author}
+          subheader={author}
         />
       </Link>
       <Link href={`/book-details/${bookInfo.isbn}`}>
         <CardMedia
           className={classes.media}
-          image={bookInfo.bookCoverImg}
+          image={bookInfo.imageUrl.small}
           title={bookInfo.title}
         />
       </Link>

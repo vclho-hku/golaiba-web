@@ -10,7 +10,7 @@ export default function Index() {
       ></BookCarouselSection>
       <BookCarouselSection
         title={'心靈勵智'}
-        sectionKey={'newPublished'}
+        sectionKey={'inspirational'}
       ></BookCarouselSection>
       <BookCarouselSection
         title={'文學歷史'}
@@ -18,7 +18,7 @@ export default function Index() {
       ></BookCarouselSection>
       <BookCarouselSection
         title={'親子專區'}
-        sectionKey={'newPublished'}
+        sectionKey={'inspirational'}
       ></BookCarouselSection>
     </div>
   );
