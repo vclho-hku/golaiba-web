@@ -36,9 +36,8 @@ const BookDetails: FunctionComponent<any> = (props: any) => {
   const classes = useStyles();
 
   const { loading, error, data } = useQuery(GET_BOOK_DETAILS, {
-    variables: { isbn: props.isbn },
+    variables: { id: props.id },
   });
-  console.log(props);
   if (loading)
     return (
       <div className={classes.loading}>
@@ -47,7 +46,7 @@ const BookDetails: FunctionComponent<any> = (props: any) => {
     );
   if (error) return <p>系統出現問題 :(</p>;
 
-  const book = data.bookByISBN;
+  const book = data.book;
   const author = authorToString(book.authors);
 
   return (

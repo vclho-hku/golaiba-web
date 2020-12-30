@@ -78,7 +78,7 @@ const SlickSlide = (props: any) => {
           subheader={author}
         />
       </Link>
-      <Link href={`/book-details/${bookInfo.isbn}`}>
+      <Link href={`/book-details/${bookInfo.id}`}>
         <CardMedia
           className={classes.media}
           image={bookInfo.imageUrl.small}

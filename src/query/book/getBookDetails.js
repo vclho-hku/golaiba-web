@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export default gql`
-  query getBookDetails($isbn: String!) {
-    bookByISBN(isbn: $isbn) {
+  query getBookDetails($id: ID!) {
+    book(id: $id) {
       id
       isbn
       title

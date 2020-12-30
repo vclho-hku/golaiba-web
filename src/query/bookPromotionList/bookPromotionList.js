@@ -5,6 +5,7 @@ export default gql`
     bookPromotionList(key: $key) {
       key
       books {
+        id
         isbn
         title
         imageUrl {
