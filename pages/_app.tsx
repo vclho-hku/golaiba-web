@@ -8,7 +8,7 @@ import '../node_modules/slick-carousel/slick/slick.css';
 import '../node_modules/slick-carousel/slick/slick-theme.css';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:8000/graphql',
+  uri: 'http://' + process.env.NEXT_PUBLIC_GQL_HOST,
   cache: new InMemoryCache(),
 });
 
