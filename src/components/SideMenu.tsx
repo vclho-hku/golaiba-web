@@ -28,6 +28,11 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.primary.main,
       color: 'white',
     },
+    appIcon: {
+      width: '100px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
   }),
 );
 
@@ -51,9 +56,7 @@ const SideMenu = (props: SideMenuProps) => {
       {...props}
     >
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h6" noWrap>
-          上書房
-        </Typography>
+        <img src="/logo.svg" className={classes.appIcon}></img>
       </Toolbar>
       <div className={classes.drawerContainer}>
         <List>

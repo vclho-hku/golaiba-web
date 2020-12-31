@@ -12,6 +12,7 @@ import NavSearchBar from './NavSearchBar';
 import Link from 'next/link';
 import NavUserMenu from './NavUserMenu';
 import { AuthUserContext } from '../../Session';
+import { convertColorToString } from 'material-ui/utils/colorManipulator';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     appIcon: {
       cursor: 'pointer',
+      width: '100px',
     },
   }),
 );
@@ -57,9 +59,7 @@ const NavBar = (props: NavBarProps) => {
               </Hidden>
               <Grid item>
                 <Link href="/">
-                  <Typography variant="h6" noWrap className={classes.appIcon}>
-                    上書房
-                  </Typography>
+                  <img src="/logo.svg" className={classes.appIcon}></img>
                 </Link>
               </Grid>
             </Grid>

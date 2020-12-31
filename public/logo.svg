@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="550px" height="208px" viewBox="0 0 550 208" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Logo</title>
+    <g id="Logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-weight="normal">
+        <g id="Group" transform="translate(5.000000, -42.000000)" fill="#FFFFFF">
+            <text id="上" font-family="Makinas-4-Flat, Makinas" font-size="180" letter-spacing="3.85714286">
+                <tspan x="2.07142857" y="194">上</tspan>
+            </text>
+            <text id="書房" font-family="Makinas-4-Flat, Makinas" font-size="180" letter-spacing="3.85714286">
+                <tspan x="185.642857" y="235">書房</tspan>
+            </text>
+            <text id="GOLAIBA" font-family="BigJohn, Big John" font-size="36" letter-spacing="2">
+                <tspan x="0.618" y="242">GOLAIBA</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
