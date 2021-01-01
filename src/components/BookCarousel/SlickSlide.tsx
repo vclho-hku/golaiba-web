@@ -8,8 +8,15 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import { red } from '@material-ui/core/colors';
 import ThumbUp from '@material-ui/icons/ThumbUp';
-import PlaylistAdd from '@material-ui/icons/PlaylistAdd';
-import PlaylistAddCheck from '@material-ui/icons/PlaylistAddCheck';
+import {
+  PlaylistAdd,
+  PlaylistAddCheck,
+  Favorite,
+  FavoriteBorder,
+  Star,
+  StarHalf,
+  StarBorder,
+} from '@material-ui/icons';
 import Tooltip from '@material-ui/core/Tooltip';
 import Link from 'next/link';
 import { AuthUserContext } from '../../Session';
@@ -26,7 +33,7 @@ const useStyles = makeStyles(() =>
       cursor: 'pointer',
     },
     cardHeaderText: {
-      width: 200,
+      width: 290,
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
@@ -49,10 +56,21 @@ const SlickSlide = (props: any) => {
   const authUser: any = useContext(AuthUserContext);
   const classes = useStyles();
   const router = useRouter();
-  const [isInPendingToReadlist, setIsInPendingToReadlist] = useState(false);
-  const handleAddToPendingToReadlist = () => {
+  const [isInWishlist, setInWishlist] = useState(false);
+  const [isInLibrary, setInLibrary] = useState(false);
+  const handleAddToWishlist = () => {
     if (authUser) {
-      setIsInPendingToReadlist(true);
+      setInWishlist(true);
+    } else {
+      router.push('login');
+    }
+  };
+  const handleRemoveFromWishlist = () => {
+    setInWishlist(false);
+  };
+  const handleAddToLibrary = () => {
+    if (authUser) {
+      setInLibrary(true);
     } else {
       router.push('login');
     }
@@ -67,13 +85,6 @@ const SlickSlide = (props: any) => {
             title: classes.cardHeaderText,
             subheader: classes.cardHeaderText,
           }}
-          avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              <IconButton aria-label="settings">
-                <ThumbUp style={{ color: 'white' }} />
-              </IconButton>
-            </Avatar>
-          }
           title={bookInfo.title}
           subheader={author}
         />
@@ -86,22 +97,38 @@ const SlickSlide = (props: any) => {
         />
       </Link>
       <CardActions disableSpacing>
-        {isInPendingToReadlist ? (
-          <Tooltip title="已加到待閱清單" aria-label="已加到待閱清單">
-            <IconButton aria-label="已加到待閱清單">
+        {isInWishlist ? (
+          <Tooltip title="已加到想看清單" aria-label="已加到想看清單">
+            <IconButton
+              aria-label="已加到想看清單"
+              onClick={handleRemoveFromWishlist}
+            >
+              <Favorite color="primary" />
+            </IconButton>
+          </Tooltip>
+        ) : (
+          <Tooltip title="加到想看清單" aria-label="加到想看清單">
+            <IconButton aria-label="加到想看清單" onClick={handleAddToWishlist}>
+              <FavoriteBorder />
+            </IconButton>
+          </Tooltip>
+        )}
+        {isInLibrary ? (
+          <Tooltip title="已加到書櫃" aria-label="已加到書櫃">
+            <IconButton aria-label="已加到想看清單">
               <PlaylistAddCheck color="primary" />
             </IconButton>
           </Tooltip>
         ) : (
-          <Tooltip title="加到待閱清單" aria-label="加到待閱清單">
-            <IconButton
-              aria-label="加到待閱清單"
-              onClick={handleAddToPendingToReadlist}
-            >
+          <Tooltip title="加到書櫃" aria-label="加到書櫃">
+            <IconButton aria-label="加到書櫃" onClick={handleAddToLibrary}>
               <PlaylistAdd />
             </IconButton>
           </Tooltip>
         )}
+        <Star color="primary" />
+        <StarHalf color="primary" />
+        <StarBorder color="primary" />
       </CardActions>
     </Card>
   );

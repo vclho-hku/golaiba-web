@@ -5,7 +5,7 @@ export default function Index() {
   return (
     <div>
       <BookCarouselSection
-        title={'熱門暢銷書'}
+        title={'最新上架'}
         sectionKey={'newPublished'}
       ></BookCarouselSection>
       <BookCarouselSection
