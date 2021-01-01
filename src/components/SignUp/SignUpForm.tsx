@@ -9,8 +9,10 @@ import Alert from '@material-ui/lab/Alert';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import SignUpFormStyle from './SignUpFormStyle';
+import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import { withFirebase } from '../../Firebase';
+import * as ROUTES from '../../constant/routes';
 
 const INITIAL_STATE = {
   username: '',
@@ -67,6 +69,7 @@ const translateErrorMessage = (error: any) => {
 
 const SignUpForm: FunctionComponent = (props: any) => {
   const [state, setState] = useState(INITIAL_STATE);
+  const router = useRouter();
   const {
     username,
     email,
@@ -110,6 +113,12 @@ const SignUpForm: FunctionComponent = (props: any) => {
           [event.target.name]: event.target.value,
           passwordTooShort: event.target.value.length < 6,
         });
+        if (confirmPassword !== '') {
+          setState({
+            ...state,
+            passwordNotMatch: confirmPassword !== event.target.value,
+          });
+        }
         break;
       default:
         setState({ ...state, [event.target.name]: event.target.value });
@@ -126,7 +135,7 @@ const SignUpForm: FunctionComponent = (props: any) => {
         userPassword,
       );
       setState({ ...INITIAL_STATE });
-      // props.history.push(ROUTES.HOME);
+      router.push(ROUTES.HOME);
     } catch (error) {
       const errorMsg = translateErrorMessage(error);
       setState({
@@ -137,6 +146,7 @@ const SignUpForm: FunctionComponent = (props: any) => {
     }
   };
   const classes = props.classes;
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
