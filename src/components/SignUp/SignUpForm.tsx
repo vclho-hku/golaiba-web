@@ -15,6 +15,8 @@ import { withFirebase } from '../../Firebase';
 import * as ROUTES from '../../constant/routes';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../query/user';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { checkEmailFormat, translateErrorMessage } from '../../util';
 
 const INITIAL_STATE = {
@@ -44,13 +46,9 @@ const SignUpForm: FunctionComponent = (props: any) => {
     error,
   } = state;
 
-  const [createUser] = useMutation(CREATE_USER, {
-    onCompleted: (data: any) => {
-      console.log('data ', data);
+  const [createUser, { loading }] = useMutation(CREATE_USER, {
+    onCompleted: () => {
       router.push(ROUTES.HOME);
-    },
-    onError(error) {
-      console.error(error);
     },
   });
 
@@ -199,6 +197,9 @@ const SignUpForm: FunctionComponent = (props: any) => {
           {error && <Alert severity="error">{error}</Alert>}
         </form>
       </div>
+      <Backdrop className={classes.backdrop} open={loading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </Container>
   );
 };

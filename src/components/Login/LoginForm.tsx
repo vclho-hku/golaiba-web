@@ -19,6 +19,10 @@ import { Theme } from '@material-ui/core/styles';
 import { red, blue } from '@material-ui/core/colors';
 import { withFirebase } from '../../Firebase';
 import { useRouter } from 'next/router';
+import { CREATE_USER } from '../../query/user';
+import { useMutation } from '@apollo/client';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import * as ROUTES from '../../constant/routes';
 
 const translateErrorMessage = (error: any) => {
@@ -71,13 +75,24 @@ const LoginForm: FunctionComponent = (props: any) => {
   const [state, setState] = useState(INITIAL_STATE);
   const { email, password, error } = state;
   const router = useRouter();
+  const [createUser, { loading }] = useMutation(CREATE_USER, {
+    onCompleted: () => {
+      router.push(ROUTES.HOME);
+    },
+  });
   const classes = props.classes;
 
   const isInvalid = password === '' || email === '';
 
   const onGoogleLogin = async () => {
-    await props.firebase.doSignInWithGoogle();
-    router.push(ROUTES.HOME);
+    const googleLoginInfo = await props.firebase.doSignInWithGoogle();
+    createUser({
+      variables: {
+        uid: googleLoginInfo.user.uid,
+        name: googleLoginInfo.user.displayName,
+        email: googleLoginInfo.user.email,
+      },
+    });
   };
 
   const onFacebookLogin = async () => {
@@ -162,6 +177,9 @@ const LoginForm: FunctionComponent = (props: any) => {
           {error && <Alert severity="error">{error}</Alert>}
         </form>
       </div>
+      <Backdrop className={classes.backdrop} open={loading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </Container>
   );
 };
