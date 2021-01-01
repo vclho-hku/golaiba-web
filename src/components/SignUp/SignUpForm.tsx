@@ -13,6 +13,9 @@ import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import { withFirebase } from '../../Firebase';
 import * as ROUTES from '../../constant/routes';
+import { useMutation } from '@apollo/client';
+import { CREATE_USER } from '../../query/user';
+import { checkEmailFormat, translateErrorMessage } from '../../util';
 
 const INITIAL_STATE = {
   username: '',
@@ -24,47 +27,6 @@ const INITIAL_STATE = {
   passwordNotMatch: false,
   passwordTooShort: false,
   error: '',
-};
-
-const checkEmail = (email: any) => {
-  const includedAt = email.includes('@');
-  if (!includedAt) {
-    return true;
-  }
-  const emailArray = email.split('@');
-  if (emailArray.length !== 2) {
-    return true;
-  }
-  const emailDomain = emailArray[1].split('.');
-  if (emailDomain.length < 2 || emailDomain[1].length < 1) {
-    return true;
-  }
-  return false;
-};
-
-const translateErrorMessage = (error: any) => {
-  let msg = '';
-  if (error.code) {
-    switch (error.code) {
-      case 'auth/email-already-in-use':
-        msg = '電郵地址已被注冊，請用其他電郵地址或嘗試登入。';
-        break;
-      case 'auth/invalid-email':
-        msg = '電郵地址格式不正確，請再確認一下。';
-        break;
-      case 'auth/operation-not-allowed':
-        msg = '注冊禁止，請聯繫客服解封。';
-        break;
-      case 'auth/weak-password':
-        msg = '密碼太簡單，請用比較長及包含大小寫字母。';
-        break;
-      default:
-        msg = `CODE ${error.code}: 對不起，系統出錯，請稍候再試。`;
-    }
-  } else {
-    msg = 'CODE 0001: 對不起，系統出錯，請稍候再試。';
-  }
-  return msg;
 };
 
 const SignUpForm: FunctionComponent = (props: any) => {
@@ -82,6 +44,16 @@ const SignUpForm: FunctionComponent = (props: any) => {
     error,
   } = state;
 
+  const [createUser] = useMutation(CREATE_USER, {
+    onCompleted: (data: any) => {
+      console.log('data ', data);
+      router.push(ROUTES.HOME);
+    },
+    onError(error) {
+      console.error(error);
+    },
+  });
+
   const isInvalid =
     invalidEmail ||
     passwordNotMatch ||
@@ -97,7 +69,7 @@ const SignUpForm: FunctionComponent = (props: any) => {
         setState({
           ...state,
           [event.target.name]: event.target.value,
-          invalidEmail: checkEmail(event.target.value),
+          invalidEmail: checkEmailFormat(event.target.value),
         });
         break;
       case 'confirmPassword':
@@ -130,12 +102,18 @@ const SignUpForm: FunctionComponent = (props: any) => {
     event.preventDefault();
     setState({ ...state, isSubmitting: true });
     try {
-      await props.firebase.doCreateUserWithEmailAndPassword(
+      const firebaseResult = await props.firebase.doCreateUserWithEmailAndPassword(
         email,
         userPassword,
       );
       setState({ ...INITIAL_STATE });
-      router.push(ROUTES.HOME);
+      createUser({
+        variables: {
+          uid: firebaseResult.user.uid,
+          name: username,
+          email: email,
+        },
+      });
     } catch (error) {
       const errorMsg = translateErrorMessage(error);
       setState({
