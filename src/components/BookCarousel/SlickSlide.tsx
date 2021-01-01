@@ -81,7 +81,7 @@ const SlickSlide = (props: any) => {
       <Link href={`/book-details/${bookInfo.id}`}>
         <CardMedia
           className={classes.media}
-          image={bookInfo.imageUrl.small}
+          image={bookInfo.imageUrl.medium}
           title={bookInfo.title}
         />
       </Link>

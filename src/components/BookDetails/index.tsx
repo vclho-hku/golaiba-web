@@ -55,7 +55,7 @@ const BookDetails: FunctionComponent<any> = (props: any) => {
         <Grid item xs={12} sm={4}>
           <CardMedia
             className={classes.media}
-            image={book.imageUrl.small}
+            image={book.imageUrl.medium}
             title={book.title}
           />
           <p>評分： ⭐️⭐️⭐️⭐️⭐️</p>

@@ -10,6 +10,7 @@ export default gql`
         title
         imageUrl {
           small
+          medium
         }
         authors {
           name {
