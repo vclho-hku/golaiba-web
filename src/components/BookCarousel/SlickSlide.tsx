@@ -6,7 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import { red } from '@material-ui/core/colors';
+import { red, green, yellow } from '@material-ui/core/colors';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import {
   PlaylistAdd,
@@ -103,7 +103,7 @@ const SlickSlide = (props: any) => {
               aria-label="已加到想看清單"
               onClick={handleRemoveFromWishlist}
             >
-              <Favorite color="primary" />
+              <Favorite style={{ color: red[500] }} />
             </IconButton>
           </Tooltip>
         ) : (
@@ -116,7 +116,7 @@ const SlickSlide = (props: any) => {
         {isInLibrary ? (
           <Tooltip title="已加到書櫃" aria-label="已加到書櫃">
             <IconButton aria-label="已加到想看清單">
-              <PlaylistAddCheck color="primary" />
+              <PlaylistAddCheck style={{ color: green[500] }} />
             </IconButton>
           </Tooltip>
         ) : (
@@ -126,9 +126,9 @@ const SlickSlide = (props: any) => {
             </IconButton>
           </Tooltip>
         )}
-        <Star color="primary" />
-        <StarHalf color="primary" />
-        <StarBorder color="primary" />
+        <Star style={{ color: yellow[600] }} />
+        <StarHalf style={{ color: yellow[600] }} />
+        <StarBorder style={{ color: yellow[600] }} />
       </CardActions>
     </Card>
   );

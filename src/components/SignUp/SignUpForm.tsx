@@ -15,8 +15,7 @@ import { withFirebase } from '../../Firebase';
 import * as ROUTES from '../../constant/routes';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../query/user';
-import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import LoadingBackdrop from '../LoadingBackdrop';
 import { checkEmailFormat, translateErrorMessage } from '../../util';
 
 const INITIAL_STATE = {
@@ -197,9 +196,7 @@ const SignUpForm: FunctionComponent = (props: any) => {
           {error && <Alert severity="error">{error}</Alert>}
         </form>
       </div>
-      <Backdrop className={classes.backdrop} open={loading}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      <LoadingBackdrop open={loading}></LoadingBackdrop>
     </Container>
   );
 };

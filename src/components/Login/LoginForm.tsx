@@ -21,8 +21,7 @@ import { withFirebase } from '../../Firebase';
 import { useRouter } from 'next/router';
 import { CREATE_USER } from '../../query/user';
 import { useMutation } from '@apollo/client';
-import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import LoadingBackdrop from '../LoadingBackdrop';
 import * as ROUTES from '../../constant/routes';
 
 const translateErrorMessage = (error: any) => {
@@ -177,9 +176,7 @@ const LoginForm: FunctionComponent = (props: any) => {
           {error && <Alert severity="error">{error}</Alert>}
         </form>
       </div>
-      <Backdrop className={classes.backdrop} open={loading}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      <LoadingBackdrop open={loading}></LoadingBackdrop>
     </Container>
   );
 };
