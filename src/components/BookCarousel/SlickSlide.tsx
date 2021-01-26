@@ -22,6 +22,8 @@ import Link from 'next/link';
 import { AuthUserContext } from '../../Session';
 import { useRouter } from 'next/router';
 import authorToString from '../../util/authorToString';
+import { ADD_WISH_LIST, REMOVE_WISH_LIST } from '../../query/user';
+import { useMutation } from '@apollo/client';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -58,16 +60,33 @@ const SlickSlide = (props: any) => {
   const router = useRouter();
   const [isInWishlist, setInWishlist] = useState(false);
   const [isInLibrary, setInLibrary] = useState(false);
+
+  const [addWishList] = useMutation(ADD_WISH_LIST);
+  const [removeWishList] = useMutation(REMOVE_WISH_LIST);
+
   const handleAddToWishlist = () => {
     if (authUser) {
       setInWishlist(true);
+      addWishList({
+        variables: {
+          uid: authUser.uid,
+          bookId: bookInfo.id,
+        },
+      });
     } else {
       router.push('login');
     }
   };
   const handleRemoveFromWishlist = () => {
     setInWishlist(false);
+    removeWishList({
+      variables: {
+        uid: authUser.uid,
+        bookId: bookInfo.id,
+      },
+    });
   };
+
   const handleAddToLibrary = () => {
     if (authUser) {
       setInLibrary(true);
