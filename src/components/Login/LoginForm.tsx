@@ -75,8 +75,9 @@ const LoginForm: FunctionComponent = (props: any) => {
   const { email, password, error } = state;
   const router = useRouter();
   const [createUser, { loading }] = useMutation(CREATE_USER, {
-    onCompleted: () => {
-      router.push(ROUTES.HOME);
+    onCompleted: (data) => {
+      console.log(data);
+      // router.push(ROUTES.HOME);
     },
   });
   const classes = props.classes;
