@@ -96,14 +96,13 @@ const LoginForm: FunctionComponent = (props: any) => {
 
   const onFacebookLogin = async () => {
     const facebookLoginInfo = await props.firebase.doSignInWithFacebook();
-    console.log(facebookLoginInfo);
-    // createUser({
-    //   variables: {
-    //     uid: googleLoginInfo.user.uid,
-    //     name: googleLoginInfo.user.displayName,
-    //     email: googleLoginInfo.user.email,
-    //   },
-    // });
+    createUser({
+      variables: {
+        uid: facebookLoginInfo.user.uid,
+        name: facebookLoginInfo.user.displayName,
+        email: facebookLoginInfo.user.email,
+      },
+    });
   };
 
   const onSubmit = async (event: any) => {
