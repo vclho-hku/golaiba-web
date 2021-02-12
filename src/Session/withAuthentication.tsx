@@ -6,6 +6,9 @@ import { withFirebase } from '../Firebase';
 const withAuthentication = (Component: any) => {
   const WithAuthentication: FunctionComponent = (props: any) => {
     const [authUser, setAuthUser] = useState(null);
+    const [userData, setUserData] = useState(null);
+    const UserDataContext = React.createContext({});
+
     const listener = props.firebase.auth.onAuthStateChanged(
       (firebaseUser: any) => {
         if (firebaseUser) {
@@ -23,7 +26,9 @@ const withAuthentication = (Component: any) => {
 
     return (
       <AuthUserContext.Provider value={authUser}>
-        <Component {...props} />
+        <UserDataContext.Provider value={{ userData, setUserData }}>
+          <Component {...props} />
+        </UserDataContext.Provider>
       </AuthUserContext.Provider>
     );
   };
