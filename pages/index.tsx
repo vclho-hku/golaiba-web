@@ -1,25 +1,7 @@
-import React from 'react';
-import BookCarouselSection from '../src/components/BookCarouselSection';
+import React, { useContext, useEffect, useState } from 'react';
+import BookCarouselSectionList from '../src/components/BookCarouselSectionList';
+import { UserDataContext } from '../src/Session';
 
 export default function Index() {
-  return (
-    <div>
-      <BookCarouselSection
-        title={'最新上架'}
-        sectionKey={'newPublished'}
-      ></BookCarouselSection>
-      <BookCarouselSection
-        title={'心靈勵智'}
-        sectionKey={'inspirational'}
-      ></BookCarouselSection>
-      <BookCarouselSection
-        title={'文學歷史'}
-        sectionKey={'newPublished'}
-      ></BookCarouselSection>
-      <BookCarouselSection
-        title={'親子專區'}
-        sectionKey={'inspirational'}
-      ></BookCarouselSection>
-    </div>
-  );
+  return <BookCarouselSectionList></BookCarouselSectionList>;
 }

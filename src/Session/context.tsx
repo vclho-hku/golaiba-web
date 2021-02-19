@@ -1,5 +1,8 @@
 import React from 'react';
 
-const AuthUserContext = React.createContext(null);
+type ContextProps = any;
 
-export default AuthUserContext;
+const AuthUserContext = React.createContext(null);
+const UserDataContext = React.createContext<ContextProps>(null);
+
+export { AuthUserContext, UserDataContext };

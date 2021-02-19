@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Typography } from '@material-ui/core';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import BookCarousel from '../BookCarousel';
@@ -18,9 +18,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const BookCarouselSection: FunctionComponent<any> = (props) => {
   const classes = useStyles();
+  const [userWishlist, setUserWishlist] = useState(props.userWishlist);
   const { loading, error, data } = useQuery(BOOK_PROMOTION_LIST, {
     variables: { key: props.sectionKey },
   });
+
+  useEffect(() => {
+    setUserWishlist(props.userWishlist);
+  }, [props.userWishlist]);
 
   if (loading)
     return (
@@ -35,7 +40,10 @@ const BookCarouselSection: FunctionComponent<any> = (props) => {
       <div style={{ padding: '20px 0px 0px 20px' }}>
         <Typography variant="h4">{props.title}</Typography>
       </div>
-      <BookCarousel data={data.bookPromotionList.books}></BookCarousel>
+      <BookCarousel
+        data={data.bookPromotionList.books}
+        userWishList={userWishlist}
+      ></BookCarousel>
     </section>
   );
 };

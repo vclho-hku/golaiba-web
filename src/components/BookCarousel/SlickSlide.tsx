@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -58,12 +58,15 @@ const SlickSlide = (props: any) => {
   const authUser: any = useContext(AuthUserContext);
   const classes = useStyles();
   const router = useRouter();
-  const [isInWishlist, setInWishlist] = useState(false);
+  const [isInWishlist, setInWishlist] = useState(props.isInUserWishList);
   const [isInLibrary, setInLibrary] = useState(false);
 
   const [addWishList] = useMutation(ADD_WISH_LIST);
   const [removeWishList] = useMutation(REMOVE_WISH_LIST);
 
+  useEffect(() => {
+    setInWishlist(props.isInUserWishList);
+  }, [props.isInUserWishList]);
   const handleAddToWishlist = () => {
     if (authUser) {
       setInWishlist(true);
@@ -104,7 +107,7 @@ const SlickSlide = (props: any) => {
             title: classes.cardHeaderText,
             subheader: classes.cardHeaderText,
           }}
-          title={bookInfo.title}
+          title={bookInfo.id}
           subheader={author}
         />
       </Link>

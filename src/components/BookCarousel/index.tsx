@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import Slider from 'react-slick';
-// import SlickPrevArrow from './SlickNextArrow';
-// import SlickNextArrow from './SlickNextArrow';
 import SlickSlide from './SlickSlide';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -65,11 +63,27 @@ const Carousel: FunctionComponent<any> = (props: any) => {
     nextArrow: <SlickNextArrow />,
     prevArrow: <SlickPrevArrow />,
   };
+
+  function isInUserWishList(id: any) {
+    let inTheList = false;
+    props.userWishList.forEach((element: any) => {
+      if (element.id == id) {
+        inTheList = true;
+      }
+    });
+    return inTheList;
+  }
   return (
     <div style={{ margin: '20px' }}>
       <Slider {...settings}>
         {booklist.map((value: any, index: any) => {
-          return <SlickSlide key={index} data={value} />;
+          return (
+            <SlickSlide
+              key={index}
+              data={value}
+              isInUserWishList={isInUserWishList(value.id)}
+            />
+          );
         })}
       </Slider>
     </div>
