@@ -1,13 +1,17 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 
-import AuthUserContext from './context';
+import { AuthUserContext, UserDataContext } from './context';
 import { withFirebase } from '../Firebase';
+import { SignalCellularNoSimOutlined } from '@material-ui/icons';
 
 const withAuthentication = (Component: any) => {
   const WithAuthentication: FunctionComponent = (props: any) => {
     const [authUser, setAuthUser] = useState(null);
-    const [userData, setUserData] = useState(null);
-    const UserDataContext = React.createContext({});
+    let initUserData = null;
+    if (typeof window !== 'undefined') {
+      initUserData = JSON.parse(localStorage.getItem('userData'));
+    }
+    const [userData, setUserData] = useState(initUserData);
 
     const listener = props.firebase.auth.onAuthStateChanged(
       (firebaseUser: any) => {
@@ -18,6 +22,16 @@ const withAuthentication = (Component: any) => {
         }
       },
     );
+    const updateUserData = (data) => {
+      setUserData(data);
+      if (typeof window !== 'undefined') {
+        let updateUserData = data;
+        if (data != null) {
+          updateUserData = JSON.stringify(updateUserData);
+        }
+        localStorage.setItem('userData', updateUserData);
+      }
+    };
     useEffect(() => {
       return () => {
         listener();
@@ -26,7 +40,7 @@ const withAuthentication = (Component: any) => {
 
     return (
       <AuthUserContext.Provider value={authUser}>
-        <UserDataContext.Provider value={{ userData, setUserData }}>
+        <UserDataContext.Provider value={{ userData, updateUserData }}>
           <Component {...props} />
         </UserDataContext.Provider>
       </AuthUserContext.Provider>

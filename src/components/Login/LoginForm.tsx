@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, useContext } from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
@@ -23,6 +23,7 @@ import { CREATE_USER } from '../../query/user';
 import { useMutation } from '@apollo/client';
 import LoadingBackdrop from '../LoadingBackdrop';
 import * as ROUTES from '../../constant/routes';
+import { UserDataContext } from '../../Session';
 
 const translateErrorMessage = (error: any) => {
   let msg = '';
@@ -74,10 +75,11 @@ const LoginForm: FunctionComponent = (props: any) => {
   const [state, setState] = useState(INITIAL_STATE);
   const { email, password, error } = state;
   const router = useRouter();
+  const { userData, updateUserData } = useContext(UserDataContext);
   const [createUser, { loading }] = useMutation(CREATE_USER, {
     onCompleted: (data) => {
-      console.log(data);
-      // router.push(ROUTES.HOME);
+      updateUserData(data.createUser);
+      router.push(ROUTES.HOME);
     },
   });
   const classes = props.classes;
