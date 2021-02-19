@@ -4,10 +4,8 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import { red, green, yellow } from '@material-ui/core/colors';
-import ThumbUp from '@material-ui/icons/ThumbUp';
 import {
   PlaylistAdd,
   PlaylistAddCheck,
