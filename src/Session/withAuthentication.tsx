@@ -2,14 +2,16 @@ import React, { FunctionComponent, useState, useEffect } from 'react';
 
 import { AuthUserContext, UserDataContext } from './context';
 import { withFirebase } from '../Firebase';
-import { SignalCellularNoSimOutlined } from '@material-ui/icons';
 
 const withAuthentication = (Component: any) => {
   const WithAuthentication: FunctionComponent = (props: any) => {
     const [authUser, setAuthUser] = useState(null);
     let initUserData = null;
     if (typeof window !== 'undefined') {
-      initUserData = JSON.parse(localStorage.getItem('userData'));
+      const localUserData = localStorage.getItem('userData');
+      if (localUserData != null) {
+        initUserData = JSON.parse(localUserData);
+      }
     }
     const [userData, setUserData] = useState(initUserData);
 
@@ -22,7 +24,7 @@ const withAuthentication = (Component: any) => {
         }
       },
     );
-    const updateUserData = (data) => {
+    const updateUserData = (data: any) => {
       setUserData(data);
       if (typeof window !== 'undefined') {
         let updateUserData = data;

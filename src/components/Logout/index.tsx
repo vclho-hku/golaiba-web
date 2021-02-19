@@ -3,7 +3,7 @@ import { withFirebase } from '../../Firebase';
 import MenuItem from '@material-ui/core/MenuItem';
 import { UserDataContext } from '../../Session';
 const LoginOutButton = ({ firebase }: { firebase: any }) => {
-  const { userData, updateUserData } = useContext(UserDataContext);
+  const { updateUserData } = useContext(UserDataContext);
   const logout = () => {
     firebase.doSignOut();
     updateUserData(null);

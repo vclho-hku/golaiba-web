@@ -8,7 +8,7 @@ import BookCarouselSection from '../BookCarouselSection';
 import { UserDataContext } from '../../Session';
 
 const BookCarouselSectionList: FunctionComponent<any> = () => {
-  const { userData, updateUserData } = useContext(UserDataContext);
+  const { userData } = useContext(UserDataContext);
   const [userWishlist, setUserWishlist] = useState([]);
 
   useEffect(() => {

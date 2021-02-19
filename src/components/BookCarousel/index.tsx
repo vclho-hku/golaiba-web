@@ -1,12 +1,8 @@
-import React, { FunctionComponent, useContext, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import Slider from 'react-slick';
-// import SlickPrevArrow from './SlickNextArrow';
-// import SlickNextArrow from './SlickNextArrow';
 import SlickSlide from './SlickSlide';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import { UserDataContext } from '../../Session';
-import { SignalCellularNoSimOutlined } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -55,7 +51,6 @@ function SlickNextArrow(props: any) {
 }
 
 const Carousel: FunctionComponent<any> = (props: any) => {
-  const { userData, updateUserData } = useContext(UserDataContext);
   const booklist = props.data;
   const settings = {
     dots: true,

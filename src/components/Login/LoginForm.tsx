@@ -75,7 +75,7 @@ const LoginForm: FunctionComponent = (props: any) => {
   const [state, setState] = useState(INITIAL_STATE);
   const { email, password, error } = state;
   const router = useRouter();
-  const { userData, updateUserData } = useContext(UserDataContext);
+  const { updateUserData } = useContext(UserDataContext);
   const [createUser, { loading }] = useMutation(CREATE_USER, {
     onCompleted: (data) => {
       updateUserData(data.createUser);
