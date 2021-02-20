@@ -105,7 +105,7 @@ const SlickSlide = (props: any) => {
             title: classes.cardHeaderText,
             subheader: classes.cardHeaderText,
           }}
-          title={bookInfo.id}
+          title={bookInfo.title}
           subheader={author}
         />
       </Link>
