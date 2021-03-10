@@ -11,8 +11,7 @@ import Button from '@material-ui/core/Button';
 import NavSearchBar from './NavSearchBar';
 import Link from 'next/link';
 import NavUserMenu from './NavUserMenu';
-import { AuthUserContext } from '../../Session';
-import { convertColorToString } from 'material-ui/utils/colorManipulator';
+import { AuthUserContext, UserDataContext } from '../../Session';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -38,7 +37,9 @@ interface NavBarProps {
 const NavBar = (props: NavBarProps) => {
   const classes = useStyles();
   const authUserContext: any = useContext(AuthUserContext);
+  const { userData } = useContext(UserDataContext);
   const { onDrawerToggle } = props;
+
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar>
@@ -75,8 +76,8 @@ const NavBar = (props: NavBarProps) => {
               wrap="nowrap"
               justify="flex-end"
             >
-              {authUserContext ? (
-                <NavUserMenu />
+              {authUserContext && userData ? (
+                <NavUserMenu userId={userData.id} />
               ) : (
                 <Link href="/login">
                   <Button size="large" className={classes.appButton}>

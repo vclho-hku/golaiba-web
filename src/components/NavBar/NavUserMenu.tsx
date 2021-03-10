@@ -1,16 +1,17 @@
-import React, { FunctionComponent } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Link from 'next/link';
 import Logout from '../Logout';
 
-const NavUserMenu: FunctionComponent = () => {
-  // const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+const NavUserMenu = (props: any) => {
+  const [open, setOpen] = useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
   const handleToggle = () => {
@@ -37,13 +38,14 @@ const NavUserMenu: FunctionComponent = () => {
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
-  React.useEffect(() => {
+  useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current!.focus();
     }
 
     prevOpen.current = open;
   }, [open]);
+
   return (
     <div>
       <div>
@@ -78,7 +80,9 @@ const NavUserMenu: FunctionComponent = () => {
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
-                    {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+                    <Link href={`/wishlist`}>
+                      <MenuItem>想看清單</MenuItem>
+                    </Link>
                     <Logout></Logout>
                   </MenuList>
                 </ClickAwayListener>
