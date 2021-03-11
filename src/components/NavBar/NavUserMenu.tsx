@@ -80,7 +80,7 @@ const NavUserMenu = (props: any) => {
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
-                    <Link href={`/wishlist`}>
+                    <Link href={`/user/${props.userId}/wishlist`}>
                       <MenuItem>想看清單</MenuItem>
                     </Link>
                     <Logout></Logout>
