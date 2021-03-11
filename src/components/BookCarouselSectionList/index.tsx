@@ -6,18 +6,26 @@ import React, {
 } from 'react';
 import BookCarouselSection from '../BookCarouselSection';
 import { UserDataContext } from '../../Session';
+import { useLazyQuery } from '@apollo/client';
+import { GET_WISH_LIST_ID } from '../../query/wishlist';
 
 const BookCarouselSectionList: FunctionComponent<any> = () => {
   const { userData } = useContext(UserDataContext);
   const [userWishlist, setUserWishlist] = useState([]);
+  const [getWishlistId, { data }] = useLazyQuery(GET_WISH_LIST_ID);
 
   useEffect(() => {
     if (userData && userData.wishlist) {
-      setUserWishlist(userData.wishlist);
+      getWishlistId({ variables: { id: userData.id } });
     } else {
       setUserWishlist([]);
     }
   }, [userData]);
+  useEffect(() => {
+    if (data) {
+      setUserWishlist(data.getWishlist);
+    }
+  }, [data]);
   return (
     <div>
       <BookCarouselSection
