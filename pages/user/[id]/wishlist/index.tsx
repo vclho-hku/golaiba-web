@@ -1,6 +1,9 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import WishList from '../../../../src/components/WishList';
 
 export default function Index() {
-  return <WishList></WishList>;
+  const router = useRouter();
+  const { id } = router.query;
+  return <WishList userId={id}></WishList>;
 }
