@@ -5,10 +5,9 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
-import { red, green, yellow } from '@material-ui/core/colors';
+import Typography from '@material-ui/core/Typography';
+import { red, yellow } from '@material-ui/core/colors';
 import {
-  PlaylistAdd,
-  PlaylistAddCheck,
   Favorite,
   FavoriteBorder,
   Star,
@@ -57,7 +56,6 @@ const SlickSlide = (props: any) => {
   const classes = useStyles();
   const router = useRouter();
   const [isInWishlist, setInWishlist] = useState(props.isInUserWishList);
-  const [isInLibrary, setInLibrary] = useState(false);
 
   const [addWishList] = useMutation(ADD_WISH_LIST);
   const [removeWishList] = useMutation(REMOVE_WISH_LIST);
@@ -86,14 +84,6 @@ const SlickSlide = (props: any) => {
         bookId: bookInfo.id,
       },
     });
-  };
-
-  const handleAddToLibrary = () => {
-    if (authUser) {
-      setInLibrary(true);
-    } else {
-      router.push('login');
-    }
   };
 
   return (
@@ -133,22 +123,12 @@ const SlickSlide = (props: any) => {
             </IconButton>
           </Tooltip>
         )}
-        {isInLibrary ? (
-          <Tooltip title="已加到書櫃" aria-label="已加到書櫃">
-            <IconButton aria-label="已加到想看清單">
-              <PlaylistAddCheck style={{ color: green[500] }} />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title="加到書櫃" aria-label="加到書櫃">
-            <IconButton aria-label="加到書櫃" onClick={handleAddToLibrary}>
-              <PlaylistAdd />
-            </IconButton>
-          </Tooltip>
-        )}
+        <Star style={{ color: yellow[600] }} />
+        <Star style={{ color: yellow[600] }} />
         <Star style={{ color: yellow[600] }} />
         <StarHalf style={{ color: yellow[600] }} />
         <StarBorder style={{ color: yellow[600] }} />
+        <Typography variant="body2">(12)</Typography>
       </CardActions>
     </Card>
   );
