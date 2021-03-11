@@ -20,7 +20,7 @@ import Link from 'next/link';
 import { AuthUserContext } from '../../Session';
 import { useRouter } from 'next/router';
 import authorToString from '../../util/authorToString';
-import { ADD_WISH_LIST, REMOVE_WISH_LIST } from '../../query/user';
+import { ADD_WISH_LIST, REMOVE_WISH_LIST } from '../../query/wishlist';
 import { useMutation } from '@apollo/client';
 
 const useStyles = makeStyles(() =>

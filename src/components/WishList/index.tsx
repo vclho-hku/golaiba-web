@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { GET_WISH_LIST } from '../../query/user';
+import { GET_WISH_LIST } from '../../query/wishlist';
 import WishBook from './WishBook';
 
 const useStyles = makeStyles((theme: Theme) =>
