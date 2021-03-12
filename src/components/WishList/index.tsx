@@ -20,6 +20,7 @@ const WishList = (props: any) => {
   const classes = useStyles();
   const { loading, error, data } = useQuery(GET_WISH_LIST, {
     variables: { id: props.userId },
+    fetchPolicy: 'network-only',
   });
   if (loading)
     return (
