@@ -44,7 +44,7 @@ const WishBook = (props: any) => {
           </Grid>
           <Grid item xs={'auto'}>
             <Grid>{authorToString(book.authors)}</Grid>
-            <Grid>2020年5月</Grid>
+            <Grid>{book.publishDate}</Grid>
             <Grid>{book.publisher.name.zh_hk}</Grid>
           </Grid>
         </Grid>

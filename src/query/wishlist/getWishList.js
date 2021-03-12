@@ -10,6 +10,7 @@ export default gql`
       description
       language
       pageCount
+      publishDate
       imageUrl {
         small
         medium
