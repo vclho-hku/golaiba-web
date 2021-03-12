@@ -81,7 +81,13 @@ const NavUserMenu = (props: any) => {
                     onKeyDown={handleListKeyDown}
                   >
                     <Link href={`/user/${props.userId}/wishlist`}>
-                      <MenuItem>想看清單</MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setOpen(false);
+                        }}
+                      >
+                        想看清單
+                      </MenuItem>
                     </Link>
                     <Logout></Logout>
                   </MenuList>
