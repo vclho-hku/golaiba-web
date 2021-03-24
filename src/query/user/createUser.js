@@ -7,7 +7,6 @@ export default gql`
       uid
       name
       email
-      avatarImgUrl
       wishlist {
         id
       }

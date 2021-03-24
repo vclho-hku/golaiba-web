@@ -80,6 +80,15 @@ const NavUserMenu = (props: any) => {
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
+                    <Link href={`/user/${props.userId}/myaccount`}>
+                      <MenuItem
+                        onClick={() => {
+                          setOpen(false);
+                        }}
+                      >
+                        我的帳戶
+                      </MenuItem>
+                    </Link>
                     <Link href={`/user/${props.userId}/wishlist`}>
                       <MenuItem
                         onClick={() => {
