@@ -1,15 +1,17 @@
-import React, { FunctionComponent } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  useContext,
+  useEffect,
+} from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import CardMedia from '@material-ui/core/CardMedia';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/client';
 import { GET_BOOK_DETAILS } from '../../query/book';
-import authorToString from '../../util/authorToString';
-import { Typography } from '@material-ui/core';
-import { Favorite, FavoriteBorder } from '@material-ui/icons';
-import { red, green, yellow } from '@material-ui/core/colors';
 import BookDetailsContainer from './BookDetailsContainer';
+import { UserDataContext } from '../../Session';
+import { useLazyQuery } from '@apollo/client';
+import { GET_WISH_LIST_ID } from '../../query/wishlist';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,10 +26,37 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const BookDetails: FunctionComponent<any> = (props: any) => {
   const classes = useStyles();
+  const [isInWishlist, setInWishlist] = useState(false);
+  const { userData } = useContext(UserDataContext);
+  const [getWishlistId, { data: wishlistid }] = useLazyQuery(GET_WISH_LIST_ID, {
+    fetchPolicy: 'network-only',
+  });
 
   const { loading, error, data } = useQuery(GET_BOOK_DETAILS, {
     variables: { id: props.id },
   });
+  useEffect(() => {
+    if (userData) {
+      getWishlistId({ variables: { id: userData.id } });
+      // getUserBook({ variables: { userId: userData.id, bookId: book.id } });
+    }
+  }, [userData]);
+
+  const toggleWishlist = (wishlist: any, bookId: any) => {
+    wishlist.forEach((element: any) => {
+      if (element.id == bookId) {
+        setInWishlist(true);
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (wishlistid) {
+      console.log(wishlistid);
+      toggleWishlist(wishlistid.getWishlist, book.id);
+    }
+  }, [wishlistid]);
+
   if (loading)
     return (
       <div className={classes.loading}>
@@ -37,7 +66,13 @@ const BookDetails: FunctionComponent<any> = (props: any) => {
   if (error) return <p>系統出現問題 :(</p>;
 
   const book = data.book;
-  return <BookDetailsContainer book={book}></BookDetailsContainer>;
+
+  return (
+    <BookDetailsContainer
+      book={book}
+      isInWishlist={isInWishlist}
+    ></BookDetailsContainer>
+  );
 };
 
 export default BookDetails;

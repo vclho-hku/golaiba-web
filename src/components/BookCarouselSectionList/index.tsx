@@ -12,7 +12,9 @@ import { GET_WISH_LIST_ID } from '../../query/wishlist';
 const BookCarouselSectionList: FunctionComponent<any> = () => {
   const { userData } = useContext(UserDataContext);
   const [userWishlist, setUserWishlist] = useState([]);
-  const [getWishlistId, { data }] = useLazyQuery(GET_WISH_LIST_ID);
+  const [getWishlistId, { data }] = useLazyQuery(GET_WISH_LIST_ID, {
+    fetchPolicy: 'network-only',
+  });
 
   useEffect(() => {
     if (userData && userData.wishlist) {

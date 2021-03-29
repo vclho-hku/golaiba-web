@@ -16,19 +16,23 @@ import { useRouter } from 'next/router';
 import { GET_WISH_LIST_ID } from '../../query/wishlist';
 import { useLazyQuery } from '@apollo/client';
 import { UserDataContext } from '../../Session';
+import { GET_USER_BOOK } from '../../query/userBookshelf';
 
 const BookDetailsContainer = (props: any) => {
   const classes = props.classes;
   const { userData } = useContext(UserDataContext);
   const router = useRouter();
   const book = props.book;
-  const [isInWishlist, setInWishlist] = useState(false);
+  const [isInWishlist, setInWishlist] = useState(props.isInWishlist);
+  const [isInBookshelf, setInBookshelf] = useState(false);
 
   const [addWishList] = useMutation(ADD_WISH_LIST);
+  const [removeWishList] = useMutation(REMOVE_WISH_LIST);
   const authUser: any = useContext(AuthUserContext);
-  const [getWishlistId, { data: wishlistid }] = useLazyQuery(GET_WISH_LIST_ID, {
-    fetchPolicy: 'network-only',
-  });
+
+  // const [getUserBook, { data: userBook }] = useLazyQuery(GET_USER_BOOK, {
+  //   fetchPolicy: 'network-only',
+  // });
 
   const author = authorToString(book.authors);
   const handleAddToWishlist = () => {
@@ -45,34 +49,25 @@ const BookDetailsContainer = (props: any) => {
     }
   };
 
-  const toggleWishlist = (wishlist: any, bookId: any) => {
-    console.log('test');
-    wishlist.forEach((element: any) => {
-      console.log(element.id);
-      console.log(book.id);
-      if (element.id == bookId) {
-        setInWishlist(true);
-      }
+  const handleRemoveFromWishlist = () => {
+    setInWishlist(false);
+    removeWishList({
+      variables: {
+        uid: authUser.uid,
+        bookId: book.id,
+      },
     });
   };
 
   useEffect(() => {
-    setInWishlist(props.isInUserWishList);
-  }, [props.isInUserWishList]);
+    setInWishlist(props.isInWishlist);
+  }, [props.isInWishlist]);
 
-  useEffect(() => {
-    if (userData) {
-      getWishlistId({ variables: { id: userData.id } });
-    } else {
-      setUserWishlist([]);
-    }
-  }, [userData]);
-
-  useEffect(() => {
-    if (wishlistid) {
-      toggleWishlist(wishlistid.getWishlist, book.id);
-    }
-  }, [wishlistid]);
+  // useEffect(() => {
+  //   if (userBook && userBook.getUserBook) {
+  //     setInBookshelf(true);
+  //   }
+  // }, [userBook]);
 
   return (
     <Grid container className={classes.root}>
@@ -138,13 +133,17 @@ const BookDetailsContainer = (props: any) => {
             <Grid item xs={'auto'}>
               {isInWishlist ? (
                 <Tooltip title="已加到想看清單" aria-label="已加到想看清單">
-                  <Button variant="outlined" color="primary">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={handleRemoveFromWishlist}
+                  >
                     <Favorite style={{ color: red[500], fontSize: '15px' }} />
                     已加到想看清單
                   </Button>
                 </Tooltip>
               ) : (
-                <Tooltip title="已加到想看清單" aria-label="已加到想看清單">
+                <Tooltip title="加到想看清單" aria-label="加到想看清單">
                   <Button
                     variant="outlined"
                     color="primary"
@@ -159,10 +158,27 @@ const BookDetailsContainer = (props: any) => {
               )}
             </Grid>
             <Grid item xs={'auto'}>
-              <Button variant="outlined" color="primary">
-                <Favorite style={{ color: red[500], fontSize: '15px' }} />
-                已加到我的書櫃
-              </Button>
+              {isInBookshelf ? (
+                <Tooltip title="已加到我的書櫃" aria-label="已加到我的書櫃">
+                  <Button variant="outlined" color="primary" disabled>
+                    <Favorite style={{ fontSize: '15px' }} />
+                    已加到我的書櫃
+                  </Button>
+                </Tooltip>
+              ) : (
+                <Tooltip title="加到我的書櫃" aria-label="加到我的書櫃">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={handleAddToWishlist}
+                  >
+                    <FavoriteBorder
+                      style={{ color: red[500], fontSize: '15px' }}
+                    />
+                    加到我的書櫃
+                  </Button>
+                </Tooltip>
+              )}
             </Grid>
           </Grid>
           <p>
