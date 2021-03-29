@@ -22,11 +22,10 @@ const BookDetailsContainer = (props: any) => {
   const { userData } = useContext(UserDataContext);
   const router = useRouter();
   const book = props.book;
-  const [isInWishlist, setInWishlist] = useState(props.isInUserWishList);
+  const [isInWishlist, setInWishlist] = useState(false);
 
   const [addWishList] = useMutation(ADD_WISH_LIST);
   const authUser: any = useContext(AuthUserContext);
-  const [userWishlist, setUserWishlist] = useState([]);
   const [getWishlistId, { data: wishlistid }] = useLazyQuery(GET_WISH_LIST_ID, {
     fetchPolicy: 'network-only',
   });
@@ -46,7 +45,7 @@ const BookDetailsContainer = (props: any) => {
     }
   };
 
-  const toggleWishlist = (wishlist, bookId) => {
+  const toggleWishlist = (wishlist: any, bookId: any) => {
     console.log('test');
     wishlist.forEach((element: any) => {
       console.log(element.id);
@@ -71,7 +70,6 @@ const BookDetailsContainer = (props: any) => {
 
   useEffect(() => {
     if (wishlistid) {
-      setUserWishlist(wishlistid.getWishlist);
       toggleWishlist(wishlistid.getWishlist, book.id);
     }
   }, [wishlistid]);
