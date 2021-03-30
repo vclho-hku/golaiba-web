@@ -1,2 +1,3 @@
 import GET_USER_BOOK from './getUserBook';
-export { GET_USER_BOOK };
+import ADD_TO_BOOKSHELF from './addToBookshelf';
+export { GET_USER_BOOK, ADD_TO_BOOKSHELF };

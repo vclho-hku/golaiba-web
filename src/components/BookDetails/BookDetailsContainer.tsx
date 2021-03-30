@@ -9,14 +9,14 @@ import { withStyles } from '@material-ui/core/styles';
 import BookDetailsContainerStyle from './BookDetailsContainerStyle';
 import { AuthUserContext } from '../../Session';
 import { ADD_WISH_LIST, REMOVE_WISH_LIST } from '../../query/wishlist';
+import { ADD_TO_BOOKSHELF } from '../../query/userBookshelf';
 import { useMutation } from '@apollo/client';
 import { red, green, yellow } from '@material-ui/core/colors';
 import Tooltip from '@material-ui/core/Tooltip';
 import { useRouter } from 'next/router';
-import { GET_WISH_LIST_ID } from '../../query/wishlist';
-import { useLazyQuery } from '@apollo/client';
 import { UserDataContext } from '../../Session';
-import { GET_USER_BOOK } from '../../query/userBookshelf';
+import CollectionsBookmarkOutlinedIcon from '@material-ui/icons/CollectionsBookmarkOutlined';
+import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 
 const BookDetailsContainer = (props: any) => {
   const classes = props.classes;
@@ -24,17 +24,28 @@ const BookDetailsContainer = (props: any) => {
   const router = useRouter();
   const book = props.book;
   const [isInWishlist, setInWishlist] = useState(props.isInWishlist);
-  const [isInBookshelf, setInBookshelf] = useState(false);
+  const [isInBookshelf, setInBookshelf] = useState(props.isInBookshelf);
 
   const [addWishList] = useMutation(ADD_WISH_LIST);
   const [removeWishList] = useMutation(REMOVE_WISH_LIST);
+  const [addToBookshelf] = useMutation(ADD_TO_BOOKSHELF);
   const authUser: any = useContext(AuthUserContext);
 
-  // const [getUserBook, { data: userBook }] = useLazyQuery(GET_USER_BOOK, {
-  //   fetchPolicy: 'network-only',
-  // });
-
   const author = authorToString(book.authors);
+
+  const handleAddToBookshelf = () => {
+    if (userData) {
+      setInBookshelf(true);
+      addToBookshelf({
+        variables: {
+          userId: userData.id,
+          bookId: book.id,
+        },
+      });
+    } else {
+      router.push('login');
+    }
+  };
   const handleAddToWishlist = () => {
     if (authUser) {
       setInWishlist(true);
@@ -63,11 +74,9 @@ const BookDetailsContainer = (props: any) => {
     setInWishlist(props.isInWishlist);
   }, [props.isInWishlist]);
 
-  // useEffect(() => {
-  //   if (userBook && userBook.getUserBook) {
-  //     setInBookshelf(true);
-  //   }
-  // }, [userBook]);
+  useEffect(() => {
+    setInBookshelf(props.isInBookshelf);
+  }, [props.isInBookshelf]);
 
   return (
     <Grid container className={classes.root}>
@@ -161,7 +170,7 @@ const BookDetailsContainer = (props: any) => {
               {isInBookshelf ? (
                 <Tooltip title="已加到我的書櫃" aria-label="已加到我的書櫃">
                   <Button variant="outlined" color="primary" disabled>
-                    <Favorite style={{ fontSize: '15px' }} />
+                    <CollectionsBookmarkIcon style={{ fontSize: '15px' }} />
                     已加到我的書櫃
                   </Button>
                 </Tooltip>
@@ -170,9 +179,9 @@ const BookDetailsContainer = (props: any) => {
                   <Button
                     variant="outlined"
                     color="primary"
-                    onClick={handleAddToWishlist}
+                    onClick={handleAddToBookshelf}
                   >
-                    <FavoriteBorder
+                    <CollectionsBookmarkOutlinedIcon
                       style={{ color: red[500], fontSize: '15px' }}
                     />
                     加到我的書櫃

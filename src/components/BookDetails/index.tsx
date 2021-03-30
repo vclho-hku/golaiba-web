@@ -12,6 +12,7 @@ import BookDetailsContainer from './BookDetailsContainer';
 import { UserDataContext } from '../../Session';
 import { useLazyQuery } from '@apollo/client';
 import { GET_WISH_LIST_ID } from '../../query/wishlist';
+import { GET_USER_BOOK } from '../../query/userBookshelf';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,7 +28,9 @@ const useStyles = makeStyles((theme: Theme) =>
 const BookDetails: FunctionComponent<any> = (props: any) => {
   const classes = useStyles();
   const [isInWishlist, setInWishlist] = useState(false);
+  const [isInBookshelf, setInBookshelf] = useState(false);
   const { userData } = useContext(UserDataContext);
+
   const [getWishlistId, { data: wishlistid }] = useLazyQuery(GET_WISH_LIST_ID, {
     fetchPolicy: 'network-only',
   });
@@ -35,10 +38,14 @@ const BookDetails: FunctionComponent<any> = (props: any) => {
   const { loading, error, data } = useQuery(GET_BOOK_DETAILS, {
     variables: { id: props.id },
   });
+  const [getUserBook, { data: userBook }] = useLazyQuery(GET_USER_BOOK, {
+    fetchPolicy: 'network-only',
+  });
+
   useEffect(() => {
     if (userData) {
       getWishlistId({ variables: { id: userData.id } });
-      // getUserBook({ variables: { userId: userData.id, bookId: book.id } });
+      getUserBook({ variables: { userId: userData.id, bookId: props.id } });
     }
   }, [userData]);
 
@@ -52,10 +59,15 @@ const BookDetails: FunctionComponent<any> = (props: any) => {
 
   useEffect(() => {
     if (wishlistid) {
-      console.log(wishlistid);
       toggleWishlist(wishlistid.getWishlist, book.id);
     }
   }, [wishlistid]);
+
+  useEffect(() => {
+    if (userBook && userBook.getUserBook) {
+      setInBookshelf(true);
+    }
+  }, [userBook]);
 
   if (loading)
     return (
@@ -66,11 +78,11 @@ const BookDetails: FunctionComponent<any> = (props: any) => {
   if (error) return <p>系統出現問題 :(</p>;
 
   const book = data.book;
-
   return (
     <BookDetailsContainer
       book={book}
       isInWishlist={isInWishlist}
+      isInBookshelf={isInBookshelf}
     ></BookDetailsContainer>
   );
 };
