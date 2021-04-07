@@ -1,5 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
+import { REMOVE_FROM_BOOKSHELF } from '../../query/userBookshelf';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { GET_USER_BOOKSHELF } from '../../query/userBookshelf';
 import UserBookshelfContainer from './UserBookshelfContainer';
@@ -18,9 +20,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const UserBookshelf = (props: any) => {
   const classes = useStyles();
+  const [removeFromBookshelf] = useMutation(REMOVE_FROM_BOOKSHELF);
   const handleDeleteUserBook = (bookId: any) => {
-    // console.log(bookId);
-    // console.log(props.userId);
+    removeFromBookshelf({
+      variables: {
+        userId: props.userId,
+        bookId: bookId,
+      },
+    });
   };
 
   const { loading, error, data: bookshelf } = useQuery(GET_USER_BOOKSHELF, {
