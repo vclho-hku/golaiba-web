@@ -2,8 +2,15 @@ import { gql } from '@apollo/client';
 
 export default gql`
   query getUserBookshelf($userId: ID!) {
-    getUserBook(userId: $userId) {
-      id
+    getUserBookshelf(userId: $userId) {
+      book {
+        id
+        title
+        imageUrl {
+          small
+          medium
+        }
+      }
     }
   }
 `;

@@ -98,6 +98,15 @@ const NavUserMenu = (props: any) => {
                         想看清單
                       </MenuItem>
                     </Link>
+                    <Link href={`/user/${props.userId}/bookshelf`}>
+                      <MenuItem
+                        onClick={() => {
+                          setOpen(false);
+                        }}
+                      >
+                        我的書櫃
+                      </MenuItem>
+                    </Link>
                     <Logout></Logout>
                   </MenuList>
                 </ClickAwayListener>
