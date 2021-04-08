@@ -43,10 +43,18 @@ const UserBook = (props: any) => {
   const classes = useStyles();
   const book = props.book;
   const [show, setShow] = useState('block');
+  const [readingStatus, setReadingStatus] = React.useState(props.readingStatus);
 
   const handleDeleteUserBook = () => {
     setShow('none');
     props.handleDeleteUserBook(book.id);
+  };
+  const handleChangeReadingStatus = (
+    event: React.ChangeEvent<{ value: unknown }>,
+  ) => {
+    const newReadingStatus = event.target.value;
+    setReadingStatus(newReadingStatus);
+    props.handleChangeReadingStatus(book.id, newReadingStatus);
   };
   return (
     <Card className={classes.root} style={{ display: show }}>
@@ -65,18 +73,16 @@ const UserBook = (props: any) => {
         title={book.title}
       />
       <CardActions disableSpacing>
-        {/* <Select
-          value="a"
-          displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
+        <Select
+          labelId="user-book-reading-status-select-label"
+          id="user-book-reading-status-select"
+          value={readingStatus}
+          onChange={handleChangeReadingStatus}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select> */}
+          <MenuItem value={'pending'}>未看</MenuItem>
+          <MenuItem value={'reading'}>正在看</MenuItem>
+          <MenuItem value={'finished'}>看完</MenuItem>
+        </Select>
         <IconButton aria-label="delete" onClick={handleDeleteUserBook}>
           <DeleteIcon />
         </IconButton>

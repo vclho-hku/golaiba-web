@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/client';
 import { REMOVE_FROM_BOOKSHELF } from '../../query/userBookshelf';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { GET_USER_BOOKSHELF } from '../../query/userBookshelf';
+import { UPDATE_USER_BOOK_READING_STATUS } from '../../query/userBookshelf';
 import UserBookshelfContainer from './UserBookshelfContainer';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
@@ -21,11 +22,24 @@ const useStyles = makeStyles((theme: Theme) =>
 const UserBookshelf = (props: any) => {
   const classes = useStyles();
   const [removeFromBookshelf] = useMutation(REMOVE_FROM_BOOKSHELF);
+  const [updateUserBookReadingStatus] = useMutation(
+    UPDATE_USER_BOOK_READING_STATUS,
+  );
   const handleDeleteUserBook = (bookId: any) => {
     removeFromBookshelf({
       variables: {
         userId: props.userId,
         bookId: bookId,
+      },
+    });
+  };
+
+  const handleChangeReadingStatus = (bookId: any, readingStatus: any) => {
+    updateUserBookReadingStatus({
+      variables: {
+        userId: props.userId,
+        bookId: bookId,
+        readingStatus: readingStatus,
       },
     });
   };
@@ -45,6 +59,7 @@ const UserBookshelf = (props: any) => {
     <UserBookshelfContainer
       bookshelf={bookshelf.getUserBookshelf}
       handleDeleteUserBook={handleDeleteUserBook}
+      handleChangeReadingStatus={handleChangeReadingStatus}
     ></UserBookshelfContainer>
   );
 };
