@@ -56,22 +56,28 @@ const UserBook = (props: any) => {
     setReadingStatus(newReadingStatus);
     props.handleChangeReadingStatus(book.id, newReadingStatus);
   };
+
   return (
     <Card className={classes.root} style={{ display: show }}>
-      <CardHeader
-        classes={{
-          root: classes.cardHeader,
-          title: classes.cardHeaderText,
-          subheader: classes.cardHeaderText,
-        }}
-        title={book.title}
-        subheader={book.subtitle}
-      />
-      <CardMedia
-        className={classes.media}
-        image={book.imageUrl.medium}
-        title={book.title}
-      />
+      <Link href={`/user-book-details/${props.userBookId}`}>
+        <CardHeader
+          classes={{
+            root: classes.cardHeader,
+            title: classes.cardHeaderText,
+            subheader: classes.cardHeaderText,
+          }}
+          title={book.title}
+          subheader={book.subtitle}
+        />
+      </Link>
+      <Link href={`/user-book-details/${props.userBookId}`}>
+        <CardMedia
+          className={classes.media}
+          image={book.imageUrl.medium}
+          title={book.title}
+        />
+      </Link>
+
       <CardActions disableSpacing>
         <Select
           labelId="user-book-reading-status-select-label"

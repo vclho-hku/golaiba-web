@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export default gql`
-  query getUserBookshelf($userId: ID!) {
-    getUserBookshelf(userId: $userId) {
+  query getUserBookDetails($userBookId: ID!) {
+    getUserBookDetails(userBookId: $userBookId) {
       id
       readingStatus
       book {

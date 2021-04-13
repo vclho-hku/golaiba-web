@@ -11,6 +11,7 @@ const UserBookshelfContainer = (props: any) => {
         return (
           <UserBook
             key={index}
+            userBookId={value.id}
             book={value.book}
             readingStatus={value.readingStatus}
             handleDeleteUserBook={handleDeleteUserBook}
