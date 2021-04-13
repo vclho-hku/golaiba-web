@@ -1,6 +1,6 @@
 import React from 'react';
 import UserBookDetails from './UserBookDetails';
-import UserBookReview from './UserBookReveiw';
+import UserBookReview from './UserBookReview';
 
 const UserBookDetailsContainer = (props: any) => {
   return (

@@ -6,23 +6,20 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { useMutation } from '@apollo/client';
-import { UserDataContext } from '../../Session';
 import { ADD_USER_BOOK_REVIEW } from '../../query/userBookshelf';
 
-const UserBookReview = (props: any) => {
-  const { userData } = useContext(UserDataContext);
+const UserBookReviewForm = (props: any) => {
   const [rating, setRating] = useState(null);
   const [addUserBookReview] = useMutation(ADD_USER_BOOK_REVIEW);
   const reviewInput = useRef(null);
   const onSubmit = async (event: any) => {
     event.preventDefault();
-    let review = reviewInput.current.value;
-    console.log(review);
+    const review = reviewInput.current.value;
     addUserBookReview({
       variables: {
-        userId: userData.id,
+        userId: props.userId,
         bookId: props.bookId,
-        userName: userData.name,
+        userName: props.userName,
         rating: rating,
         review: review,
       },
@@ -59,4 +56,4 @@ const UserBookReview = (props: any) => {
   );
 };
 
-export default UserBookReview;
+export default UserBookReviewForm;
