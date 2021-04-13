@@ -15,7 +15,7 @@ const UserBookReviewForm = (props: any) => {
   const onSubmit = async (event: any) => {
     event.preventDefault();
     const review = reviewInput.current.value;
-    addUserBookReview({
+    await addUserBookReview({
       variables: {
         userId: props.userId,
         bookId: props.bookId,
@@ -24,6 +24,7 @@ const UserBookReviewForm = (props: any) => {
         review: review,
       },
     });
+    props.updateData();
   };
 
   return (
