@@ -21,6 +21,7 @@ import { useRouter } from 'next/router';
 import authorToString from '../../util/authorToString';
 import { ADD_WISH_LIST, REMOVE_WISH_LIST } from '../../query/wishlist';
 import { useMutation } from '@apollo/client';
+import Rating from '@material-ui/lab/Rating';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -123,12 +124,13 @@ const SlickSlide = (props: any) => {
             </IconButton>
           </Tooltip>
         )}
-        <Star style={{ color: yellow[600] }} />
-        <Star style={{ color: yellow[600] }} />
-        <Star style={{ color: yellow[600] }} />
-        <StarHalf style={{ color: yellow[600] }} />
-        <StarBorder style={{ color: yellow[600] }} />
-        <Typography variant="body2">(12)</Typography>
+        <Rating
+          name="read-only"
+          value={bookInfo.rating}
+          precision={0.5}
+          readOnly
+        />
+        <Typography variant="body2">({bookInfo.ratingCount})</Typography>
       </CardActions>
     </Card>
   );

@@ -8,6 +8,8 @@ export default gql`
         id
         isbn
         title
+        rating
+        ratingCount
         imageUrl {
           small
           medium
