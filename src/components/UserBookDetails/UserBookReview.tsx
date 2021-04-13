@@ -71,7 +71,12 @@ const UserBookReview = (props: any) => {
     <div>
       你已寫了書評：
       <div>
-        <Rating name="read-only" value={userReview.rating} readOnly />
+        <Rating
+          name="read-only"
+          value={userReview.rating}
+          precision={0.5}
+          readOnly
+        />
       </div>
       <div>{userReview.review}</div>
     </div>
