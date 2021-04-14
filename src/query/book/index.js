@@ -1,3 +1,3 @@
 import GET_BOOK_DETAILS from './getBookDetails';
-
-export { GET_BOOK_DETAILS };
+import GET_BOOK_REVIEW from './getBookReview';
+export { GET_BOOK_DETAILS, GET_BOOK_REVIEW };
