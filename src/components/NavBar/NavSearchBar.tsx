@@ -1,6 +1,8 @@
 import React from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
+import { useRouter } from 'next/router';
 import {
   fade,
   createStyles,
@@ -52,6 +54,16 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const NavSearchBar = () => {
   const classes = useStyles();
+  const router = useRouter();
+  const handleBookSearch = (keywords: string) => {
+    console.log(keywords);
+    router.push('/book/search/' + keywords);
+  };
+  const keyPress = (event: any) => {
+    if (event.keyCode == 13) {
+      handleBookSearch(event.target.value);
+    }
+  };
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
@@ -64,6 +76,7 @@ const NavSearchBar = () => {
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
+        onKeyDown={keyPress}
         inputProps={{ 'aria-label': 'search' }}
       />
     </div>
