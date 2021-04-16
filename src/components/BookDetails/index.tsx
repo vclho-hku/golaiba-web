@@ -59,7 +59,7 @@ const BookDetails: FunctionComponent<any> = (props: any) => {
 
   useEffect(() => {
     if (wishlistid) {
-      toggleWishlist(wishlistid.getWishlist, book.id);
+      toggleWishlist(wishlistid.getWishlist, props.id);
     }
   }, [wishlistid]);
 
