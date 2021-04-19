@@ -35,7 +35,6 @@ const BookSearch = (props: any) => {
       </div>
     );
   if (error) return <p>系統出現問題 :(</p>;
-  console.log(searchResult.getBookBySearch);
   return (
     <div>
       書本搜尋結果：
