@@ -115,7 +115,6 @@ const LoginForm: FunctionComponent = (props: any) => {
       setState({ ...INITIAL_STATE });
       router.push(ROUTES.HOME);
     } catch (error) {
-      console.log(error);
       const errorMsg = translateErrorMessage(error);
       setState({ ...state, error: errorMsg });
     }

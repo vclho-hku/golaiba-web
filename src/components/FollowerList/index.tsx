@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const FollowerList = (props: any) => {
   const classes = useStyles();
+  const userId = props.userId;
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -75,13 +76,13 @@ const FollowerList = (props: any) => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <MyFollowee></MyFollowee>
+        <MyFollowee userId={userId}></MyFollowee>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <SearchFollowee></SearchFollowee>
+        <SearchFollowee userId={userId}></SearchFollowee>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <MyFollower></MyFollower>
+        <MyFollower userId={userId}></MyFollower>
       </TabPanel>
     </div>
   );

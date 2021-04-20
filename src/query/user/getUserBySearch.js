@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export default gql`
-  query getUserBySearch($keywords: String!) {
-    getUserBySearch(keywords: $keywords) {
+  query getUserBySearch($userId: ID!, $keywords: String!) {
+    getUserBySearch(userId: $userId, keywords: $keywords) {
       _id
       uid
       name

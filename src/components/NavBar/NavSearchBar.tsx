@@ -56,7 +56,6 @@ const NavSearchBar = () => {
   const classes = useStyles();
   const router = useRouter();
   const handleBookSearch = (keywords: string) => {
-    console.log(keywords);
     router.push('/book/search/' + keywords);
   };
   const keyPress = (event: any) => {

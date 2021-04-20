@@ -24,10 +24,6 @@ const useStyles = makeStyles((theme: Theme) =>
     iconButton: {
       padding: 10,
     },
-    divider: {
-      height: 28,
-      margin: 4,
-    },
   }),
 );
 
@@ -63,7 +59,10 @@ const SearchFollowee = (props: any) => {
         </Paper>
       </form>
       <div>
-        <UserSearchResult keywords={keywords}></UserSearchResult>
+        <UserSearchResult
+          keywords={keywords}
+          userId={props.userId}
+        ></UserSearchResult>
       </div>
     </div>
   );

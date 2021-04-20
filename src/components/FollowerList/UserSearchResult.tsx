@@ -18,17 +18,22 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const UserSearchResult = (props: any) => {
   const classes = useStyles();
-  const [getUser, { loading, error, data }] = useLazyQuery(GET_USER_BY_SEARCH, {
-    variables: { keywords: props.keywords },
-    fetchPolicy: 'network-only',
-  });
+  const [getUserBySearch, { loading, error, data }] = useLazyQuery(
+    GET_USER_BY_SEARCH,
+    {
+      variables: {
+        userId: props.userId,
+        keywords: props.keywords,
+      },
+      fetchPolicy: 'network-only',
+    },
+  );
 
   useEffect(() => {
-    if (props.keywords) {
-      console.log(props.keywords);
-      getUser();
+    if (props.keywords && props.userId) {
+      getUserBySearch();
     }
-  }, [props.keywords]);
+  }, [props.keywords, props.userId]);
 
   if (props.keywords) {
     if (loading)
@@ -41,11 +46,12 @@ const UserSearchResult = (props: any) => {
     if (data) {
       return (
         <div>
-          {data.getUserBySearch.map((user: any) => {
+          {data.getUserBySearch.map((userFound: any) => {
             return (
               <UserSearchResultItem
-                key={user._id}
-                user={user}
+                key={userFound._id}
+                userId={props.userId}
+                userFound={userFound}
               ></UserSearchResultItem>
             );
           })}

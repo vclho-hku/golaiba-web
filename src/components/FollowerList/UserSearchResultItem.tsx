@@ -9,10 +9,12 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { red } from '@material-ui/core/colors';
+import { red, blue } from '@material-ui/core/colors';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-
+import DoneIcon from '@material-ui/icons/Done';
+import { ADD_FOLLOWEE } from '../../query/followList';
+import { useMutation } from '@apollo/client';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     loading: {
@@ -31,27 +33,55 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const UserSearchResultItem = (props: any) => {
-  const user = props.user;
+  const userFound = props.userFound;
   const classes = useStyles();
-  const addFriend = (userId: any) => {
-    console.log(userId);
+  const [isInFolloweeList, setInFolloweeList] = useState(false);
+  const [addFollowee] = useMutation(ADD_FOLLOWEE);
+  const addFriend = (followeeId: any) => {
+    addFollowee({
+      variables: {
+        userId: props.userId,
+        followeeId: followeeId,
+      },
+    });
+    setInFolloweeList(true);
   };
   return (
     <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings" onClick={() => addFriend(user._id)}>
-            <AddIcon />
-          </IconButton>
-        }
-        title={user.name}
-        subheader={user.email}
-      />
+      {isInFolloweeList ? (
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+              R
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings" disabled>
+              <DoneIcon style={{ color: blue[500] }} />
+            </IconButton>
+          }
+          title={userFound.name}
+          subheader={userFound.email}
+        />
+      ) : (
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+              R
+            </Avatar>
+          }
+          action={
+            <IconButton
+              aria-label="settings"
+              onClick={() => addFriend(userFound._id)}
+            >
+              <AddIcon />
+            </IconButton>
+          }
+          title={userFound.name}
+          subheader={userFound.email}
+        />
+      )}
     </Card>
   );
 };
