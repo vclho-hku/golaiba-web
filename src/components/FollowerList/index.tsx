@@ -13,7 +13,7 @@ import Box from '@material-ui/core/Box';
 import MyFollowee from './MyFollowee';
 import MyFollower from './MyFollower';
 import SearchFollowee from './SearchFollowee';
-
+import FolloweeActivity from './FolloweeActivity';
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
@@ -70,18 +70,22 @@ const FollowerList = (props: any) => {
           onChange={handleChange}
           aria-label="simple tabs example"
         >
-          <Tab label="我的書友" {...a11yProps(0)} />
-          <Tab label="尋找書友" {...a11yProps(1)} />
+          <Tab label="尋找書友" {...a11yProps(0)} />
+          <Tab label="我的書友" {...a11yProps(1)} />
+          <Tab label="書友動向" {...a11yProps(2)} />
           <Tab label="我的粉絲" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <MyFollowee userId={userId}></MyFollowee>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
         <SearchFollowee userId={userId}></SearchFollowee>
       </TabPanel>
+      <TabPanel value={value} index={1}>
+        <MyFollowee userId={userId}></MyFollowee>
+      </TabPanel>
       <TabPanel value={value} index={2}>
+        <FolloweeActivity userId={userId}></FolloweeActivity>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
         <MyFollower userId={userId}></MyFollower>
       </TabPanel>
     </div>
