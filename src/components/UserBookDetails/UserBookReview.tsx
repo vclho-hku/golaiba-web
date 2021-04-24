@@ -61,7 +61,7 @@ const UserBookReview = (props: any) => {
       </div>
     );
   }
-  if (userReview.rating == null || userReview.review == null) {
+  if (userReview.rating == null && userReview.review == null) {
     return (
       <UserBookReviewForm
         bookId={props.bookId}

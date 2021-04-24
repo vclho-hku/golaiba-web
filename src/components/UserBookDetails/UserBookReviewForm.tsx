@@ -14,10 +14,10 @@ const UserBookReviewForm = (props: any) => {
   const reviewInput = useRef<HTMLTextAreaElement>(null);
   const onSubmit = async (event: any) => {
     event.preventDefault();
-    console.log(props.userId);
-    console.log(props.bookId);
+    console.log('a');
     if (reviewInput && reviewInput.current && reviewInput.current.value) {
       const review = reviewInput.current.value;
+      console.log('b');
       await addUserBookReview({
         variables: {
           userId: props.userId,
@@ -27,6 +27,7 @@ const UserBookReviewForm = (props: any) => {
           review: review,
         },
       });
+      console.log('c');
       props.updateData();
     }
   };
