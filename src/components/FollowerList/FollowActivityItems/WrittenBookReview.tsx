@@ -10,10 +10,8 @@ import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { red, blue } from '@material-ui/core/colors';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import BookItem from './BookItem';
+import Rating from '@material-ui/lab/Rating';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const AddToWishlistItem = (props: any) => {
+const WrittenBookReview = (props: any) => {
   const activityData = props.activity;
   const user = activityData.user;
   const classes = useStyles();
@@ -41,7 +39,18 @@ const AddToWishlistItem = (props: any) => {
         title={user.name}
         subheader={user.email}
       />
-      <CardContent>加到「想看清單」的書本 </CardContent>
+      <CardContent>寫了書評 </CardContent>
+      <CardContent>
+        <div>
+          <Rating
+            name="read-only"
+            value={activityData.data.bookRating}
+            precision={0.5}
+            readOnly
+          />
+        </div>
+        <div>{activityData.data.bookReview}</div>
+      </CardContent>
       <CardContent>
         <BookItem book={activityData.data.book} />
       </CardContent>
@@ -50,4 +59,4 @@ const AddToWishlistItem = (props: any) => {
   );
 };
 
-export default AddToWishlistItem;
+export default WrittenBookReview;

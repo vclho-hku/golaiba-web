@@ -27,6 +27,12 @@ export default gql`
             }
           }
         }
+        bookRating
+        bookReview
+        followee {
+          name
+          email
+        }
       }
     }
   }

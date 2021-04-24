@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const AddToWishlistItem = (props: any) => {
+const AddToBookshelf = (props: any) => {
   const activityData = props.activity;
   const user = activityData.user;
   const classes = useStyles();
@@ -41,7 +41,7 @@ const AddToWishlistItem = (props: any) => {
         title={user.name}
         subheader={user.email}
       />
-      <CardContent>加到「想看清單」的書本 </CardContent>
+      <CardContent>加到書櫃的書本 </CardContent>
       <CardContent>
         <BookItem book={activityData.data.book} />
       </CardContent>
@@ -50,4 +50,4 @@ const AddToWishlistItem = (props: any) => {
   );
 };
 
-export default AddToWishlistItem;
+export default AddToBookshelf;

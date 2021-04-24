@@ -10,7 +10,16 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/client';
 import { GET_FOLLOWEE_ACTIVITY } from '../../query/followList';
 import AddToWishlistItem from './FollowActivityItems/AddToWishlistItem';
+import AddToBookshelf from './FollowActivityItems/AddToBookshelf';
+import WrittenBookReview from './FollowActivityItems/WrittenBookReview';
 import ActionVisibility from 'material-ui/svg-icons/action/visibility';
+import {
+  ADD_TO_WISHLIST,
+  ADD_TO_BOOKSHELF,
+  WRITTEN_BOOK_REVIEW,
+  ADD_FOLLOWER,
+} from '../../constant/UserActivityList';
+import AddFollower from './FollowActivityItems/AddFollower';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     loading: {
@@ -44,8 +53,17 @@ const FolloweeActivity = (props: any) => {
     <div>
       書友近況：
       {followeeActivityData.getFolloweeActivity.map((activity: any) => {
-        if (activity.activity == 'addToWishlist') {
+        if (activity.activity == ADD_TO_WISHLIST) {
           return <AddToWishlistItem activity={activity}></AddToWishlistItem>;
+        }
+        if (activity.activity == ADD_TO_BOOKSHELF) {
+          return <AddToBookshelf activity={activity}></AddToBookshelf>;
+        }
+        if (activity.activity == WRITTEN_BOOK_REVIEW) {
+          return <WrittenBookReview activity={activity}></WrittenBookReview>;
+        }
+        if (activity.activity == ADD_FOLLOWER) {
+          return <AddFollower activity={activity}></AddFollower>;
         }
       })}
     </div>
