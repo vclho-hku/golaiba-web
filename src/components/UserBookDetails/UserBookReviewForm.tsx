@@ -11,20 +11,24 @@ import { ADD_USER_BOOK_REVIEW } from '../../query/userBookshelf';
 const UserBookReviewForm = (props: any) => {
   const [rating, setRating] = useState(null);
   const [addUserBookReview] = useMutation(ADD_USER_BOOK_REVIEW);
-  const reviewInput = useRef(null);
+  const reviewInput = useRef<HTMLTextAreaElement>(null);
   const onSubmit = async (event: any) => {
     event.preventDefault();
-    const review = reviewInput.current.value;
-    await addUserBookReview({
-      variables: {
-        userId: props.userId,
-        bookId: props.bookId,
-        userName: props.userName,
-        rating: rating,
-        review: review,
-      },
-    });
-    props.updateData();
+    console.log(props.userId);
+    console.log(props.bookId);
+    if (reviewInput && reviewInput.current && reviewInput.current.value) {
+      const review = reviewInput.current.value;
+      await addUserBookReview({
+        variables: {
+          userId: props.userId,
+          bookId: props.bookId,
+          userName: props.userName,
+          rating: rating,
+          review: review,
+        },
+      });
+      props.updateData();
+    }
   };
 
   return (

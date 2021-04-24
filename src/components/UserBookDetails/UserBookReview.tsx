@@ -19,7 +19,11 @@ const UserBookReview = (props: any) => {
     }),
   );
   const { userData } = useContext(UserDataContext);
-  const [userReview, setUserReview] = useState('loading');
+  const [userReview, setUserReview] = useState({
+    isLoading: true,
+    rating: null,
+    review: null,
+  });
   const classes = useStyles();
   const [getUserBookReview, { data: userBookReviewData }] = useLazyQuery(
     GET_USER_BOOK_REVIEW,
@@ -46,18 +50,18 @@ const UserBookReview = (props: any) => {
 
   useEffect(() => {
     if (userBookReviewData) {
-      setUserReview(userBookReviewData.getUserBookReview);
+      setUserReview({ ...userBookReviewData.getUserBookReview });
     }
   }, [userBookReviewData]);
 
-  if (userReview == 'loading') {
+  if (userReview.isLoading) {
     return (
       <div className={classes.loading}>
         <CircularProgress />
       </div>
     );
   }
-  if (userReview == null) {
+  if (userReview.rating == null || userReview.review == null) {
     return (
       <UserBookReviewForm
         bookId={props.bookId}
