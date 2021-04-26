@@ -8,6 +8,7 @@ import {
 import Toolbar from '@material-ui/core/Toolbar';
 import NavBar from './NavBar';
 import SideMenu, { drawerWidth } from './SideMenu';
+import SubNavBar from './SubNavBar';
 import Hidden from '@material-ui/core/Hidden';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../constant/theme';
@@ -18,11 +19,6 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {},
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
-    },
-    main: {
-      [theme.breakpoints.up('sm')]: {
-        paddingLeft: drawerWidth,
-      },
     },
   }),
 );
@@ -54,9 +50,9 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
         <Toolbar />
         <div>
           <Hidden xsDown implementation="css">
-            <SideMenu></SideMenu>
+            <SubNavBar></SubNavBar>
           </Hidden>
-          <main className={classes.main}>{children}</main>
+          <main>{children}</main>
         </div>
       </div>
     </ThemeProvider>
