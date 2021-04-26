@@ -7,6 +7,9 @@ import Popper from '@material-ui/core/Popper';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Favorite from '@material-ui/icons/Favorite';
+import { grey } from '@material-ui/core/colors';
+
 import Link from 'next/link';
 import Logout from '../Logout';
 
@@ -49,13 +52,18 @@ const NavUserMenu = (props: any) => {
   return (
     <div>
       <div>
+        <Link href={`/user/${props.userId}/wishlist`}>
+          <Button>
+            <Favorite style={{ color: grey[100] }} />
+          </Button>
+        </Link>
         <Button
           ref={anchorRef}
           aria-controls={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          <AccountCircleIcon />
+          <AccountCircleIcon style={{ color: grey[100] }} />
         </Button>
         <Popper
           open={open}

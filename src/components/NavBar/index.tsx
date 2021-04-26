@@ -79,11 +79,13 @@ const NavBar = (props: NavBarProps) => {
               {authUserContext && userData ? (
                 <NavUserMenu userId={userData.id} />
               ) : (
-                <Link href="/login">
-                  <Button size="large" className={classes.appButton}>
-                    登入
-                  </Button>
-                </Link>
+                <div>
+                  <Link href="/login">
+                    <Button size="large" className={classes.appButton}>
+                      登入
+                    </Button>
+                  </Link>
+                </div>
               )}
             </Grid>
           </Grid>
