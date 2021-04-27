@@ -7,6 +7,10 @@ import { GET_USER_BOOKSHELF } from '../../query/userBookshelf';
 import { UPDATE_USER_BOOK_READING_STATUS } from '../../query/userBookshelf';
 import UserBookshelfContainer from './UserBookshelfContainer';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import SectionBar from '../SectionBar';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -56,11 +60,14 @@ const UserBookshelf = (props: any) => {
     );
   if (error) return <p>系統出現問題 :(</p>;
   return (
-    <UserBookshelfContainer
-      bookshelf={bookshelf.getUserBookshelf}
-      handleDeleteUserBook={handleDeleteUserBook}
-      handleChangeReadingStatus={handleChangeReadingStatus}
-    ></UserBookshelfContainer>
+    <>
+      <SectionBar title="我的書櫃"></SectionBar>
+      <UserBookshelfContainer
+        bookshelf={bookshelf.getUserBookshelf}
+        handleDeleteUserBook={handleDeleteUserBook}
+        handleChangeReadingStatus={handleChangeReadingStatus}
+      ></UserBookshelfContainer>
+    </>
   );
 };
 

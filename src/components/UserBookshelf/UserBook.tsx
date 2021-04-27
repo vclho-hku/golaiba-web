@@ -59,7 +59,7 @@ const UserBook = (props: any) => {
 
   return (
     <Card className={classes.root} style={{ display: show }}>
-      <Link href={`/user-book-details/${props.userBookId}`}>
+      {/* <Link href={`/user-book-details/${props.userBookId}`}>
         <CardHeader
           classes={{
             root: classes.cardHeader,
@@ -69,7 +69,7 @@ const UserBook = (props: any) => {
           title={book.title}
           subheader={book.subtitle}
         />
-      </Link>
+      </Link> */}
       <Link href={`/user-book-details/${props.userBookId}`}>
         <CardMedia
           className={classes.media}

@@ -5,6 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { GET_WISH_LIST } from '../../query/wishlist';
 import WishBook from './WishBook';
 import { AuthUserContext } from '../../Session';
+import SectionBar from '../SectionBar';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,6 +34,7 @@ const WishList = (props: any) => {
   if (error) return <p>系統出現問題 :(</p>;
   return (
     <div>
+      <SectionBar title="想看清單"></SectionBar>
       {authUser &&
         authUser.uid &&
         data.getWishlist.map((value: any, index: any) => {
