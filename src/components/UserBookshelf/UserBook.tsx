@@ -3,12 +3,13 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
-import { red } from '@material-ui/core/colors';
+import { red, blue } from '@material-ui/core/colors';
 import Link from 'next/link';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import CancelIcon from '@material-ui/icons/Cancel';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -90,7 +91,7 @@ const UserBook = (props: any) => {
           <MenuItem value={'finished'}>看完</MenuItem>
         </Select>
         <IconButton aria-label="delete" onClick={handleDeleteUserBook}>
-          <DeleteIcon />
+          <DeleteIcon style={{ color: red[700] }} />
         </IconButton>
       </CardActions>
     </Card>

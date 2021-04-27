@@ -4,7 +4,7 @@ export default function authorToString(authors: any) {
     if (author.name && author.name.zh_hk) {
       result += author.name.zh_hk;
     }
-    if (author.name.en_us) {
+    if (author.name && author.name.en_us) {
       result += `(${author.name.en_us})`;
     }
     result += ' ';

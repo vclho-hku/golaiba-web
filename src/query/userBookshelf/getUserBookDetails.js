@@ -8,9 +8,22 @@ export default gql`
       book {
         id
         title
+        authors {
+          name {
+            zh_hk
+            en_us
+          }
+        }
         imageUrl {
           small
           medium
+        }
+        publishDate
+        publisher {
+          name {
+            zh_hk
+            en_us
+          }
         }
       }
     }

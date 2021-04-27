@@ -21,6 +21,7 @@ export default gql`
           en_us
         }
       }
+      publishDate
       publisher {
         name {
           zh_hk
