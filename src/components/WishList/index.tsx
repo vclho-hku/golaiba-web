@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { GET_WISH_LIST } from '../../query/wishlist';
 import WishBook from './WishBook';
+import { AuthUserContext } from '../../Session';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const WishList = (props: any) => {
   const classes = useStyles();
+  const authUser: any = useContext(AuthUserContext);
   const { loading, error, data } = useQuery(GET_WISH_LIST, {
     variables: { id: props.userId },
     fetchPolicy: 'network-only',
@@ -31,9 +33,11 @@ const WishList = (props: any) => {
   if (error) return <p>系統出現問題 :(</p>;
   return (
     <div>
-      {data.getWishlist.map((value: any, index: any) => {
-        return <WishBook key={index} data={value} />;
-      })}
+      {authUser &&
+        authUser.uid &&
+        data.getWishlist.map((value: any, index: any) => {
+          return <WishBook key={index} data={value} userUId={authUser.uid} />;
+        })}
     </div>
   );
 };

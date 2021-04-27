@@ -9,6 +9,8 @@ export default gql`
       subtitle
       description
       language
+      rating
+      ratingCount
       pageCount
       publishDate
       imageUrl {
