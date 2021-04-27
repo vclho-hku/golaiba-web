@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
 import authorToString from '../../util/authorToString';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -12,7 +12,9 @@ import { red } from '@material-ui/core/colors';
 import CollectionsBookmarkOutlinedIcon from '@material-ui/icons/CollectionsBookmarkOutlined';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import { REMOVE_WISH_LIST } from '../../query/wishlist';
-import { useMutation } from '@apollo/client';
+import { useMutation, useLazyQuery } from '@apollo/client';
+import { GET_USER_BOOK } from '../../query/userBookshelf';
+import { UserDataContext } from '../../Session';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,6 +42,7 @@ const WishBook = (props: any) => {
   const [isInBookshelf, setInBookshelf] = useState(props.isInBookshelf);
   const [removeWishlist, setRemoveWishlist] = useState('block');
   const [removeWishList] = useMutation(REMOVE_WISH_LIST);
+  const { userData } = useContext(UserDataContext);
   const book = props.data;
   const handleAddToBookshelf = () => {};
   const handleRemoveFromWishlist = () => {
@@ -51,6 +54,22 @@ const WishBook = (props: any) => {
     });
     setRemoveWishlist('none');
   };
+  const [getUserBook, { data: userBook }] = useLazyQuery(GET_USER_BOOK, {
+    fetchPolicy: 'network-only',
+  });
+
+  useEffect(() => {
+    if (userData) {
+      getUserBook({ variables: { userId: userData.id, bookId: book.id } });
+    }
+  }, [userData]);
+
+  useEffect(() => {
+    if (userBook && userBook.getUserBook) {
+      setInBookshelf(true);
+    }
+  }, [userBook]);
+
   return (
     <Paper style={{ display: removeWishlist }}>
       <div className={classes.container}>
