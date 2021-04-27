@@ -14,6 +14,7 @@ import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import { REMOVE_WISH_LIST } from '../../query/wishlist';
 import { useMutation, useLazyQuery } from '@apollo/client';
 import { GET_USER_BOOK } from '../../query/userBookshelf';
+import { ADD_TO_BOOKSHELF } from '../../query/userBookshelf';
 import { UserDataContext } from '../../Session';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -42,9 +43,20 @@ const WishBook = (props: any) => {
   const [isInBookshelf, setInBookshelf] = useState(props.isInBookshelf);
   const [removeWishlist, setRemoveWishlist] = useState('block');
   const [removeWishList] = useMutation(REMOVE_WISH_LIST);
+  const [addToBookshelf] = useMutation(ADD_TO_BOOKSHELF);
   const { userData } = useContext(UserDataContext);
   const book = props.data;
-  const handleAddToBookshelf = () => {};
+  const handleAddToBookshelf = () => {
+    if (userData) {
+      setInBookshelf(true);
+      addToBookshelf({
+        variables: {
+          userId: userData.id,
+          bookId: book.id,
+        },
+      });
+    }
+  };
   const handleRemoveFromWishlist = () => {
     removeWishList({
       variables: {
