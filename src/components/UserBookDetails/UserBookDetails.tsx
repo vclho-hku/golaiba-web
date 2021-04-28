@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const UserBookDetails = (props: any) => {
   const classes = useStyles();
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState<string[]>([]);
   const { userData } = useContext(UserDataContext);
   const book = props.userBook.book;
   const [readingStatus, setReadingStatus] = useState(
@@ -69,7 +69,7 @@ const UserBookDetails = (props: any) => {
       },
     });
   };
-  const handleAddChip = (chip: any) => {
+  const handleAddChip = (chip: string) => {
     setTags([...tags, chip]);
   };
   const handleDeleteChip = (chip: any, index: any) => {
