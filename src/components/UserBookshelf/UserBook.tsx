@@ -46,6 +46,7 @@ const UserBook = (props: any) => {
   const [show, setShow] = useState('block');
   const [readingStatus, setReadingStatus] = React.useState(props.readingStatus);
 
+  const handleEditUserBook = () => {};
   const handleDeleteUserBook = () => {
     setShow('none');
     props.handleDeleteUserBook(book.id);
@@ -60,18 +61,7 @@ const UserBook = (props: any) => {
 
   return (
     <Card className={classes.root} style={{ display: show }}>
-      {/* <Link href={`/user-book-details/${props.userBookId}`}>
-        <CardHeader
-          classes={{
-            root: classes.cardHeader,
-            title: classes.cardHeaderText,
-            subheader: classes.cardHeaderText,
-          }}
-          title={book.title}
-          subheader={book.subtitle}
-        />
-      </Link> */}
-      <Link href={`/user-book-details/${props.userBookId}`}>
+      <Link href={`/book-details/${book.id}`}>
         <CardMedia
           className={classes.media}
           image={book.imageUrl.medium}
@@ -90,6 +80,9 @@ const UserBook = (props: any) => {
           <MenuItem value={'reading'}>正在看</MenuItem>
           <MenuItem value={'finished'}>看完</MenuItem>
         </Select>
+        <IconButton aria-label="delete" onClick={handleEditUserBook}>
+          <EditIcon style={{ color: blue[500] }} />
+        </IconButton>
         <IconButton aria-label="delete" onClick={handleDeleteUserBook}>
           <DeleteIcon style={{ color: red[700] }} />
         </IconButton>
