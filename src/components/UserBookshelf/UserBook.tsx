@@ -46,7 +46,9 @@ const UserBook = (props: any) => {
   const [show, setShow] = useState('block');
   const [readingStatus, setReadingStatus] = React.useState(props.readingStatus);
 
-  const handleEditUserBook = () => {};
+  const handleEditUserBook = () => {
+    props.handleOpenEditDialog(book);
+  };
   const handleDeleteUserBook = () => {
     setShow('none');
     props.handleDeleteUserBook(book.id);

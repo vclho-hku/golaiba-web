@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UserBook from './UserBook';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import UserBookEditDialog from './UserBookEditDialog';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,6 +19,17 @@ const UserBookshelfContainer = (props: any) => {
   const bookshelf = props.bookshelf;
   const handleDeleteUserBook = props.handleDeleteUserBook;
   const handleChangeReadingStatus = props.handleChangeReadingStatus;
+  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogBookInfo, setDialogBookInfo] = useState(null);
+
+  const handleOpenEditDialog = (book: any) => {
+    setDialogBookInfo(book);
+    setOpenDialog(true);
+  };
+  const handleDialogOnClose = () => {
+    setOpenDialog(false);
+    setDialogBookInfo(null);
+  };
   return (
     <div>
       <div className={classes.container}>
@@ -30,10 +42,16 @@ const UserBookshelfContainer = (props: any) => {
               readingStatus={value.readingStatus}
               handleDeleteUserBook={handleDeleteUserBook}
               handleChangeReadingStatus={handleChangeReadingStatus}
+              handleOpenEditDialog={handleOpenEditDialog}
             ></UserBook>
           );
         })}
       </div>
+      <UserBookEditDialog
+        book={dialogBookInfo}
+        open={openDialog}
+        onClose={handleDialogOnClose}
+      ></UserBookEditDialog>
     </div>
   );
 };
