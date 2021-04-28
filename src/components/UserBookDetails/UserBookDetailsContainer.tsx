@@ -4,7 +4,7 @@ import UserBookReview from './UserBookReview';
 
 const UserBookDetailsContainer = (props: any) => {
   return (
-    <div>
+    <div style={{ padding: '20px' }}>
       <UserBookDetails userBook={props.userBook}></UserBookDetails>
       <UserBookReview bookId={props.userBook.book.id}></UserBookReview>
     </div>
