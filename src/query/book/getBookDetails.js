@@ -10,6 +10,9 @@ export default gql`
       description
       language
       pageCount
+      title
+      rating
+      ratingCount
       imageUrl {
         small
         medium

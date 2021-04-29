@@ -5,6 +5,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Rating from '@material-ui/lab/Rating';
 import { GET_BOOK_REVIEW } from '../../query/book';
 import Divider from '@material-ui/core/Divider';
+import Paper from '@material-ui/core/Paper';
+import Avatar from '@material-ui/core/Avatar';
+
 const BookReviewList = (props: any) => {
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -13,6 +16,9 @@ const BookReviewList = (props: any) => {
         '& > * + *': {
           marginLeft: theme.spacing(2),
         },
+      },
+      container: {
+        display: 'flex',
       },
     }),
   );
@@ -39,17 +45,32 @@ const BookReviewList = (props: any) => {
       {bookReview.getBookReview.map((value: any, index: any) => {
         return (
           <div key={index}>
-            <Divider light />
-            <div>用戶：{value.userName}</div>
-            <div>
-              <Rating
-                name="read-only"
-                value={value.rating}
-                precision={0.5}
-                readOnly
-              />
+            <div className={classes.container}>
+              <div style={{ marginRight: '20px' }}>
+                <Avatar alt="Remy Sharp" src={value.userAvatarImgUrl} />
+              </div>
+              <div>
+                <div>
+                  <div className={classes.container}>
+                    <div style={{ marginRight: '20px' }}>{value.userName}</div>
+                    <div>{value.updatedAt}</div>
+                  </div>
+                  <div>
+                    <Rating
+                      size="small"
+                      name="read-only"
+                      value={value.rating}
+                      precision={0.5}
+                      readOnly
+                    />
+                  </div>
+                </div>
+                {value.review && (
+                  <div style={{ marginTop: '25px' }}>{value.review}</div>
+                )}
+              </div>
             </div>
-            <div>評價：{value.review}</div>
+            <Divider light style={{ margin: '10px' }} />
           </div>
         );
       })}

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import BookDetailsInfo from './BookDetailsInfo';
 import BookReviewContainer from './BookReviewContainer';
+import Divider from '@material-ui/core/Divider';
 
 const BookDetailsContainer = (props: any) => {
   return (
@@ -10,7 +11,8 @@ const BookDetailsContainer = (props: any) => {
         isInWishlist={props.isInWishlist}
         isInBookshelf={props.isInBookshelf}
       ></BookDetailsInfo>
-      <BookReviewContainer bookId={props.book.id}></BookReviewContainer>
+      <Divider light style={{ margin: '10px' }}></Divider>
+      <BookReviewContainer book={props.book}></BookReviewContainer>
     </div>
   );
 };

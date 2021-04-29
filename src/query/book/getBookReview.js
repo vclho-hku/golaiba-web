@@ -4,8 +4,10 @@ export default gql`
   query getBookReview($bookId: ID!, $limit: Int, $offset: Int) {
     getBookReview(bookId: $bookId, limit: $limit, offset: $offset) {
       userName
+      userAvatarImgUrl
       rating
       review
+      updatedAt
     }
   }
 `;

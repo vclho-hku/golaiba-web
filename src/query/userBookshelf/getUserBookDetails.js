@@ -7,7 +7,6 @@ export default gql`
       readingStatus
       book {
         id
-        title
         authors {
           name {
             zh_hk

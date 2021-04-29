@@ -48,7 +48,6 @@ const FolloweeActivity = (props: any) => {
       </div>
     );
   if (error) return <p>系統出現問題 :(</p>;
-  console.log(followeeActivityData);
   return (
     <div>
       書友近況：

@@ -7,27 +7,26 @@ import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { useMutation } from '@apollo/client';
 import { ADD_USER_BOOK_REVIEW } from '../../query/userBookshelf';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const UserBookReviewForm = (props: any) => {
   const [rating, setRating] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
   const [addUserBookReview] = useMutation(ADD_USER_BOOK_REVIEW);
   const reviewInput = useRef<HTMLTextAreaElement>(null);
   const onSubmit = async (event: any) => {
     event.preventDefault();
-    console.log('a');
+    setSubmitting(true);
     if (reviewInput && reviewInput.current && reviewInput.current.value) {
       const review = reviewInput.current.value;
-      console.log('b');
       await addUserBookReview({
         variables: {
           userId: props.userId,
           bookId: props.bookId,
-          userName: props.userName,
           rating: rating,
           review: review,
         },
       });
-      console.log('c');
       props.updateData();
     }
   };
@@ -35,7 +34,6 @@ const UserBookReviewForm = (props: any) => {
   return (
     <div>
       <form noValidate onSubmit={onSubmit}>
-        <Typography component="legend">評價</Typography>
         <Box component="fieldset" mb={1} borderColor="transparent">
           <Rating
             name="customized-empty"
@@ -52,10 +50,11 @@ const UserBookReviewForm = (props: any) => {
             aria-label="review"
             rowsMin={5}
             placeholder="書評"
+            style={{ width: '100%' }}
           />
         </Box>
         <Button type="submit" variant="contained" color="primary">
-          完成
+          {submitting ? <CircularProgress /> : '完成'}
         </Button>
       </form>
     </div>
