@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import SiteLayout from '../src/components/SiteLayout';
 import Firebase, { FirebaseContext } from '../src/Firebase';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import { SnackbarProvider } from 'notistack';
 import '../node_modules/slick-carousel/slick/slick.css';
 import '../node_modules/slick-carousel/slick/slick-theme.css';
 
@@ -31,9 +32,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ApolloProvider client={client}>
         <FirebaseContext.Provider value={new Firebase()}>
-          <SiteLayout>
-            <Component {...pageProps} />
-          </SiteLayout>
+          <SnackbarProvider maxSnack={3}>
+            <SiteLayout>
+              <Component {...pageProps} />
+            </SiteLayout>
+          </SnackbarProvider>
         </FirebaseContext.Provider>
       </ApolloProvider>
     </React.Fragment>

@@ -51,7 +51,7 @@ const BookReviewList = (props: any) => {
           <div key={index}>
             <div className={classes.container}>
               <div style={{ marginRight: '20px' }}>
-                <Avatar alt="Remy Sharp" src={value.userAvatarImgUrl} />
+                <Avatar src={value.userAvatarImgUrl} />
               </div>
               <div>
                 <div>

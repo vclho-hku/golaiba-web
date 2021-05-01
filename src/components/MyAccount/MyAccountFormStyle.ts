@@ -7,6 +7,8 @@ const MyAccountFormStyle: any = (theme: any) => ({
   },
   avatar: {
     margin: theme.spacing(1),
+    width: theme.spacing(10),
+    height: theme.spacing(10),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
@@ -15,6 +17,10 @@ const MyAccountFormStyle: any = (theme: any) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  divider: {
+    marginLeft: '20px',
+    marginRight: '20px',
   },
 });
 
