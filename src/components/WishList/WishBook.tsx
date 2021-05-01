@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const WishBook = (props: any) => {
   const classes = useStyles();
   const [isInBookshelf, setInBookshelf] = useState(props.isInBookshelf);
-  const [removeWishlist, setRemoveWishlist] = useState('block');
+  // const [removeWishlist, setRemoveWishlist] = useState('block');
   const [removeWishList] = useMutation(REMOVE_WISH_LIST);
   const [addToBookshelf] = useMutation(ADD_TO_BOOKSHELF);
   const { userData } = useContext(UserDataContext);
@@ -64,7 +64,7 @@ const WishBook = (props: any) => {
         bookId: book.id,
       },
     });
-    setRemoveWishlist('none');
+    props.removeBook(book.id);
   };
   const [getUserBook, { data: userBook }] = useLazyQuery(GET_USER_BOOK, {
     fetchPolicy: 'network-only',
@@ -83,7 +83,7 @@ const WishBook = (props: any) => {
   }, [userBook]);
 
   return (
-    <Paper style={{ display: removeWishlist }}>
+    <Paper>
       <div className={classes.container}>
         <div className={classes.itemLeft}>
           <img src={book.imageUrl.medium} className={classes.image}></img>

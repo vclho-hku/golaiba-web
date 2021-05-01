@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { useQuery } from '@apollo/client';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLazyQuery } from '@apollo/client';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { GET_WISH_LIST } from '../../query/wishlist';
@@ -21,24 +21,47 @@ const useStyles = makeStyles((theme: Theme) =>
 const WishList = (props: any) => {
   const classes = useStyles();
   const authUser: any = useContext(AuthUserContext);
-  const { loading, error, data } = useQuery(GET_WISH_LIST, {
-    variables: { id: props.userId },
+  const [wishlist, setWishlist] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [getWishlist, { data }] = useLazyQuery(GET_WISH_LIST, {
     fetchPolicy: 'network-only',
   });
+
+  useEffect(() => {
+    getWishlist({ variables: { id: props.userId } });
+  }, [props.userId, getWishlist]);
+
+  useEffect(() => {
+    if (data) {
+      setWishlist(data.getWishlist);
+      setLoading(false);
+    }
+  }, [data]);
+
+  const handleRemoveWishlistBook = (id: any) => {
+    setWishlist(wishlist.filter((book: any) => book.id !== id));
+  };
   if (loading)
     return (
       <div className={classes.loading}>
         <CircularProgress />
       </div>
     );
-  if (error) return <p>系統出現問題 :(</p>;
   return (
     <div>
       <SectionBar title="想看清單"></SectionBar>
+      {wishlist.length == 0 && <div>no books</div>}
       {authUser &&
         authUser.uid &&
-        data.getWishlist.map((value: any, index: any) => {
-          return <WishBook key={index} data={value} userUId={authUser.uid} />;
+        wishlist.map((value: any, index: any) => {
+          return (
+            <WishBook
+              key={index}
+              data={value}
+              userUId={authUser.uid}
+              removeBook={handleRemoveWishlistBook}
+            />
+          );
         })}
     </div>
   );
