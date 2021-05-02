@@ -43,14 +43,12 @@ const useStyles = makeStyles(() =>
 const UserBook = (props: any) => {
   const classes = useStyles();
   const book = props.book;
-  const [show, setShow] = useState('block');
-  const [readingStatus, setReadingStatus] = React.useState(props.readingStatus);
+  const [readingStatus, setReadingStatus] = useState(props.readingStatus);
 
   const handleEditUserBook = () => {
     props.handleOpenEditDialog(book);
   };
   const handleDeleteUserBook = () => {
-    setShow('none');
     props.handleDeleteUserBook(book.id);
   };
   const handleChangeReadingStatus = (
@@ -62,7 +60,7 @@ const UserBook = (props: any) => {
   };
 
   return (
-    <Card className={classes.root} style={{ display: show }}>
+    <Card className={classes.root}>
       <Link href={`/book-details/${book.id}`}>
         <CardMedia
           className={classes.media}

@@ -106,7 +106,7 @@ const UserBookEditDialog = (props: any) => {
       <DialogContent>
         <Typography variant="h6">{book.title}</Typography>
         <Divider light style={{ margin: '10px' }} />
-        <Grid container xs={12} spacing={3}>
+        <Grid item container xs={12} spacing={3}>
           <Grid item xs={'auto'}>
             <div style={{ textAlign: 'center' }}>變更閱讀狀態</div>
           </Grid>

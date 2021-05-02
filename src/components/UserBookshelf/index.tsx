@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { useMutation } from '@apollo/client';
+import { useMutation, useLazyQuery } from '@apollo/client';
 import { REMOVE_FROM_BOOKSHELF } from '../../query/userBookshelf';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { GET_USER_BOOKSHELF } from '../../query/userBookshelf';
@@ -25,6 +25,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const UserBookshelf = (props: any) => {
   const classes = useStyles();
+  const [bookshelf, setBookshelf] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [removeFromBookshelf] = useMutation(REMOVE_FROM_BOOKSHELF);
   const [updateUserBookReadingStatus] = useMutation(
     UPDATE_USER_BOOK_READING_STATUS,
@@ -48,22 +50,35 @@ const UserBookshelf = (props: any) => {
     });
   };
 
-  const { loading, error, data: bookshelf } = useQuery(GET_USER_BOOKSHELF, {
-    variables: { userId: props.userId },
+  const [getUserBookshelf, { data }] = useLazyQuery(GET_USER_BOOKSHELF, {
     fetchPolicy: 'network-only',
   });
+
+  useEffect(() => {
+    if (props.userId) {
+      getUserBookshelf({ variables: { userId: props.userId } });
+    }
+  }, [props.userId, getUserBookshelf]);
+
+  useEffect(() => {
+    if (data) {
+      setBookshelf(data.getUserBookshelf);
+      setLoading(false);
+    }
+  }, [data]);
+
   if (loading)
     return (
       <div className={classes.loading}>
         <CircularProgress />
       </div>
     );
-  if (error) return <p>系統出現問題 :(</p>;
+
   return (
     <>
       <SectionBar title="我的書櫃"></SectionBar>
       <UserBookshelfContainer
-        bookshelf={bookshelf.getUserBookshelf}
+        bookshelf={bookshelf}
         handleDeleteUserBook={handleDeleteUserBook}
         handleChangeReadingStatus={handleChangeReadingStatus}
       ></UserBookshelfContainer>
