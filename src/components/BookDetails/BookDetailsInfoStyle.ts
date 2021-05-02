@@ -1,43 +1,22 @@
-const BookDetailsContainerStyle: any = (theme: any) => ({
-  root: {
-    paddingTop: '30px',
-    paddingLeft: '30px',
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  media: {
-    height: '400px',
-    backgroundSize: 'contain',
-    paddingTop: '0%', // 16:9
-    cursor: 'pointer',
-    backgroundPosition: 'left',
-  },
-  loading: {
-    display: 'flex',
-    '& > * + *': {
-      marginLeft: theme.spacing(2),
-    },
-  },
-  tag: {
-    backgroundColor: '#E0DFE0',
-    padding: '5px',
-    borderRadius: '5px',
-  },
+const BookDetailsInfoStyle: any = (theme: any) => ({
   container: {
-    marginTop: '10px',
+    display: 'flex',
+    flexWrap: 'wrap',
   },
-  button: {
-    width: '200px',
-    textAlign: 'center',
-    borderColor: '#CAC194',
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    borderRadius: '5px',
-    padding: '5px 5px 5px 5px',
+  bookShareContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  bookImage: {
+    width: '300px',
+  },
+  bookInfoSubInfoContainer: {
+    display: 'flex',
+    padding: '5px',
+  },
+  bookInfoSubInfoTitle: {
+    width: '100px',
   },
 });
 
-export default BookDetailsContainerStyle;
+export default BookDetailsInfoStyle;
