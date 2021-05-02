@@ -6,6 +6,8 @@ import { GET_WISH_LIST } from '../../query/wishlist';
 import WishBook from './WishBook';
 import { AuthUserContext } from '../../Session';
 import SectionBar from '../SectionBar';
+import { NoBook } from '../Share';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,7 +52,12 @@ const WishList = (props: any) => {
   return (
     <div>
       <SectionBar title="想看清單"></SectionBar>
-      {wishlist.length == 0 && <div>no books</div>}
+      {wishlist.length == 0 && (
+        <NoBook>
+          {' '}
+          <Typography variant="body1">你還未加入任何書本至願望清單</Typography>
+        </NoBook>
+      )}
       {authUser &&
         authUser.uid &&
         wishlist.map((value: any, index: any) => {
