@@ -18,6 +18,7 @@ import { UserDataContext } from '../../Session';
 import CollectionsBookmarkOutlinedIcon from '@material-ui/icons/CollectionsBookmarkOutlined';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import BookDetilsInfoTags from './BookDetailsInfoTags';
+import BookDetailsDescription from './BookDetailsDescription';
 
 const BookDetailsInfo = (props: any) => {
   const classes = props.classes;
@@ -101,7 +102,7 @@ const BookDetailsInfo = (props: any) => {
           </div>
         </div>
         <div>
-          <div style={{ marginBottom: '30px' }}>
+          <div className={classes.title}>
             <Typography variant="h5" component="h5">
               {book.title}
             </Typography>
@@ -112,12 +113,70 @@ const BookDetailsInfo = (props: any) => {
           </div>
           <div className={classes.bookInfoSubInfoContainer}>
             <div className={classes.bookInfoSubInfoTitle}>出版日期:</div>
-            <div>2020年5月</div>
+            <div>{book.publishDate}</div>
           </div>
           <div className={classes.bookInfoSubInfoContainer}>
             <div className={classes.bookInfoSubInfoTitle}>出版社:</div>
-            <div>釆實文化</div>
+            <div>{book.publisher.name.zh_hk}</div>
           </div>
+          <div className={classes.bookInfoSubInfoContainer}>
+            <div className={classes.bookInfoSubInfoTitle}>ISBN:</div>
+            <div>{book.isbn}</div>
+          </div>
+
+          <div className={classes.bottonContainer}>
+            <div style={{ margin: '10px' }}>
+              {isInWishlist ? (
+                <Tooltip title="已加到想看清單" aria-label="已加到想看清單">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={handleRemoveFromWishlist}
+                  >
+                    <Favorite style={{ color: red[500], fontSize: '15px' }} />
+                    已加到想看清單
+                  </Button>
+                </Tooltip>
+              ) : (
+                <Tooltip title="加到想看清單" aria-label="加到想看清單">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={handleAddToWishlist}
+                  >
+                    <FavoriteBorder
+                      style={{ color: red[500], fontSize: '15px' }}
+                    />
+                    加到想看清單
+                  </Button>
+                </Tooltip>
+              )}
+            </div>
+            <div style={{ margin: '10px' }}>
+              {isInBookshelf ? (
+                <Tooltip title="已加到我的書櫃" aria-label="已加到我的書櫃">
+                  <Button variant="outlined" color="primary" disabled>
+                    <CollectionsBookmarkIcon style={{ fontSize: '15px' }} />
+                    已加到我的書櫃
+                  </Button>
+                </Tooltip>
+              ) : (
+                <Tooltip title="加到我的書櫃" aria-label="加到我的書櫃">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={handleAddToBookshelf}
+                  >
+                    <CollectionsBookmarkOutlinedIcon
+                      style={{ color: red[500], fontSize: '15px' }}
+                    />
+                    加到我的書櫃
+                  </Button>
+                </Tooltip>
+              )}
+            </div>
+          </div>
+          <BookDetailsDescription description={book.description} />
         </div>
       </div>
     </div>
