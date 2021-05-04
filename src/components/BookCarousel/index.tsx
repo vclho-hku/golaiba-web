@@ -70,7 +70,7 @@ const Carousel: FunctionComponent<any> = (props: any) => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 700,
         settings: {
           slidesToScroll: 1,
         },
