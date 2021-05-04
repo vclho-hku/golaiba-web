@@ -33,11 +33,13 @@ const BookDetailsDescription = (props: any) => {
         {ReactHtmlParser(props.description)}
         <div className={classes.blurFrame}></div>
       </div>
-      <div>
-        <Button color="secondary" onClick={handleExpand}>
-          {expand ? '看少一點' : '閱讀更多'}
-        </Button>
-      </div>
+      {props.description && (
+        <div>
+          <Button color="secondary" onClick={handleExpand}>
+            {expand ? '看少一點' : '閱讀更多'}
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
