@@ -35,7 +35,7 @@ const BookDetailsDescription = (props: any) => {
       </div>
       <div>
         <Button color="secondary" onClick={handleExpand}>
-          {expand ? '收起來' : '閱讀更多'}
+          {expand ? '看少一點' : '閱讀更多'}
         </Button>
       </div>
     </div>

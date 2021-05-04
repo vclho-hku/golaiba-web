@@ -82,8 +82,10 @@ const BookDetailsInfo = (props: any) => {
 
   return (
     <div style={{ marginLeft: '20px' }}>
-      <BookDetilsInfoTags />
-      <div className={classes.container}>
+      {book.tags && book.tags.length > 0 && (
+        <BookDetilsInfoTags tags={book.tags} />
+      )}
+      <div className={classes.container} style={{ marginTop: '20px' }}>
         <div style={{ marginRight: '30px' }}>
           <div>
             <img className={classes.bookImage} src={book.imageUrl.medium} />

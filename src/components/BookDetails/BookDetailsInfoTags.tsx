@@ -23,26 +23,19 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const BookDetailsInfoTags = (props: any) => {
   const classes = useStyles();
-
   return (
     <div className={classes.tagsOuterContainer}>
       <div>分類：</div>
       <div className={classes.tagsContainer}>
-        <div>
-          <div>
-            <div className={classes.tag}>企管財經</div>
-          </div>
-        </div>
-        <div>
-          <div>
-            <div className={classes.tag}>個人財務</div>
-          </div>
-        </div>
-        <div>
-          <div>
-            <div className={classes.tag}>財務</div>
-          </div>
-        </div>
+        {props.tags.map((tag) => {
+          return (
+            <div key={tag}>
+              <div>
+                <div className={classes.tag}>{tag}</div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

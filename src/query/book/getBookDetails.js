@@ -31,6 +31,7 @@ export default gql`
           en_us
         }
       }
+      tags
     }
   }
 `;
