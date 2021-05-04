@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Link from 'next/link';
+import SubNavBarContext from '../Context/SubNavBarContext';
 
 const useStyles = makeStyles({
   root: {
@@ -14,6 +15,7 @@ const useStyles = makeStyles({
 const SubNavBar = (props: any) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(-1);
+  const { subNavBarValue } = useContext(SubNavBarContext);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -22,6 +24,7 @@ const SubNavBar = (props: any) => {
   return (
     <Paper className={classes.root}>
       <Tabs
+        value={subNavBarValue}
         onChange={handleChange}
         indicatorColor="primary"
         textColor="primary"

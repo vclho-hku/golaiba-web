@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import SiteLayout from '../src/components/SiteLayout';
@@ -7,7 +7,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { SnackbarProvider } from 'notistack';
 import '../node_modules/slick-carousel/slick/slick.css';
 import '../node_modules/slick-carousel/slick/slick-theme.css';
-
+import SubNavBarContext from '../src/Context/SubNavBarContext';
 const client = new ApolloClient({
   uri:
     process.env.NEXT_PUBLIC_GQL_PROTOCOL +
@@ -17,6 +17,7 @@ const client = new ApolloClient({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [subNavBarValue, setSubNavBarValue] = useState(-1);
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -33,9 +34,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ApolloProvider client={client}>
         <FirebaseContext.Provider value={new Firebase()}>
           <SnackbarProvider maxSnack={3}>
-            <SiteLayout>
-              <Component {...pageProps} />
-            </SiteLayout>
+            <SubNavBarContext.Provider
+              value={{ subNavBarValue, setSubNavBarValue }}
+            >
+              <SiteLayout>
+                <Component {...pageProps} />
+              </SiteLayout>
+            </SubNavBarContext.Provider>
           </SnackbarProvider>
         </FirebaseContext.Provider>
       </ApolloProvider>
