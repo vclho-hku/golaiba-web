@@ -62,6 +62,20 @@ const Carousel: FunctionComponent<any> = (props: any) => {
     variableWidth: true,
     nextArrow: <SlickNextArrow />,
     prevArrow: <SlickPrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   function isInUserWishList(id: any) {
