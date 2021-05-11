@@ -1,9 +1,9 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
+import React, { useContext } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { UserDataContext } from '../../Session';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { GET_USER_DETAILS } from '../../query/user';
-import MyAccountForm from './MyAccountForm';
+import MyAccountPage from './MyAccountPage';
+import { NoAccessRight } from '../../components/Share/index';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,22 +18,21 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const MyAccount = (props: any) => {
   const classes = useStyles();
-  const { loading, error, data } = useQuery(GET_USER_DETAILS, {
-    variables: { id: props.userId },
-    fetchPolicy: 'network-only',
-  });
-  if (loading)
+  const { userData } = useContext(UserDataContext);
+
+  if (userData) {
+    if (userData.id != props.userId) {
+      return <NoAccessRight></NoAccessRight>;
+    } else {
+      return <MyAccountPage userId={props.userId} />;
+    }
+  } else {
     return (
       <div className={classes.loading}>
         <CircularProgress />
       </div>
     );
-  if (error) return <p>系統出現問題 :(</p>;
-  return (
-    <div>
-      <MyAccountForm data={data} />
-    </div>
-  );
+  }
 };
 
 export default MyAccount;
