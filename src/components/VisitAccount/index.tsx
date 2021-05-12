@@ -3,7 +3,7 @@ import { useLazyQuery } from '@apollo/client';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { GET_USER_DETAILS } from '../../query/user';
-import MyAccountForm from './MyAccountForm';
+import VisitAccountContainer from './VisitAccountContainer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const MyAccountPage = (props: any) => {
+const VisitAccount = (props: any) => {
   const classes = useStyles();
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState(null);
@@ -49,9 +49,9 @@ const MyAccountPage = (props: any) => {
 
   return (
     <div>
-      <MyAccountForm data={userDetails} />
+      <VisitAccountContainer data={userDetails} />
     </div>
   );
 };
 
-export default MyAccountPage;
+export default VisitAccount;

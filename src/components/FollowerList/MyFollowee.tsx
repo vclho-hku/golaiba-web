@@ -37,8 +37,9 @@ const MyFollowee = (props: any) => {
   return (
     <div>
       我的書友：
-      {getFollowee.getFollowee.map((followee: any) => {
-        return <UserItem key={followee.id} user={followee}></UserItem>;
+      {getFollowee.getFollowee.map((followee: any, index: any) => {
+        console.log(followee);
+        return <UserItem key={index} user={followee}></UserItem>;
       })}
     </div>
   );

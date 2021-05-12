@@ -14,6 +14,7 @@ import { red, blue } from '@material-ui/core/colors';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import DoneIcon from '@material-ui/icons/Done';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,6 +24,9 @@ const useStyles = makeStyles((theme: Theme) =>
     avatar: {
       backgroundColor: red[500],
     },
+    cardHeader: {
+      cursor: 'pointer',
+    },
   }),
 );
 
@@ -31,15 +35,18 @@ const UserItem = (props: any) => {
   const user = props.user;
   return (
     <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
-        }
-        title={user.name}
-        subheader={user.email}
-      />
+      <Link href={`/user/${props.user.id}`}>
+        <CardHeader
+          className={classes.cardHeader}
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+              R
+            </Avatar>
+          }
+          title={user.name}
+          subheader={user.email}
+        />
+      </Link>
     </Card>
   );
 };
