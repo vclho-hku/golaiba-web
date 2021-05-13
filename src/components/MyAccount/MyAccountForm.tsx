@@ -18,6 +18,7 @@ import { useMutation } from '@apollo/client';
 import { AuthUserContext } from '../../Session';
 import Snackbar from '@material-ui/core/Snackbar';
 import { useSnackbar } from 'notistack';
+import Link from 'next/link';
 
 const MyAccountForm = (props: any) => {
   const classes = props.classes;
@@ -99,34 +100,40 @@ const MyAccountForm = (props: any) => {
           賬戶資料
         </Typography>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div>
-            <div style={{ textAlign: 'center' }}>
-              <Typography variant="h4">{userData.bookCount}</Typography>
+          <Link href={`/user/${userData.id}/bookshelf`}>
+            <div style={{ cursor: 'pointer' }}>
+              <div style={{ textAlign: 'center' }}>
+                <Typography variant="h4">{userData.bookCount}</Typography>
+              </div>
+              <div>書本</div>
             </div>
-            <div>書本</div>
-          </div>
+          </Link>
           <Divider
             className={classes.divider}
             orientation="vertical"
             flexItem
           />
-          <div>
-            <div style={{ textAlign: 'center' }}>
-              <Typography variant="h4">{userData.followeeCount}</Typography>{' '}
+          <Link href={`/user/${userData.id}/myfollowee`}>
+            <div style={{ cursor: 'pointer' }}>
+              <div style={{ textAlign: 'center' }}>
+                <Typography variant="h4">{userData.followeeCount}</Typography>{' '}
+              </div>
+              <div>書友</div>
             </div>
-            <div>書友</div>
-          </div>
+          </Link>
           <Divider
             className={classes.divider}
             orientation="vertical"
             flexItem
           />
-          <div>
-            <div style={{ textAlign: 'center' }}>
-              <Typography variant="h4">{userData.followerCount}</Typography>{' '}
+          <Link href={`/user/${userData.id}/myfollower`}>
+            <div style={{ cursor: 'pointer' }}>
+              <div style={{ textAlign: 'center' }}>
+                <Typography variant="h4">{userData.followerCount}</Typography>{' '}
+              </div>
+              <div>粉絲</div>
             </div>
-            <div>粉絲</div>
-          </div>
+          </Link>
         </div>
         <form className={classes.form} noValidate onSubmit={onSubmit}>
           <TextField

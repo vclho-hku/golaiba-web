@@ -9,6 +9,7 @@ import UserItem from './UserItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/client';
 import { GET_FOLLOWEE } from '../../query/followList';
+import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     loading: {
@@ -34,15 +35,19 @@ const MyFollowee = (props: any) => {
       </div>
     );
   if (error) return <p>系統出現問題 :(</p>;
-  return (
-    <div>
-      我的書友：
-      {getFollowee.getFollowee.map((followee: any, index: any) => {
-        console.log(followee);
-        return <UserItem key={index} user={followee}></UserItem>;
-      })}
-    </div>
-  );
+
+  if (getFollowee.getFollowee.length == 0) {
+    return <div>暫時還沒有書友。</div>;
+  } else {
+    return (
+      <div>
+        <Typography variant="h5">我的書友</Typography>
+        {getFollowee.getFollowee.map((followee: any, index: any) => {
+          return <UserItem key={index} user={followee}></UserItem>;
+        })}
+      </div>
+    );
+  }
 };
 
 export default MyFollowee;
