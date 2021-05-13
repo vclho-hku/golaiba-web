@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import VisitAccountContainerStyle from './VisitAccountContainerStyle';
 import { withStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
+import Link from 'next/link';
 
 const VisitAccountContainer = (props: any) => {
   const classes = props.classes;
@@ -24,64 +25,40 @@ const VisitAccountContainer = (props: any) => {
             賬戶資料
           </Typography>
           <div className={classes.container}>
-            <div>
-              <div style={{ textAlign: 'center' }}>
-                <Typography variant="h4">{userData.bookCount}</Typography>
+            <Link href={`/user/${userData.id}/bookshelf/visit`}>
+              <div style={{ cursor: 'pointer' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <Typography variant="h4">{userData.bookCount}</Typography>
+                </div>
+                <div>書本</div>
               </div>
-              <div>書本</div>
-            </div>
+            </Link>
             <Divider
               className={classes.divider}
               orientation="vertical"
               flexItem
             />
-            <div>
-              <div style={{ textAlign: 'center' }}>
-                <Typography variant="h4">{userData.followeeCount}</Typography>{' '}
+            <Link href={`/user/${userData.id}/myfollowee/visit`}>
+              <div style={{ cursor: 'pointer' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <Typography variant="h4">{userData.followeeCount}</Typography>
+                </div>
+                <div>書友</div>
               </div>
-              <div>書友</div>
-            </div>
+            </Link>
             <Divider
               className={classes.divider}
               orientation="vertical"
               flexItem
             />
-            <div>
-              <div style={{ textAlign: 'center' }}>
-                <Typography variant="h4">{userData.followerCount}</Typography>{' '}
+            <Link href={`/user/${userData.id}/myfollower/visit`}>
+              <div style={{ cursor: 'pointer' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <Typography variant="h4">{userData.followerCount}</Typography>
+                </div>
+                <div>粉絲</div>
               </div>
-              <div>粉絲</div>
-            </div>
-          </div>
-          <div>
-            {/* <TextField
-            margin="normal"
-            fullWidth
-            label="電郵地址"
-            disabled
-            defaultValue={userData.email}
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            label="名稱"
-            defaultValue={userData.name}
-            disabled
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            label="性別"
-            defaultValue={userData.gender}
-            disabled
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            label="地區"
-            defaultValue={userData.region}
-            disabled
-          /> */}
+            </Link>
           </div>
         </div>
       </Container>
