@@ -28,6 +28,10 @@ const MyFollowee = (props: any) => {
     fetchPolicy: 'network-only',
   });
 
+  const handleDeleteFollower = (userId: string) => {
+    console.log(userId);
+  };
+
   if (loading)
     return (
       <div className={classes.loading}>
@@ -43,7 +47,14 @@ const MyFollowee = (props: any) => {
       <div>
         <Typography variant="h5">我的書友</Typography>
         {getFollowee.getFollowee.map((followee: any, index: any) => {
-          return <UserItem key={index} user={followee}></UserItem>;
+          return (
+            <UserItem
+              key={index}
+              user={followee}
+              canRemove={true}
+              handleDeleteFollower={handleDeleteFollower}
+            ></UserItem>
+          );
         })}
       </div>
     );

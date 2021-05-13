@@ -28,6 +28,10 @@ const MyFollower = (props: any) => {
     fetchPolicy: 'network-only',
   });
 
+  const handleDeleteFollower = (userId: string) => {
+    console.log(userId);
+  };
+
   if (loading)
     return (
       <div className={classes.loading}>
@@ -43,7 +47,13 @@ const MyFollower = (props: any) => {
       <div>
         <Typography variant="h5">我的粉絲</Typography>
         {getFollower.getFollower.map((follower: any) => {
-          return <UserItem key={follower.id} user={follower}></UserItem>;
+          return (
+            <UserItem
+              key={follower.id}
+              user={follower}
+              handleDeleteFollower={handleDeleteFollower}
+            ></UserItem>
+          );
         })}
       </div>
     );
