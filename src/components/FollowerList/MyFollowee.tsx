@@ -30,17 +30,16 @@ const MyFollowee = (props: any) => {
     fetchPolicy: 'network-only',
   });
 
-  // const [removeFollowee] = useMutation(ADD_FOLLOWEE);
+  const [removeFollowee] = useMutation(REMOVE_FOLLOWEE);
 
-  const handleDeleteFollower = (userId: string, followeeId: string) => {
-    // removeFollowee({
-    //   variables: {
-    //     userId: props.userId,
-    //     followeeId: followeeId,
-    //   },
-    // });
-    console.log(userId);
-    console.log(followeeId);
+  const handleDeleteFollower = (followeeId: string) => {
+    removeFollowee({
+      variables: {
+        userId: props.userId,
+        followeeId: followeeId,
+      },
+    });
+    setFolloweeList(followeeList.filter((user: any) => user.id !== followeeId));
   };
 
   useEffect(() => {
@@ -62,7 +61,6 @@ const MyFollowee = (props: any) => {
         <CircularProgress />
       </div>
     );
-
   if (followeeList.length == 0) {
     return <div>暫時還沒有書友。</div>;
   } else {
