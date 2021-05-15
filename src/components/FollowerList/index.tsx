@@ -14,6 +14,7 @@ import MyFollowee from './MyFollowee';
 import MyFollower from './MyFollower';
 import SearchFollowee from './SearchFollowee';
 import FolloweeActivity from './FolloweeActivity';
+import { amber } from '@material-ui/core/colors';
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
@@ -68,7 +69,11 @@ const FollowerList = (props: any) => {
         <Tabs
           value={value}
           onChange={handleChange}
-          aria-label="simple tabs example"
+          indicatorColor="primary"
+          textColor="primary"
+          aria-label="我的書友"
+          centered
+          style={{ backgroundColor: amber[300] }}
         >
           <Tab label="我的書友" {...a11yProps(0)} />
           <Tab label="我的粉絲" {...a11yProps(1)} />
