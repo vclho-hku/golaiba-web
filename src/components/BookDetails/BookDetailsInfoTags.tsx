@@ -27,7 +27,7 @@ const BookDetailsInfoTags = (props: any) => {
     <div className={classes.tagsOuterContainer}>
       <div>分類：</div>
       <div className={classes.tagsContainer}>
-        {props.tags.map((tag) => {
+        {props.tags.map((tag: any) => {
           return (
             <div key={tag}>
               <div>

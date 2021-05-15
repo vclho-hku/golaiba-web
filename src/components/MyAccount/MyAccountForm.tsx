@@ -52,7 +52,7 @@ const MyAccountForm = (props: any) => {
   const handleLanguageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLanguage(event.target.value);
   };
-  const handleNewsletterChange = (event) => {
+  const handleNewsletterChange = (event: any) => {
     setSentNewsletter(event.target.checked);
   };
 
