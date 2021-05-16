@@ -20,6 +20,7 @@ import {
   ADD_FOLLOWER,
 } from '../../constant/UserActivityList';
 import AddFollower from './FollowActivityItems/AddFollower';
+import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     loading: {
@@ -48,9 +49,16 @@ const FolloweeActivity = (props: any) => {
       </div>
     );
   if (error) return <p>系統出現問題 :(</p>;
+  if (followeeActivityData.getFolloweeActivity.length == 0) {
+    return (
+      <div>
+        <Typography variant="h5">沒有書友近況</Typography>
+      </div>
+    );
+  }
   return (
     <div>
-      書友近況：
+      <Typography variant="h5">書友近況</Typography>
       {followeeActivityData.getFolloweeActivity.map((activity: any) => {
         if (activity.activity == ADD_TO_WISHLIST) {
           return <AddToWishlistItem activity={activity}></AddToWishlistItem>;
