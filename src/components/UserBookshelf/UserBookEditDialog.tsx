@@ -109,8 +109,13 @@ const UserBookEditDialog = (props: any) => {
     handleRemoveUserBookTag(chip);
   };
 
+  const handleSuggestChipClick = (chip: any) => {
+    if (tags.indexOf(chip) == -1) {
+      handleAddChip(chip);
+    }
+  };
+
   const handleClose = () => {
-    setTags([]);
     props.onClose();
   };
   const handleChangeReadingStatus = (
@@ -130,7 +135,6 @@ const UserBookEditDialog = (props: any) => {
   }, [props.userBook]);
 
   useEffect(() => {
-    console.log(props);
     setOpen(props.open);
   }, [props.open]);
   return (
@@ -171,7 +175,15 @@ const UserBookEditDialog = (props: any) => {
         />
         <Divider light style={{ margin: '10px' }} />
         <Typography variant="body1">常用標籤</Typography>
-        <Chip label="Basic" />
+        {props.userTags.map((userTag: string) => {
+          return (
+            <Chip
+              key={userTag}
+              label={userTag}
+              onClick={() => handleSuggestChipClick(userTag)}
+            />
+          );
+        })}
         <Divider light style={{ margin: '10px' }} />
         <UserBookReview bookId={book.id} />
       </DialogContent>

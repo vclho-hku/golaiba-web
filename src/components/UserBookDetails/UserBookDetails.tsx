@@ -70,7 +70,6 @@ const UserBookDetails = (props: any) => {
     });
   };
   const handleAddChip = (chip: string) => {
-    console.log(chip);
     setTags([...tags, chip]);
   };
   const handleDeleteChip = (chip: any, index: any) => {

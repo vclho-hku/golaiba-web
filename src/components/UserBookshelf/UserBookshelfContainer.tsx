@@ -4,7 +4,6 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import UserBookEditDialog from './UserBookEditDialog';
 import { NoBook } from '../Share';
 import Typography from '@material-ui/core/Typography';
-import { SignalCellularNoSimOutlined } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,7 +22,6 @@ const UserBookshelfContainer = (props: any) => {
   const handleChangeReadingStatus = props.handleChangeReadingStatus;
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogBookInfo, setDialogBookInfo] = useState(null);
-
   const handleOpenEditDialog = (userBook: any) => {
     setDialogBookInfo(userBook);
     setOpenDialog(true);
@@ -69,6 +67,7 @@ const UserBookshelfContainer = (props: any) => {
         open={openDialog}
         handleChangeReadingStatus={handleChangeReadingStatus}
         onClose={handleDialogOnClose}
+        userTags={props.userTags}
       ></UserBookEditDialog>
     </div>
   );

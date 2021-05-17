@@ -8,6 +8,7 @@ import ADD_USER_BOOK_REVIEW from './addUserBookReview';
 import GET_USER_BOOK_REVIEW from './getUserBookReview';
 import ADD_USER_BOOK_TAG from './addUserBookTag';
 import REMOVE_USER_BOOK_TAG from './removeUserBookTag';
+import GET_USER_TAGS from './getUserTags';
 export {
   GET_USER_BOOK,
   GET_USER_BOOK_DETAILS,
@@ -19,4 +20,5 @@ export {
   GET_USER_BOOK_REVIEW,
   ADD_USER_BOOK_TAG,
   REMOVE_USER_BOOK_TAG,
+  GET_USER_TAGS,
 };

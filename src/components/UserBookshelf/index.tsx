@@ -4,7 +4,10 @@ import { useMutation, useLazyQuery } from '@apollo/client';
 import { REMOVE_FROM_BOOKSHELF } from '../../query/userBookshelf';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { GET_USER_BOOKSHELF } from '../../query/userBookshelf';
-import { UPDATE_USER_BOOK_READING_STATUS } from '../../query/userBookshelf';
+import {
+  UPDATE_USER_BOOK_READING_STATUS,
+  GET_USER_TAGS,
+} from '../../query/userBookshelf';
 import UserBookshelfContainer from './UserBookshelfContainer';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -26,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const UserBookshelf = (props: any) => {
   const classes = useStyles();
   const [bookshelf, setBookshelf] = useState([]);
+  const [userTags, setUserTags] = useState([]);
   const [loading, setLoading] = useState(true);
   const [removeFromBookshelf] = useMutation(REMOVE_FROM_BOOKSHELF);
   const [updateUserBookReadingStatus] = useMutation(
@@ -54,11 +58,16 @@ const UserBookshelf = (props: any) => {
     fetchPolicy: 'network-only',
   });
 
+  const [getUserTags, { data: userTagsList }] = useLazyQuery(GET_USER_TAGS, {
+    fetchPolicy: 'network-only',
+  });
+
   useEffect(() => {
     if (props.userId) {
       getUserBookshelf({ variables: { userId: props.userId } });
+      getUserTags({ variables: { userId: props.userId } });
     }
-  }, [props.userId, getUserBookshelf]);
+  }, [props.userId, getUserBookshelf, getUserTags]);
 
   useEffect(() => {
     if (data) {
@@ -66,6 +75,12 @@ const UserBookshelf = (props: any) => {
       setLoading(false);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (userTagsList) {
+      setUserTags(userTagsList.getUserTags);
+    }
+  }, [userTagsList]);
 
   if (loading)
     return (
@@ -78,6 +93,7 @@ const UserBookshelf = (props: any) => {
     <>
       <SectionBar title="我的書櫃"></SectionBar>
       <UserBookshelfContainer
+        userTags={userTags}
         bookshelf={bookshelf}
         userId={props.userId}
         handleDeleteUserBook={handleDeleteUserBook}
