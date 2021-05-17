@@ -5,6 +5,7 @@ export default gql`
     getUserBookshelf(userId: $userId) {
       id
       readingStatus
+      tags
       book {
         id
         title

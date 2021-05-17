@@ -24,8 +24,8 @@ const UserBookshelfContainer = (props: any) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogBookInfo, setDialogBookInfo] = useState(null);
 
-  const handleOpenEditDialog = (book: any) => {
-    setDialogBookInfo(book);
+  const handleOpenEditDialog = (userBook: any) => {
+    setDialogBookInfo(userBook);
     setOpenDialog(true);
   };
   const handleDialogOnClose = () => {
@@ -56,14 +56,18 @@ const UserBookshelfContainer = (props: any) => {
               readingStatus={value.readingStatus}
               handleDeleteUserBook={handleDeleteUserBook}
               handleChangeReadingStatus={handleChangeReadingStatus}
-              handleOpenEditDialog={handleOpenEditDialog}
+              handleOpenEditDialog={() => {
+                handleOpenEditDialog(value);
+              }}
             ></UserBook>
           );
         })}
       </div>
       <UserBookEditDialog
-        book={dialogBookInfo}
+        userBook={dialogBookInfo}
+        userId={props.userId}
         open={openDialog}
+        handleChangeReadingStatus={handleChangeReadingStatus}
         onClose={handleDialogOnClose}
       ></UserBookEditDialog>
     </div>

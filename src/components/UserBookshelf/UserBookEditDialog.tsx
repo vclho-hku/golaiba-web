@@ -23,6 +23,11 @@ import Divider from '@material-ui/core/Divider';
 import ChipInput from 'material-ui-chip-input';
 import Chip from '@material-ui/core/Chip';
 import UserBookReview from '../UserBookDetails/UserBookReview';
+import {
+  ADD_USER_BOOK_TAG,
+  REMOVE_USER_BOOK_TAG,
+} from '../../query/userBookshelf';
+import { useMutation } from '@apollo/client';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -68,29 +73,64 @@ const DialogTitle = withStyles(styles)((props: DialogTitleProps) => {
 const UserBookEditDialog = (props: any) => {
   const [open, setOpen] = useState(false);
   const [book, setBook] = useState<any>({});
-  const [readingStatus, setReadingStatus] = useState('reading');
+  const [readingStatus, setReadingStatus] = useState<string>('reading');
   const [tags, setTags] = useState<string[]>([]);
+  const [addUserBookTag] = useMutation(ADD_USER_BOOK_TAG);
+  const [removeUserBookTag] = useMutation(REMOVE_USER_BOOK_TAG);
+
+  const handleAddUserBookTag = (tag: any) => {
+    addUserBookTag({
+      variables: {
+        userId: props.userId,
+        bookId: props.userBook.book.id,
+        tag: tag,
+      },
+    });
+  };
+
+  const handleRemoveUserBookTag = (tag: any) => {
+    removeUserBookTag({
+      variables: {
+        userId: props.userId,
+        bookId: props.userBook.book.id,
+        tag: tag,
+      },
+    });
+  };
 
   const handleAddChip = (chip: string) => {
     setTags([...tags, chip]);
+    handleAddUserBookTag(chip);
   };
   const handleDeleteChip = (chip: any, index: any) => {
     const newTags = tags.map((item) => item);
     newTags.splice(index, 1);
     setTags(newTags);
+    handleRemoveUserBookTag(chip);
   };
 
   const handleClose = () => {
+    setTags([]);
     props.onClose();
   };
-  const handleChangeReadingStatus = () => {};
-  useEffect(() => {
-    if (props.book) {
-      setBook(props.book);
-    }
-  }, [props.book]);
+  const handleChangeReadingStatus = (
+    event: React.ChangeEvent<{ value: any }>,
+  ) => {
+    const newReadingStatus = event.target.value;
+    setReadingStatus(newReadingStatus);
+    props.handleChangeReadingStatus(props.userBook.book.id, newReadingStatus);
+  };
 
   useEffect(() => {
+    if (props.userBook) {
+      setReadingStatus(props.userBook.readingStatus);
+      setBook(props.userBook.book);
+      setTags(props.userBook.tags);
+    }
+  }, [props.userBook]);
+
+  useEffect(() => {
+    console.log(props);
     setOpen(props.open);
   }, [props.open]);
   return (

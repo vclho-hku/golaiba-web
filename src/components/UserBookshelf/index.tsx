@@ -79,6 +79,7 @@ const UserBookshelf = (props: any) => {
       <SectionBar title="我的書櫃"></SectionBar>
       <UserBookshelfContainer
         bookshelf={bookshelf}
+        userId={props.userId}
         handleDeleteUserBook={handleDeleteUserBook}
         handleChangeReadingStatus={handleChangeReadingStatus}
       ></UserBookshelfContainer>
