@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export default gql`
-  query getBookBySearch($keywords: String!) {
-    getBookBySearch(keywords: $keywords) {
+  query getBookBySearch($keywords: String!, $limit: Int, $offset: Int) {
+    getBookBySearch(keywords: $keywords, limit: $limit, offset: $offset) {
       _id
       isbn
       title
