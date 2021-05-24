@@ -77,12 +77,11 @@ const BookCarousel = (props: any) => {
       },
     ],
   };
-  console.log(booklist);
   return (
     <div style={{ margin: '20px' }}>
       <Slider {...settings}>
         {booklist.map((data: any, index: any) => {
-          return <BookSlide key={index} data={data} />;
+          return <BookSlide key={index} data={data.book} />;
         })}
       </Slider>
     </div>

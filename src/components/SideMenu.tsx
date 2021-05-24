@@ -11,6 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Typography from '@material-ui/core/Typography';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -60,16 +61,34 @@ const SideMenu = (props: SideMenuProps) => {
       </Toolbar>
       <div className={classes.drawerContainer}>
         <List>
-          {['最新精選', '名人書櫃', '經典書籍', '看書好地方'].map(
-            (text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ),
-          )}
+          <Link href={`/`}>
+            <ListItem button key="最新精選" onClick={props.onClose}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="最新精選" />
+            </ListItem>
+          </Link>
+          <Link href={`/celebrity`}>
+            <ListItem button key="名人書櫃" onClick={props.onClose}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="名人書櫃" />
+            </ListItem>
+          </Link>
+          <ListItem button key="經典書籍">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="經典書籍" />
+          </ListItem>
+          <ListItem button key="看書好地方">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="看書好地方" />
+          </ListItem>
         </List>
         <Divider />
         <List>

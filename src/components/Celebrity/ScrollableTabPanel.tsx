@@ -68,7 +68,7 @@ const ScrollableTabPanel = (props: any) => {
           scrollButtons="auto"
           aria-label="名人推介"
         >
-          {props.data.map((data, index) => {
+          {props.data.map((data: any, index: any) => {
             return (
               <Tab key={index} label={data.name.zh_hk} {...a11yProps(index)} />
             );
@@ -85,7 +85,7 @@ const ScrollableTabPanel = (props: any) => {
       {props.data.map((data: any, index: any) => {
         return (
           <TabPanel key={index} value={value} index={index}>
-            <BookCarousel data={data.books}></BookCarousel>
+            <BookCarousel data={data.recommendBooks}></BookCarousel>
           </TabPanel>
         );
       })}

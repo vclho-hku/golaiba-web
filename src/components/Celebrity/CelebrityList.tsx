@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ScrollableTabPanel from './ScrollableTabPanel';
-
+import { STAR_CELEBRITY_LIST } from '../../query/celebrity';
+import { useLazyQuery } from '@apollo/client';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     title: {
@@ -14,119 +15,22 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const CelebrityList = (props: any) => {
   const classes = useStyles();
-  const tabData = [
+  const [starCelebrityList, setStarCelebrityList] = useState([]);
+  const [getStarCelebrityList, { data: starCelebrityListData }] = useLazyQuery(
+    STAR_CELEBRITY_LIST,
     {
-      name: { zh_hk: '貝佐斯' },
-      books: [
-        {
-          id: '1',
-          title: 'test',
-          authors: [{ name: { zh_hk: 'a' } }],
-          imageUrl: {
-            medium:
-              'https://books.google.com/books/content/images/frontcover/bW7IDwAAQBAJ?fife=w400-h600',
-          },
-        },
-        {
-          id: '2',
-          title: 'test',
-          authors: [{ name: { zh_hk: 'a' } }],
-          imageUrl: {
-            medium:
-              'https://books.google.com/books/content/images/frontcover/bW7IDwAAQBAJ?fife=w400-h600',
-          },
-        },
-        {
-          id: '3',
-          title: 'test',
-          authors: [{ name: { zh_hk: 'a' } }],
-          imageUrl: {
-            medium:
-              'https://books.google.com/books/content/images/frontcover/bW7IDwAAQBAJ?fife=w400-h600',
-          },
-        },
-        {
-          id: '4',
-          title: 'test',
-          authors: [{ name: { zh_hk: 'a' } }],
-          imageUrl: {
-            medium:
-              'https://books.google.com/books/content/images/frontcover/bW7IDwAAQBAJ?fife=w400-h600',
-          },
-        },
-      ],
+      fetchPolicy: 'network-only',
     },
-    {
-      name: { zh_hk: '比爾．蓋茲' },
-      books: [
-        {
-          id: '1',
-          title: 'test',
-          authors: [{ name: { zh_hk: 'a' } }],
-          imageUrl: {
-            medium:
-              'https://books.google.com/books/content/images/frontcover/bW7IDwAAQBAJ?fife=w400-h600',
-          },
-        },
-      ],
-    },
-    {
-      name: { zh_hk: '歐普拉' },
-      books: [
-        {
-          id: '1',
-          title: 'test',
-          authors: [{ name: { zh_hk: 'a' } }],
-          imageUrl: {
-            medium:
-              'https://books.google.com/books/content/images/frontcover/bW7IDwAAQBAJ?fife=w400-h600',
-          },
-        },
-      ],
-    },
-    {
-      name: { zh_hk: '李開復' },
-      books: [
-        {
-          id: '1',
-          title: 'test',
-          authors: [{ name: { zh_hk: 'a' } }],
-          imageUrl: {
-            medium:
-              'https://books.google.com/books/content/images/frontcover/bW7IDwAAQBAJ?fife=w400-h600',
-          },
-        },
-      ],
-    },
-    {
-      name: { zh_hk: '賴利．佩吉' },
-      books: [
-        {
-          id: '1',
-          title: 'test',
-          authors: [{ name: { zh_hk: 'a' } }],
-          imageUrl: {
-            medium:
-              'https://books.google.com/books/content/images/frontcover/bW7IDwAAQBAJ?fife=w400-h600',
-          },
-        },
-      ],
-    },
-    {
-      name: { zh_hk: '雪柔．桑德伯格' },
-      books: [
-        {
-          id: '1',
-          title: 'test',
-          authors: [{ name: { zh_hk: 'a' } }],
-          imageUrl: {
-            medium:
-              'https://books.google.com/books/content/images/frontcover/bW7IDwAAQBAJ?fife=w400-h600',
-          },
-        },
-      ],
-    },
-  ];
+  );
+  useEffect(() => {
+    getStarCelebrityList();
+  }, []);
+  useEffect(() => {
+    if (starCelebrityListData) {
+      setStarCelebrityList(starCelebrityListData.starCelebrityList);
+    }
+  }, [starCelebrityListData]);
+
   return (
     <div>
       <div className={classes.title}>
@@ -137,7 +41,7 @@ const CelebrityList = (props: any) => {
           <Typography variant="caption"> &gt;&gt;更多名人推介</Typography>
         </div>
       </div>
-      <ScrollableTabPanel data={tabData}></ScrollableTabPanel>
+      <ScrollableTabPanel data={starCelebrityList}></ScrollableTabPanel>
     </div>
   );
 };
