@@ -1,7 +1,7 @@
 import React from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import CelebrityList from './celebrityList';
+import CelebrityList from './CelebrityList';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     banner: {
