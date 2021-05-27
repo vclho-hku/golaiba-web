@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const BookCarouselSection = (props) => {
+const BookCarouselSection = (props: any) => {
   const classes = useStyles();
   const [userWishlist, setUserWishlist] = useState(props.userWishlist);
   const { loading, error, data } = useQuery(BOOK_PROMOTION_LIST, {
