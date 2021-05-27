@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import BookCarouselSectionList from '../src/components/BookCarouselSectionList';
+import HomePage from '../src/components/HomePage';
 import SubNavBarContext from '../src/Context/SubNavBarContext';
 
 export default function Index() {
@@ -10,5 +10,5 @@ export default function Index() {
       setSubNavBarValue(-1);
     };
   });
-  return <BookCarouselSectionList></BookCarouselSectionList>;
+  return <HomePage></HomePage>;
 }
