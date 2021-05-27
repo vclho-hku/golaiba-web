@@ -5,8 +5,9 @@ import React, {
   useEffect,
 } from 'react';
 import Slider from 'react-slick';
+import Hidden from '@material-ui/core/Hidden';
+import Link from 'next/link';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -15,6 +16,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     slideImage: {
       maxHeight: '400px',
+      objectFit: 'contain',
+    },
+    slideContainerMob: {
+      maxHeight: '300px',
+    },
+    slideImageMob: {
+      maxHeight: '300px',
       objectFit: 'contain',
     },
   }),
@@ -37,17 +45,48 @@ const HeaderBanner = (props: any) => {
 
   return (
     <div style={{ margin: '20px' }}>
-      <Slider {...settings}>
-        <div className={classes.slideContainer}>
-          <img className={classes.slideImage} src="./HP_Hero1_Dsk.jpg"></img>
-        </div>
-        <div className={classes.slideContainer}>
-          <img className={classes.slideImage} src="./CB_Hero_Dsk.jpg"></img>
-        </div>
-        <div className={classes.slideContainer}>
-          <img className={classes.slideImage} src="./Place_Hero_Dsk.jpg"></img>
-        </div>
-      </Slider>
+      <Hidden smDown>
+        <Slider {...settings}>
+          <div className={classes.slideContainer}>
+            <img className={classes.slideImage} src="./HP_Hero1_Dsk.jpg"></img>
+          </div>
+          <div className={classes.slideContainer}>
+            <Link href={`/celebrity`}>
+              <img className={classes.slideImage} src="./CB_Hero_Dsk.jpg"></img>
+            </Link>
+          </div>
+          <div className={classes.slideContainer}>
+            <img
+              className={classes.slideImage}
+              src="./Place_Hero_Dsk.jpg"
+            ></img>
+          </div>
+        </Slider>
+      </Hidden>
+      <Hidden mdUp>
+        <Slider {...settings}>
+          <div className={classes.slideContainerMob}>
+            <img
+              className={classes.slideImageMob}
+              src="./HP_Hero1_Mob.jpg"
+            ></img>
+          </div>
+          <div className={classes.slideContainerMob}>
+            <Link href={`/celebrity`}>
+              <img
+                className={classes.slideImageMob}
+                src="./CB_Hero_Mob.jpg"
+              ></img>
+            </Link>
+          </div>
+          <div className={classes.slideContainerMob}>
+            <img
+              className={classes.slideImageMob}
+              src="./Place_Hero_Mob.jpg"
+            ></img>
+          </div>
+        </Slider>
+      </Hidden>
     </div>
   );
 };
