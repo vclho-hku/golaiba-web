@@ -2,6 +2,7 @@ import React from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import CelebrityList from './CelebrityList';
+import PrizeList from './PrizeList';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     banner: {
@@ -30,6 +31,7 @@ const Celebrity = (props: any) => {
         </Hidden>
       </div>
       <CelebrityList></CelebrityList>
+      <PrizeList></PrizeList>
     </div>
   );
 };

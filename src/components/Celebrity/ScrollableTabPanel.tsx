@@ -66,7 +66,6 @@ const ScrollableTabPanel = (props: any) => {
           textColor="primary"
           variant="scrollable"
           scrollButtons="auto"
-          aria-label="名人推介"
         >
           {props.data.map((data: any, index: any) => {
             return (
