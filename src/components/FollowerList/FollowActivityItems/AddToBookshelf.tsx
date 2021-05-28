@@ -39,7 +39,6 @@ const AddToBookshelf = (props: any) => {
           </Avatar>
         }
         title={user.name}
-        subheader={user.email}
       />
       <CardContent>加到書櫃的書本 </CardContent>
       <CardContent>

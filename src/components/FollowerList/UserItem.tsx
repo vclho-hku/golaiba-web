@@ -57,7 +57,6 @@ const UserItem = (props: any) => {
                 </Avatar>
               }
               title={user.name}
-              subheader={user.email}
             />
           </Link>
           <div className={classes.removeIcon}>
@@ -80,7 +79,6 @@ const UserItem = (props: any) => {
             </Avatar>
           }
           title={user.name}
-          subheader={user.email}
         />
       </Link>
     </Card>

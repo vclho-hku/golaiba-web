@@ -67,14 +67,6 @@ const VisitAccountContainer = (props: any) => {
         <div>
           <div className={classes.container}>
             <div className={classes.infoItem}>
-              <Typography variant="subtitle1">電郵地址: </Typography>
-            </div>
-            <div className={classes.infoItem}>
-              <Typography variant="body1">{userData.email}</Typography>
-            </div>
-          </div>
-          <div className={classes.container}>
-            <div className={classes.infoItem}>
               <Typography variant="subtitle1">名稱: </Typography>
             </div>
             <div className={classes.infoItem}>

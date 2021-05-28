@@ -39,7 +39,6 @@ const AddToWishlistItem = (props: any) => {
           </Avatar>
         }
         title={user.name}
-        subheader={user.email}
       />
       <CardContent>加到「想看清單」的書本 </CardContent>
       <CardContent>

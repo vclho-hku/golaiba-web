@@ -61,7 +61,6 @@ const UserSearchResultItem = (props: any) => {
             </IconButton>
           }
           title={userFound.name}
-          subheader={userFound.email}
         />
       ) : (
         <CardHeader
@@ -79,7 +78,6 @@ const UserSearchResultItem = (props: any) => {
             </IconButton>
           }
           title={userFound.name}
-          subheader={userFound.email}
         />
       )}
     </Card>

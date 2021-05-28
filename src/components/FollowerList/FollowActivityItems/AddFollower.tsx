@@ -39,7 +39,6 @@ const AddFollower = (props: any) => {
           </Avatar>
         }
         title={user.name}
-        subheader={user.email}
       />
       <CardContent>加入了書友 {activityData.data.followee.name} </CardContent>
       <CardContent>時間：{activityData.updatedAt}</CardContent>

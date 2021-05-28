@@ -37,7 +37,6 @@ const WrittenBookReview = (props: any) => {
           </Avatar>
         }
         title={user.name}
-        subheader={user.email}
       />
       <CardContent>寫了書評 </CardContent>
       <CardContent>
