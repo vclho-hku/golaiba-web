@@ -17,10 +17,16 @@ const useStyles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
     },
     card: {
-      width: '150px',
-      height: '100px',
-      marginRight: '20px',
-      marginTop: '20px',
+      width: '120px',
+      height: '80px',
+      marginRight: '10px',
+      marginTop: '10px',
+      [theme.breakpoints.up('sm')]: {
+        width: '150px',
+        height: '100px',
+        marginRight: '20px',
+        marginTop: '20px',
+      },
     },
     cardContainer: {
       height: '100%',

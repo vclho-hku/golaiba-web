@@ -44,7 +44,7 @@ const HeaderBanner = (props: any) => {
   };
 
   return (
-    <div style={{ margin: '20px' }}>
+    <div style={{ margin: '10px' }}>
       <Hidden smDown>
         <Slider {...settings}>
           <div className={classes.slideContainer}>
