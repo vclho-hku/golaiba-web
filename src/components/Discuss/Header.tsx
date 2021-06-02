@@ -12,12 +12,14 @@ const useStyles = makeStyles((theme: Theme) =>
     container: {
       display: 'flex',
       justifyContent: 'space-between',
+      alignItems: 'center',
     },
     leftPanel: {
-      padding: '20px',
+      padding: '15px',
     },
     rightPanel: {
-      padding: '20px',
+      padding: '15px',
+      display: 'flex',
     },
     button: {
       marginLeft: '10px',
