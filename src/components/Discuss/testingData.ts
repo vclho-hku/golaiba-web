@@ -1,5 +1,6 @@
 const testingData = [
   {
+    id: '1',
     topic: '香港邊度揾到村上春樹嘅小說？',
     creator: '將軍澳姜濤',
     lastUpdate: '2021/05/30 13:45',
@@ -8,6 +9,7 @@ const testingData = [
     likeCount: 2,
   },
   {
+    id: '2',
     topic: '有咩愛情小說好睇？',
     creator: '鳴人',
     lastUpdate: '2021/05/30 13:45',
@@ -16,6 +18,7 @@ const testingData = [
     likeCount: 5,
   },
   {
+    id: '3',
     topic: '你地最鐘意古龍邊部作品？',
     creator: '將軍澳姜濤',
     lastUpdate: '2021/05/30 13:45',
@@ -24,6 +27,7 @@ const testingData = [
     likeCount: 9,
   },
   {
+    id: '4',
     topic: '老老豆豆，東野圭吾一定係日本推理小說世一',
     creator: '大J',
     lastUpdate: '2021/05/30 13:45',
@@ -32,6 +36,7 @@ const testingData = [
     likeCount: 20,
   },
   {
+    id: '5',
     topic: '你地最鐘意古龍邊部作品？',
     creator: '將軍澳姜濤',
     lastUpdate: '2021/05/30 13:45',
@@ -40,6 +45,7 @@ const testingData = [
     likeCount: 9,
   },
   {
+    id: '6',
     topic: '老老豆豆，東野圭吾一定係日本推理小說世一',
     creator: '大J',
     lastUpdate: '2021/05/30 13:45',
@@ -48,6 +54,7 @@ const testingData = [
     likeCount: 20,
   },
   {
+    id: '7',
     topic: '老老豆豆，東野圭吾一定係日本推理小說世一',
     creator: '大J',
     lastUpdate: '2021/05/30 13:45',
