@@ -8,6 +8,8 @@ import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 import NewPostDialog from './NewPostDialog';
 import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
@@ -32,12 +34,17 @@ const useStyles = makeStyles((theme: Theme) =>
 const Header = (props: any) => {
   const classes = useStyles();
   const [openDialog, setOpenDialog] = useState(false);
+  const [showSearchTextField, setShowSearchTextField] = useState<any>(false);
   const handleOpenEditDialog = () => {
     setOpenDialog(true);
   };
   const handleDialogOnClose = () => {
     setOpenDialog(false);
   };
+  const handleStartSearch = () => {
+    setShowSearchTextField(true);
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.leftPanel}>
@@ -49,23 +56,47 @@ const Header = (props: any) => {
         </Breadcrumbs>
       </div>
       <div className={classes.rightPanel}>
-        <Button
-          variant="contained"
-          color="default"
-          className={classes.button}
-          startIcon={<SearchIcon />}
-        >
-          搜尋主題
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          startIcon={<AddIcon />}
-          onClick={handleOpenEditDialog}
-        >
-          開新主題
-        </Button>
+        {showSearchTextField && (
+          <div>
+            <Button
+              variant="contained"
+              color="default"
+              className={classes.button}
+              startIcon={<SearchIcon />}
+            >
+              <Input
+                id="standard-adornment-weight"
+                aria-describedby="standard-weight-helper-text"
+                autoFocus
+              />
+            </Button>
+          </div>
+        )}
+        {!showSearchTextField && (
+          <div>
+            <Button
+              variant="contained"
+              color="default"
+              className={classes.button}
+              startIcon={<SearchIcon />}
+              onClick={handleStartSearch}
+            >
+              搜尋主題
+            </Button>
+          </div>
+        )}
+
+        <div>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            startIcon={<AddIcon />}
+            onClick={handleOpenEditDialog}
+          >
+            開新主題
+          </Button>
+        </div>
       </div>
       <NewPostDialog
         open={openDialog}
