@@ -46,7 +46,7 @@ const NavBar = (props: NavBarProps) => {
         <Grid container spacing={1} alignItems="center" wrap="nowrap">
           <Grid item xs>
             <Grid container spacing={1} alignItems="center" wrap="nowrap">
-              <Hidden smUp>
+              <Hidden mdUp>
                 <Grid item>
                   <IconButton
                     color="inherit"

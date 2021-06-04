@@ -9,6 +9,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import NewPostDialog from './NewPostDialog';
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,6 +46,9 @@ const Header = (props: any) => {
   const handleStartSearch = () => {
     setShowSearchTextField(true);
   };
+  const onSearchClose = () => {
+    setShowSearchTextField(false);
+  };
 
   return (
     <div className={classes.container}>
@@ -69,6 +74,13 @@ const Header = (props: any) => {
                 aria-describedby="standard-weight-helper-text"
                 autoFocus
               />
+              <IconButton
+                size="small"
+                aria-label="close"
+                onClick={onSearchClose}
+              >
+                <CloseIcon fontSize="small" />
+              </IconButton>
             </Button>
           </div>
         )}

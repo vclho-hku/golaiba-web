@@ -39,7 +39,7 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
       <div className={classes.root}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Hidden smUp implementation="js">
+        <Hidden mdUp implementation="js">
           <SideMenu
             variant="temporary"
             open={mobileOpen}
@@ -49,8 +49,11 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
         <NavBar onDrawerToggle={handleDrawerToggle}></NavBar>
         <Toolbar />
         <div>
-          <Hidden xsDown implementation="css">
+          <Hidden smDown implementation="css">
             <SubNavBar></SubNavBar>
+          </Hidden>
+          <Hidden smDown implementation="css">
+            <div style={{ marginTop: '60px' }}></div>
           </Hidden>
           <main>{children}</main>
         </div>
