@@ -5,7 +5,7 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ShareIcon from '@material-ui/icons/Share';
-import WarningIcon from '@material-ui/icons/Warning';
+import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -49,7 +49,7 @@ const Header = (props: any) => {
           variant="contained"
           color="default"
           className={classes.button}
-          startIcon={<WarningIcon />}
+          startIcon={<WarningRoundedIcon />}
         >
           回報主題
         </Button>

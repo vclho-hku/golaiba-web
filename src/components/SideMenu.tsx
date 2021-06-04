@@ -89,6 +89,14 @@ const SideMenu = (props: SideMenuProps) => {
             </ListItemIcon>
             <ListItemText primary="看書好地方" />
           </ListItem>
+          <Link href={`/discuss`}>
+            <ListItem button key="討論區" onClick={props.onClose}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="討論區" />
+            </ListItem>
+          </Link>
         </List>
         <Divider />
         <List>
