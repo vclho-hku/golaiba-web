@@ -1,8 +1,7 @@
 import React from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import CelebrityList from './CelebrityList';
-import PrizeList from './PrizeList';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     banner: {
@@ -12,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Celebrity = (props: any) => {
+const GoodPlace = (props: any) => {
   const classes = useStyles();
   return (
     <div>
@@ -20,20 +19,18 @@ const Celebrity = (props: any) => {
         <Hidden xsDown>
           <img
             style={{ maxWidth: '100%', maxHeight: '100%' }}
-            src="./CB_Hero_Dsk.jpg"
+            src="./Place_Hero_Dsk.jpg"
           ></img>
         </Hidden>
         <Hidden smUp>
           <img
             style={{ maxWidth: '100%', maxHeight: '100%' }}
-            src="./CB_Hero_Mob.jpg"
+            src="./Place_Hero_Mob.jpg"
           ></img>
         </Hidden>
       </div>
-      <CelebrityList></CelebrityList>
-      <PrizeList></PrizeList>
     </div>
   );
 };
 
-export default Celebrity;
+export default GoodPlace;

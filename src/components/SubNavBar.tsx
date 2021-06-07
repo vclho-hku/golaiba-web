@@ -44,7 +44,9 @@ const SubNavBar = (props: any) => {
             <Tab label="名人書櫃" />
           </Link>
           <Tab label="經典書籍" />
-          <Tab label="看書好地方" />
+          <Link href={`/good-place`}>
+            <Tab label="看書好地方" />
+          </Link>
           <Link href={`/discuss`}>
             <Tab label="討論區" />
           </Link>
