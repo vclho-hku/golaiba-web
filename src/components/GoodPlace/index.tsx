@@ -1,7 +1,7 @@
 import React from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
+import MapContent from './MapContent';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     banner: {
@@ -28,6 +28,9 @@ const GoodPlace = (props: any) => {
             src="./Place_Hero_Mob.jpg"
           ></img>
         </Hidden>
+      </div>
+      <div>
+        <MapContent></MapContent>
       </div>
     </div>
   );
