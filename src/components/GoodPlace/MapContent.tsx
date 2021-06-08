@@ -20,6 +20,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import Checkbox from '@material-ui/core/Checkbox';
+import MapContainer from './MapContainer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -149,6 +150,9 @@ const MapContent = (props: any) => {
             </List>
           </TextField>
         </div>
+      </div>
+      <div>
+        <MapContainer></MapContainer>
       </div>
     </div>
   );
