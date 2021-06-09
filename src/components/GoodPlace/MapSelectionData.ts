@@ -44,6 +44,83 @@ const RegionList = [
   },
 ];
 
-const PlaceFilterList = ['書店', '圖書館', '自修室', '咖啡店', '公園']
+const PlaceFilterList = ['書店', '圖書館', '自修室', '咖啡店', '公園'];
 
-export { RegionList, PlaceFilterList };
+const PlacesList = [
+  {
+    id: 1,
+    section: '香港島',
+    places: [
+      {
+        name: '香港中央圖書館',
+        lat: '22.28032641397895',
+        lng: '114.1895094257469',
+        address: '銅鑼灣高士威道66號香港中央圖書館',
+        openingHour: '10:00',
+        closingHour: '20:00',
+      },
+      {
+        name: '誠品生活太古店',
+        lat: '22.286209490547392',
+        lng: '114.21769165957826',
+        address: '香港太古城道18號太古城中心G/F 74鋪及1/F 144鋪',
+        openingHour: '10:00',
+        closingHour: '22:00',
+      },
+    ],
+  },
+  {
+    id: 2,
+    section: '九龍',
+    places: [
+      {
+        name: '九龍公共圖書館',
+        lat: '22.318558760629255',
+        lng: '114.17604868190152',
+        address: '何文田培正道5號九龍公共圖書館',
+        openingHour: '10:00',
+        closingHour: '20:00',
+      },
+      {
+        name: '誠品生活尖沙咀店',
+        lat: '22.29474210183847',
+        lng: '114.16885468375536',
+        address: '香港尖沙咀梳士巴利道3號星光行2/F-3/F',
+        openingHour: '10:00',
+        closingHour: '22:00',
+      },
+    ],
+  },
+  {
+    id: 3,
+    section: '新界',
+    places: [
+      {
+        name: '青衣公共圖書館',
+        lat: '22.354237969001026',
+        lng: '114.10631470703008',
+        address: '青衣青綠街38號青衣市政大廈1樓',
+        openingHour: '10:00',
+        closingHour: '20:00',
+      },
+      {
+        name: '荃灣公共圖書館',
+        lat: '22.375207014284722',
+        lng: '114.11564635392625',
+        address: '荃灣西樓角路38號',
+        openingHour: '10:00',
+        closingHour: '20:00',
+      },
+      {
+        name: '誠品書店奧運店',
+        lat: '22.317710978965064',
+        lng: '114.16479607121512',
+        address: '九龍大角咀奧海城三期地下高層UG55-58, 80-88號舖',
+        openingHour: '10:00',
+        closingHour: '22:00',
+      },
+    ],
+  },
+];
+
+export { RegionList, PlaceFilterList, PlacesList };

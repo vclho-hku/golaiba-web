@@ -10,7 +10,9 @@ import AddCommentIcon from '@material-ui/icons/AddComment';
 import UserBookReviewForm from '../UserBookDetails/UserBookReviewForm';
 import { GET_USER_BOOK_REVIEW } from '../../query/userBookshelf';
 import { UserDataContext } from '../../Session';
+import { AuthUserContext } from '../../Session';
 import Divider from '@material-ui/core/Divider';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,8 +27,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const BookReviewContainer = (props: any) => {
   const classes = useStyles();
+  const router = useRouter();
   const book = props.book;
   const { userData } = useContext(UserDataContext);
+  const authUser: any = useContext(AuthUserContext);
   const [userReview, setUserReview] = useState({
     isLoading: true,
     rating: null,
@@ -63,7 +67,11 @@ const BookReviewContainer = (props: any) => {
 
   const [showReviewForm, setShowReviewFrom] = useState<any>('none');
   const handleWriteReview = () => {
-    setShowReviewFrom('block');
+    if (authUser) {
+      setShowReviewFrom('block');
+    } else {
+      router.push('../login');
+    }
   };
   return (
     <div style={{ paddingLeft: '30px' }}>

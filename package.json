@@ -36,7 +36,8 @@
     "react-html-parser": "^2.0.2",
     "react-slick": "^0.27.11",
     "recompose": "^0.17.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.3.0"
   },
   "devDependencies": {
     "@types/material-ui": "^0.21.8",
