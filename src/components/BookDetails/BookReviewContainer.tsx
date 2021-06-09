@@ -130,14 +130,17 @@ const BookReviewContainer = (props: any) => {
           </div>
         )}
       </div>
-      <div style={{ display: showReviewForm }}>
-        <UserBookReviewForm
-          bookId={book.id}
-          userId={userData.id}
-          userName={userData.name}
-          updateData={updateData}
-        ></UserBookReviewForm>
-      </div>
+      {userData && (
+        <div style={{ display: showReviewForm }}>
+          <UserBookReviewForm
+            bookId={book.id}
+            userId={userData.id}
+            userName={userData.name}
+            updateData={updateData}
+          ></UserBookReviewForm>
+        </div>
+      )}
+
       <Divider light style={{ margin: '10px' }} />
       <BookReviewList bookId={book.id} limit={10} offset={0}></BookReviewList>
     </div>
