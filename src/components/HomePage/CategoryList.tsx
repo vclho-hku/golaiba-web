@@ -4,6 +4,23 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import StarIcon from '@material-ui/icons/Star';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faSkullCrossbones } from '@fortawesome/free-solid-svg-icons';
+import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
+import { faHiking } from '@fortawesome/free-solid-svg-icons';
+import { faBalanceScaleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faCocktail } from '@fortawesome/free-solid-svg-icons';
+
+library.add(
+  faHeart,
+  faSkullCrossbones,
+  faUserAstronaut,
+  faHiking,
+  faBalanceScaleLeft,
+  faCocktail,
+);
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,12 +58,12 @@ const useStyles = makeStyles((theme: Theme) =>
 const CategoryList = (props: any) => {
   const classes = useStyles();
   const categoryList = [
-    '心理學',
-    '犯罪及驚慄',
-    '超自然',
-    '旅遊',
-    '政治及社會',
-    '飲食及烹飪',
+    ['心理學', 'heart'],
+    ['犯罪及驚慄', 'skull-crossbones'],
+    ['超自然', 'user-astronaut'],
+    ['旅遊', 'hiking'],
+    ['政治及社會', 'balance-scale-left'],
+    ['飲食及烹飪', 'cocktail'],
   ];
 
   return (
@@ -60,10 +77,10 @@ const CategoryList = (props: any) => {
             <Card key={index} className={classes.card} elevation={3}>
               <div className={classes.cardContainer}>
                 <div>
-                  <StarIcon fontSize="large" />
+                  <FontAwesomeIcon icon={['fas', value[1]]} size="lg" />
                 </div>
                 <div>
-                  <Typography variant="h6">{value}</Typography>
+                  <Typography variant="h6">{value[0]}</Typography>
                 </div>
               </div>
             </Card>
