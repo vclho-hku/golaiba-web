@@ -12,6 +12,13 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Typography from '@material-ui/core/Typography';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRss } from '@fortawesome/free-solid-svg-icons';
+import { faBookReader } from '@fortawesome/free-solid-svg-icons';
+import { faHistory } from '@fortawesome/free-solid-svg-icons';
+import { faMugHot } from '@fortawesome/free-solid-svg-icons';
+import ForumIcon from '@material-ui/icons/Forum';
+import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -64,7 +71,7 @@ const SideMenu = (props: SideMenuProps) => {
           <Link href={`/`}>
             <ListItem button key="最新精選" onClick={props.onClose}>
               <ListItemIcon>
-                <InboxIcon />
+                <FontAwesomeIcon icon={faRss} size="lg" />
               </ListItemIcon>
               <ListItemText primary="最新精選" />
             </ListItem>
@@ -72,21 +79,21 @@ const SideMenu = (props: SideMenuProps) => {
           <Link href={`/celebrity`}>
             <ListItem button key="名人書櫃" onClick={props.onClose}>
               <ListItemIcon>
-                <InboxIcon />
+                <FontAwesomeIcon icon={faBookReader} size="lg" />
               </ListItemIcon>
               <ListItemText primary="名人書櫃" />
             </ListItem>
           </Link>
           <ListItem button key="經典書籍">
             <ListItemIcon>
-              <InboxIcon />
+              <FontAwesomeIcon icon={faHistory} size="lg" />
             </ListItemIcon>
             <ListItemText primary="經典書籍" />
           </ListItem>
           <Link href={`/good-place`}>
             <ListItem button key="看書好地方" onClick={props.onClose}>
               <ListItemIcon>
-                <InboxIcon />
+                <FontAwesomeIcon icon={faMugHot} size="lg" />
               </ListItemIcon>
               <ListItemText primary="看書好地方" />
             </ListItem>
@@ -94,7 +101,7 @@ const SideMenu = (props: SideMenuProps) => {
           <Link href={`/discuss`}>
             <ListItem button key="討論區" onClick={props.onClose}>
               <ListItemIcon>
-                <InboxIcon />
+                <ForumIcon />
               </ListItemIcon>
               <ListItemText primary="討論區" />
             </ListItem>
@@ -105,7 +112,7 @@ const SideMenu = (props: SideMenuProps) => {
           {['聯絡我們'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <ContactSupportIcon />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>

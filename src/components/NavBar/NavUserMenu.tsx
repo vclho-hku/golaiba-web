@@ -55,12 +55,12 @@ const NavUserMenu = (props: any) => {
         <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
           <Link href={`/user/${props.userId}/bookshelf`}>
             <Button style={{ minWidth: '20px' }}>
-              <CollectionsBookmarkIcon style={{ color: grey[100] }} />
+              <CollectionsBookmarkIcon style={{ color: 'white' }} />
             </Button>
           </Link>
           <Link href={`/user/${props.userId}/wishlist`}>
             <Button style={{ minWidth: '20px' }}>
-              <Favorite style={{ color: grey[100] }} />
+              <Favorite style={{ color: 'white' }} />
             </Button>
           </Link>
           <Button
@@ -70,7 +70,7 @@ const NavUserMenu = (props: any) => {
             onClick={handleToggle}
             style={{ minWidth: '20px' }}
           >
-            <AccountCircleIcon style={{ color: grey[100] }} />
+            <AccountCircleIcon style={{ color: 'white' }} />
           </Button>
         </div>
         <Popper
