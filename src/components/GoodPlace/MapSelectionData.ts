@@ -52,6 +52,7 @@ const PlacesList = [
     section: '香港島',
     places: [
       {
+        id: 1,
         name: '香港中央圖書館',
         lat: '22.28032641397895',
         lng: '114.1895094257469',
@@ -60,6 +61,7 @@ const PlacesList = [
         closingHour: '20:00',
       },
       {
+        id: 2,
         name: '誠品生活太古店',
         lat: '22.286209490547392',
         lng: '114.21769165957826',
@@ -74,6 +76,7 @@ const PlacesList = [
     section: '九龍',
     places: [
       {
+        id: 3,
         name: '九龍公共圖書館',
         lat: '22.318558760629255',
         lng: '114.17604868190152',
@@ -82,6 +85,7 @@ const PlacesList = [
         closingHour: '20:00',
       },
       {
+        id: 4,
         name: '誠品生活尖沙咀店',
         lat: '22.29474210183847',
         lng: '114.16885468375536',
@@ -96,6 +100,7 @@ const PlacesList = [
     section: '新界',
     places: [
       {
+        id: 5,
         name: '青衣公共圖書館',
         lat: '22.354237969001026',
         lng: '114.10631470703008',
@@ -104,6 +109,7 @@ const PlacesList = [
         closingHour: '20:00',
       },
       {
+        id: 6,
         name: '荃灣公共圖書館',
         lat: '22.375207014284722',
         lng: '114.11564635392625',
@@ -112,6 +118,7 @@ const PlacesList = [
         closingHour: '20:00',
       },
       {
+        id: 7,
         name: '誠品書店奧運店',
         lat: '22.317710978965064',
         lng: '114.16479607121512',

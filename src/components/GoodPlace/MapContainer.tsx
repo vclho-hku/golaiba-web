@@ -92,7 +92,10 @@ const MapContainer = (props: any) => {
                             padding: '2px',
                           }}
                         >
-                          <WifiRoundedIcon style={{ color: 'white' }} />
+                          <WifiRoundedIcon
+                            fontSize="small"
+                            style={{ color: 'white' }}
+                          />
                         </div>
                         <div
                           style={{
@@ -105,6 +108,7 @@ const MapContainer = (props: any) => {
                           }}
                         >
                           <AddShoppingCartRoundedIcon
+                            fontSize="small"
                             style={{ color: 'white' }}
                           />
                         </div>
@@ -118,7 +122,10 @@ const MapContainer = (props: any) => {
                             padding: '2px',
                           }}
                         >
-                          <FastfoodRoundedIcon style={{ color: 'white' }} />
+                          <FastfoodRoundedIcon
+                            fontSize="small"
+                            style={{ color: 'white' }}
+                          />
                         </div>
                       </div>
                       <Divider />
@@ -138,11 +145,16 @@ const MapContainer = (props: any) => {
           defaultCenter={HK_CENTER}
           defaultZoom={11}
         >
-          <MapPointer
-            lat="22.28032641397895"
-            lng="114.1895094257469"
-            name="香港中央圖書館"
-          />
+          {placeList.map((data) =>
+            data.places.map((place) => (
+              <MapPointer
+                key={place.id}
+                lat={place.lat}
+                lng={place.lng}
+                name={place.name}
+              />
+            )),
+          )}
         </GoogleMapReact>
       </div>
     </div>
