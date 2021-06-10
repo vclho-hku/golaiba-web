@@ -73,7 +73,7 @@ const CategoryList = (props: any) => {
           <Typography variant="h4">分類搜尋</Typography>
         </div>
         <div className={classes.container}>
-          {categoryList.map((value, index) => (
+          {categoryList.map((value: any, index) => (
             <Card key={index} className={classes.card} elevation={3}>
               <div className={classes.cardContainer}>
                 <div>
