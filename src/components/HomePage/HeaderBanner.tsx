@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     slideContainer: {
       maxHeight: '400px',
+      cursor: 'pointer',
     },
     slideImage: {
       maxHeight: '400px',
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     slideContainerMob: {
       maxHeight: '300px',
+      cursor: 'pointer',
     },
     slideImageMob: {
       maxHeight: '300px',
@@ -80,10 +82,12 @@ const HeaderBanner = (props: any) => {
             </Link>
           </div>
           <div className={classes.slideContainerMob}>
-            <img
-              className={classes.slideImageMob}
-              src="./Place_Hero_Mob.jpg"
-            ></img>
+            <Link href={`/good-place`}>
+              <img
+                className={classes.slideImageMob}
+                src="./Place_Hero_Mob.jpg"
+              ></img>
+            </Link>
           </div>
         </Slider>
       </Hidden>

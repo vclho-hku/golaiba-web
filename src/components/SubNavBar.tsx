@@ -38,7 +38,7 @@ const SubNavBar = (props: any) => {
           centered
         >
           <Link href={`/`}>
-            <Tab label="最新精選" />
+            <Tab label="主頁" />
           </Link>
           <Link href={`/celebrity`}>
             <Tab label="名人書櫃" />
