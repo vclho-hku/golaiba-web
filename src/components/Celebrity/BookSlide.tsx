@@ -26,8 +26,8 @@ import Rating from '@material-ui/lab/Rating';
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      width: 300,
-      margin: '10px',
+      width: 200,
+      margin: '5px',
     },
     cardHeader: {
       cursor: 'pointer',
@@ -39,7 +39,7 @@ const useStyles = makeStyles(() =>
       textOverflow: 'ellipsis',
     },
     media: {
-      height: '400px',
+      height: '250px',
       backgroundSize: 'contain',
       paddingTop: '0%', // 16:9
       cursor: 'pointer',

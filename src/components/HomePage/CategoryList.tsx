@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       position: 'relative',
       padding: '20px',
+      marginTop: '40px',
     },
     container: {
       display: 'flex',
@@ -110,15 +111,15 @@ const CategoryList = (props: any) => {
   const classes = useStyles();
   const categoryList = [
     ['愛情小說', 'heart'],
-    ['犯罪及驚慄', 'skull-crossbones'],
-    ['科幻及超自然', 'user-astronaut'],
+    ['犯罪驚慄', 'skull-crossbones'],
+    ['超自然', 'user-astronaut'],
     ['心理學', 'hand-holding-heart'],
     ['名人傳記', 'lightbulb'],
     ['歷史及考古', 'history'],
     ['旅遊', 'hiking'],
     ['政治及社會', 'balance-scale-left'],
     ['飲食及烹飪', 'cocktail'],
-    ['瀏覽更多分類', 'arrow-right'],
+    ['更多分類', 'arrow-right'],
   ];
   const settings = {
     dots: false,
@@ -126,9 +127,25 @@ const CategoryList = (props: any) => {
     adaptiveHeight: true,
     variableWidth: true,
     slidesToScroll: 1,
-    slidesToShow: 6,
+    slidesToShow: 5,
     nextArrow: <SlickNextArrow />,
     prevArrow: <SlickPrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToScroll: 1,
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToScroll: 1,
+          slidesToShow: 2,
+        },
+      },
+    ],
   };
 
   return (

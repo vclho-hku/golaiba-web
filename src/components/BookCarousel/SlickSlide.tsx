@@ -26,20 +26,28 @@ import Rating from '@material-ui/lab/Rating';
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      width: 300,
+      width: 250,
       margin: '10px',
     },
     cardHeader: {
       cursor: 'pointer',
     },
     cardHeaderText: {
-      width: 290,
+      width: 230,
+      fontSize: '1.2rem',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+    },
+    cardSubHeaderText: {
+      width: 230,
+      fontSize: '0.8rem',
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
     },
     media: {
-      height: '400px',
+      height: '250px',
       backgroundSize: 'contain',
       paddingTop: '0%', // 16:9
       cursor: 'pointer',
@@ -94,7 +102,7 @@ const SlickSlide = (props: any) => {
           classes={{
             root: classes.cardHeader,
             title: classes.cardHeaderText,
-            subheader: classes.cardHeaderText,
+            subheader: classes.cardSubHeaderText,
           }}
           title={bookInfo.title}
           subheader={author}
