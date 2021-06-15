@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
     slideContainer: {
       maxHeight: '400px',
       cursor: 'pointer',
+      marginLeft: '40px',
     },
     slideImage: {
       maxHeight: '400px',
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     slideImageMob: {
       maxHeight: '300px',
       objectFit: 'contain',
+      marginLeft: '20px',
     },
   }),
 );

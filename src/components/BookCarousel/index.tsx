@@ -67,12 +67,14 @@ const Carousel: FunctionComponent<any> = (props: any) => {
         breakpoint: 1024,
         settings: {
           slidesToScroll: 2,
+          slidesToShow: 2,
         },
       },
       {
         breakpoint: 700,
         settings: {
           slidesToScroll: 1,
+          slidesToShow: 1,
         },
       },
     ],
