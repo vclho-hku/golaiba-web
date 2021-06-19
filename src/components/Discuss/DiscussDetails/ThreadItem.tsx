@@ -6,6 +6,7 @@ import Chip from '@material-ui/core/Chip';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ReactHtmlParser from 'react-html-parser';
 import Divider from '@material-ui/core/Divider';
+import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,12 +45,30 @@ const ThreadItem = (props: any) => {
           </Typography>
         </div>
         <div className={classes.chip}>
-          <Chip
-            size="small"
-            icon={<FaceIcon />}
-            label={data.writter}
-            color="default"
-          />
+          {data.gender === 'male' && (
+            <Chip
+              size="small"
+              icon={<FaceIcon style={{ color: '#468fff' }} />}
+              label={data.writter}
+              color="default"
+            />
+          )}
+          {data.gender === 'female' && (
+            <Chip
+              size="small"
+              icon={<FaceIcon style={{ color: '#db46ff' }} />}
+              label={data.writter}
+              color="default"
+            />
+          )}
+          {data.gender === 'unknown' && (
+            <Chip
+              size="small"
+              icon={<FaceIcon style={{ color: grey[600] }} />}
+              label={data.writter}
+              color="default"
+            />
+          )}
         </div>
         <div>{data.threadDate}</div>
         <div className={classes.thumbup}>

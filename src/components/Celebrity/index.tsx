@@ -20,13 +20,13 @@ const Celebrity = (props: any) => {
         <Hidden xsDown>
           <img
             style={{ maxWidth: '100%', maxHeight: '100%' }}
-            src="../CB_Hero_Dsk.jpg"
+            src="/CB_Hero_Dsk.jpg"
           ></img>
         </Hidden>
         <Hidden smUp>
           <img
             style={{ maxWidth: '100%', maxHeight: '100%' }}
-            src="../CB_Hero_Mob.jpg"
+            src="/CB_Hero_Mob.jpg"
           ></img>
         </Hidden>
       </div>

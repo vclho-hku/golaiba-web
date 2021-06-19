@@ -7,6 +7,7 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import Typography from '@material-ui/core/Typography';
 import Link from 'next/link';
+import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,13 +43,33 @@ const TopicItem = (props: any) => {
           <div className={classes.item}>
             <div className={classes.itemHeader}>
               <div>
-                <Chip
-                  className={classes.chip}
-                  size="small"
-                  icon={<FaceIcon />}
-                  label={data.creator}
-                  color="default"
-                />
+                {data.gender === 'male' && (
+                  <Chip
+                    className={classes.chip}
+                    size="small"
+                    icon={<FaceIcon style={{ color: '#468fff' }} />}
+                    label={data.creator}
+                    color="default"
+                  />
+                )}
+                {data.gender === 'female' && (
+                  <Chip
+                    className={classes.chip}
+                    size="small"
+                    icon={<FaceIcon style={{ color: '#db46ff' }} />}
+                    label={data.creator}
+                    color="default"
+                  />
+                )}
+                {data.gender === 'unknown' && (
+                  <Chip
+                    className={classes.chip}
+                    size="small"
+                    icon={<FaceIcon style={{ color: grey[600] }} />}
+                    label={data.creator}
+                    color="default"
+                  />
+                )}
               </div>
               <div>{data.lastUpdate}</div>
               <div style={{ marginLeft: '10px', marginRight: '3px' }}>

@@ -98,17 +98,33 @@ const Header = (props: any) => {
           </div>
         )}
 
-        <div>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            startIcon={<AddIcon />}
-            onClick={handleOpenEditDialog}
-          >
-            開新主題
-          </Button>
-        </div>
+        {showSearchTextField && (
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.button}
+              startIcon={<AddIcon />}
+              onClick={handleOpenEditDialog}
+            >
+              開新主題
+            </Button>
+          </div>
+        )}
+        {!showSearchTextField && (
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              startIcon={<AddIcon />}
+              onClick={handleOpenEditDialog}
+            >
+              開新主題
+            </Button>
+          </div>
+        )}
       </div>
       <NewPostDialog
         open={openDialog}

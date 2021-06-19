@@ -131,7 +131,7 @@ const BookDetailsInfo = (props: any) => {
               {isInWishlist ? (
                 <Tooltip title="已加到想看清單" aria-label="已加到想看清單">
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     color="primary"
                     onClick={handleRemoveFromWishlist}
                   >
@@ -142,7 +142,7 @@ const BookDetailsInfo = (props: any) => {
               ) : (
                 <Tooltip title="加到想看清單" aria-label="加到想看清單">
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     color="primary"
                     onClick={handleAddToWishlist}
                   >
@@ -157,7 +157,7 @@ const BookDetailsInfo = (props: any) => {
             <div style={{ margin: '10px' }}>
               {isInBookshelf ? (
                 <Tooltip title="已加到我的書櫃" aria-label="已加到我的書櫃">
-                  <Button variant="outlined" color="primary" disabled>
+                  <Button variant="contained" color="primary" disabled>
                     <CollectionsBookmarkIcon style={{ fontSize: '15px' }} />
                     已加到我的書櫃
                   </Button>
@@ -165,7 +165,7 @@ const BookDetailsInfo = (props: any) => {
               ) : (
                 <Tooltip title="加到我的書櫃" aria-label="加到我的書櫃">
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     color="primary"
                     onClick={handleAddToBookshelf}
                   >

@@ -1,5 +1,10 @@
 import React, { useContext } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+  withStyles,
+} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -17,6 +22,24 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
+const CustTab = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      fontWeight: theme.typography.fontWeightRegular,
+      '&:focus': {
+        fontWeight: theme.typography.fontWeightBold,
+      },
+      '&:hover': {
+        fontWeight: theme.typography.fontWeightBold,
+      },
+      '&$selected': {
+        fontWeight: theme.typography.fontWeightBold,
+      },
+    },
+    selected: {},
+  }),
+)((props: any) => <Tab disableRipple {...props} />);
 
 const SubNavBar = (props: any) => {
   const classes = useStyles();
@@ -38,17 +61,17 @@ const SubNavBar = (props: any) => {
           centered
         >
           <Link href={`/`}>
-            <Tab label="主頁" />
+            <CustTab label="主頁" />
           </Link>
           <Link href={`/celebrity`}>
-            <Tab label="名人書櫃" />
+            <CustTab label="名人書櫃" />
           </Link>
-          <Tab label="經典書籍" />
+          <CustTab label="經典書籍" />
           <Link href={`/good-place`}>
-            <Tab label="看書好地方" />
+            <CustTab label="看書好地方" />
           </Link>
           <Link href={`/discuss`}>
-            <Tab label="討論區" />
+            <CustTab label="討論區" />
           </Link>
         </Tabs>
       </Paper>

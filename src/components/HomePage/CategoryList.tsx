@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'relative',
       padding: '20px',
       marginTop: '40px',
+      marginDown: '10px',
     },
     container: {
       display: 'flex',
