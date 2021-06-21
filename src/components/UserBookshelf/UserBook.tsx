@@ -29,13 +29,18 @@ const useStyles = makeStyles(() =>
       textOverflow: 'ellipsis',
     },
     media: {
-      height: '300px',
+      height: '280px',
       backgroundSize: 'contain',
       paddingTop: '0%', // 16:9
       cursor: 'pointer',
     },
     avatar: {
       backgroundColor: red[500],
+    },
+    toolBarContainer: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'space-between',
     },
   }),
 );
@@ -69,23 +74,39 @@ const UserBook = (props: any) => {
         />
       </Link>
 
-      <CardActions disableSpacing>
-        <Select
-          labelId="user-book-reading-status-select-label"
-          id="user-book-reading-status-select"
-          value={readingStatus}
-          onChange={handleChangeReadingStatus}
-        >
-          <MenuItem value={'pending'}>未看</MenuItem>
-          <MenuItem value={'reading'}>正在看</MenuItem>
-          <MenuItem value={'finished'}>看完</MenuItem>
-        </Select>
-        <IconButton aria-label="delete" onClick={handleEditUserBook}>
-          <EditIcon style={{ color: blue[500] }} />
-        </IconButton>
-        <IconButton aria-label="delete" onClick={handleDeleteUserBook}>
-          <DeleteIcon style={{ color: red[700] }} />
-        </IconButton>
+      <CardActions disableSpacing style={{ paddingTop: '3px' }}>
+        <div className={classes.toolBarContainer}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div>
+              <Select
+                labelId="user-book-reading-status-select-label"
+                id="user-book-reading-status-select"
+                value={readingStatus}
+                onChange={handleChangeReadingStatus}
+              >
+                <MenuItem value={'pending'}>未看</MenuItem>
+                <MenuItem value={'reading'}>正在看</MenuItem>
+                <MenuItem value={'finished'}>看完</MenuItem>
+              </Select>
+            </div>
+          </div>
+          <div>
+            <IconButton
+              aria-label="delete"
+              onClick={handleEditUserBook}
+              style={{ padding: '8px' }}
+            >
+              <EditIcon style={{ color: blue[500] }} />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              onClick={handleDeleteUserBook}
+              style={{ padding: '8px' }}
+            >
+              <DeleteIcon style={{ color: red[700] }} />
+            </IconButton>
+          </div>
+        </div>
       </CardActions>
     </Card>
   );

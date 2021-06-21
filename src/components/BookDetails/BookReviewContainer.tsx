@@ -74,7 +74,7 @@ const BookReviewContainer = (props: any) => {
     }
   };
   return (
-    <div style={{ paddingLeft: '30px' }}>
+    <div style={{ paddingLeft: '20px' }}>
       <div className={classes.container}>
         <div>
           <div>
