@@ -44,7 +44,7 @@ const BookReviewContainer = (props: any) => {
     isLoading: true,
     rating: null,
     review: null,
-    userAvatarImgUrl: null,
+    userAvatarImgUrl: '',
     userName: null,
     updatedAt: null,
   });
