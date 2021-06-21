@@ -13,6 +13,12 @@ import { UserDataContext } from '../../Session';
 import { AuthUserContext } from '../../Session';
 import Divider from '@material-ui/core/Divider';
 import { useRouter } from 'next/router';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import CancelIcon from '@material-ui/icons/Cancel';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import { red, blue } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,6 +27,9 @@ const useStyles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
       marginBottom: '10px',
       justifyContent: 'space-between',
+    },
+    reviewContainer: {
+      display: 'flex',
     },
   }),
 );
@@ -35,6 +44,9 @@ const BookReviewContainer = (props: any) => {
     isLoading: true,
     rating: null,
     review: null,
+    userAvatarImgUrl: null,
+    userName: null,
+    updatedAt: null,
   });
   const [getUserBookReview, { data: userBookReviewData }] = useLazyQuery(
     GET_USER_BOOK_REVIEW,
@@ -126,15 +138,51 @@ const BookReviewContainer = (props: any) => {
           </Button>
         ) : (
           <div>
-            <div>
-              <Rating
-                name="read-only"
-                value={userReview.rating}
-                precision={0.5}
-                readOnly
-              />
+            <div className={classes.reviewContainer}>
+              <div style={{ marginRight: '20px' }}>
+                <Avatar src={userReview.userAvatarImgUrl} />
+              </div>
+              <div>
+                <div>
+                  <div className={classes.container}>
+                    <div style={{ marginRight: '20px' }}>
+                      {userReview.userName}
+                    </div>
+                    <div>{userReview.updatedAt}</div>
+                  </div>
+                  <div>
+                    <Rating
+                      size="small"
+                      name="read-only"
+                      value={userReview.rating}
+                      precision={0.5}
+                      readOnly
+                    />
+                    <IconButton
+                      aria-label="delete"
+                      size="small"
+                      style={{ marginLeft: '5px', padding: '2px' }}
+                    >
+                      <EditIcon
+                        style={{ color: blue[500], fontSize: '20px' }}
+                      />
+                    </IconButton>
+                    <IconButton
+                      aria-label="delete"
+                      size="small"
+                      style={{ padding: '2px' }}
+                    >
+                      <DeleteIcon
+                        style={{ color: red[700], fontSize: '20px' }}
+                      />
+                    </IconButton>
+                  </div>
+                </div>
+                {userReview.review && (
+                  <div style={{ marginTop: '10px' }}>{userReview.review}</div>
+                )}
+              </div>
             </div>
-            <div>{userReview.review}</div>
           </div>
         )}
       </div>
@@ -150,7 +198,12 @@ const BookReviewContainer = (props: any) => {
       )}
 
       <Divider light style={{ margin: '10px' }} />
-      <BookReviewList bookId={book.id} limit={10} offset={0}></BookReviewList>
+      <BookReviewList
+        bookId={book.id}
+        limit={10}
+        offset={0}
+        userName={userData.name}
+      ></BookReviewList>
     </div>
   );
 };

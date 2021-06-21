@@ -9,21 +9,23 @@ import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    loading: {
+      display: 'flex',
+      '& > * + *': {
+        marginLeft: theme.spacing(2),
+      },
+    },
+    container: {
+      display: 'flex',
+    },
+  }),
+);
+
 const BookReviewList = (props: any) => {
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      loading: {
-        display: 'flex',
-        '& > * + *': {
-          marginLeft: theme.spacing(2),
-        },
-      },
-      container: {
-        display: 'flex',
-      },
-    }),
-  );
   const classes = useStyles();
+  const [bookReviewList, setBookReviewList] = useState([]);
   const { loading, error, data: bookReview } = useQuery(GET_BOOK_REVIEW, {
     variables: {
       bookId: props.bookId,
@@ -33,6 +35,15 @@ const BookReviewList = (props: any) => {
     fetchPolicy: 'network-only',
   });
 
+  useEffect(() => {
+    if (bookReview) {
+      const result = bookReview.getBookReview.filter(
+        (value: any) => value.userName !== props.userName,
+      );
+      setBookReviewList(result);
+    }
+  }, [bookReview]);
+
   if (loading) {
     return (
       <div className={classes.loading}>
@@ -41,12 +52,13 @@ const BookReviewList = (props: any) => {
     );
   }
   if (error) return <p>系統出現問題 :(</p>;
+
   return (
     <div>
-      {bookReview.getBookReview.length == 0 && (
+      {bookReviewList.length == 0 && (
         <Typography variant="body1">暫時沒有其他人的書評</Typography>
       )}
-      {bookReview.getBookReview.map((value: any, index: any) => {
+      {bookReviewList.map((value: any, index: any) => {
         return (
           <div key={index}>
             <div className={classes.container}>
@@ -70,7 +82,7 @@ const BookReviewList = (props: any) => {
                   </div>
                 </div>
                 {value.review && (
-                  <div style={{ marginTop: '25px' }}>{value.review}</div>
+                  <div style={{ marginTop: '10px' }}>{value.review}</div>
                 )}
               </div>
             </div>
