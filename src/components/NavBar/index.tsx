@@ -60,7 +60,7 @@ const NavBar = (props: NavBarProps) => {
               </Hidden>
               <Grid item>
                 <Link href="/">
-                  <img src="/logo.svg" className={classes.appIcon}></img>
+                  <img src="/Logo.png" className={classes.appIcon}></img>
                 </Link>
               </Grid>
             </Grid>
