@@ -128,15 +128,43 @@ const CategoryList = (props: any) => {
     adaptiveHeight: true,
     variableWidth: true,
     slidesToScroll: 1,
-    slidesToShow: 5,
+    slidesToShow: 8,
     nextArrow: <SlickNextArrow />,
     prevArrow: <SlickPrevArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
+        settings: {
+          slidesToScroll: 1,
+          slidesToShow: 7,
+        },
+      },
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToScroll: 1,
+          slidesToShow: 6,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToScroll: 1,
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 900,
         settings: {
           slidesToScroll: 1,
           slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToScroll: 1,
+          slidesToShow: 3,
         },
       },
       {
