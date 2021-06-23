@@ -20,6 +20,9 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import WishList from '../WishList';
 import UserBookshelfToolBar from './UserBookshelfToolBar';
+import UserBookshelfSideMenu from './UserBookshelfSideMenu';
+import Hidden from '@material-ui/core/Hidden';
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
@@ -49,6 +52,9 @@ const useStyles = makeStyles((theme: Theme) =>
       '& > * + *': {
         marginLeft: theme.spacing(2),
       },
+    },
+    container: {
+      display: 'flex',
     },
   }),
 );
@@ -135,14 +141,23 @@ const UserBookshelf = (props: any) => {
       </Tabs>
 
       <TabPanel value={tabValue} index={0}>
-        <UserBookshelfToolBar />
-        <UserBookshelfContainer
-          userTags={userTags}
-          bookshelf={bookshelf}
-          userId={props.userId}
-          handleDeleteUserBook={handleDeleteUserBook}
-          handleChangeReadingStatus={handleChangeReadingStatus}
-        ></UserBookshelfContainer>
+        <div className={classes.container}>
+          <Hidden xsDown implementation="css">
+            <div style={{ marginTop: '30px' }}>
+              <UserBookshelfSideMenu />
+            </div>
+          </Hidden>
+          <div style={{ width: '100%' }}>
+            <UserBookshelfToolBar />
+            <UserBookshelfContainer
+              userTags={userTags}
+              bookshelf={bookshelf}
+              userId={props.userId}
+              handleDeleteUserBook={handleDeleteUserBook}
+              handleChangeReadingStatus={handleChangeReadingStatus}
+            ></UserBookshelfContainer>
+          </div>
+        </div>
       </TabPanel>
       <TabPanel value={tabValue} index={1}>
         <WishList userId={props.userId} noNeedTitle={true} />

@@ -53,7 +53,14 @@ const UserBanner = (props: any) => {
   const classes = useStyles();
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState({
-    user: { name: '', createdAt: '' },
+    user: {
+      id: '',
+      name: '',
+      createdAt: '',
+      bookCount: '',
+      followeeCount: '',
+      followerCount: '',
+    },
   });
   const [getUserDetails, { data: userDetailsData }] = useLazyQuery(
     GET_USER_DETAILS,
