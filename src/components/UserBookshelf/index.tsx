@@ -14,7 +14,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import SectionBar from '../SectionBar';
-
+import UserBanner from '../UserBanner';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     loading: {
@@ -91,6 +91,7 @@ const UserBookshelf = (props: any) => {
 
   return (
     <>
+      <UserBanner userId={props.userId}></UserBanner>
       <SectionBar title="我的書櫃"></SectionBar>
       <UserBookshelfContainer
         userTags={userTags}
