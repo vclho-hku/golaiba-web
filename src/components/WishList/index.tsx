@@ -51,7 +51,7 @@ const WishList = (props: any) => {
     );
   return (
     <div>
-      <SectionBar title="想看清單"></SectionBar>
+      {!props.noNeedTitle && <SectionBar title="想看清單"></SectionBar>}
       {wishlist.length == 0 && (
         <NoBook>
           <Typography variant="body1">你還未加入任何書本至願望清單</Typography>

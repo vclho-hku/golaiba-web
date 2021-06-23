@@ -15,6 +15,33 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import SectionBar from '../SectionBar';
 import UserBanner from '../UserBanner';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Box from '@material-ui/core/Box';
+import WishList from '../WishList';
+import UserBookshelfToolBar from './UserBookshelfToolBar';
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: any;
+  value: any;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {children}
+    </div>
+  );
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     loading: {
@@ -28,6 +55,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const UserBookshelf = (props: any) => {
   const classes = useStyles();
+  const [tabValue, setTabValue] = React.useState(0);
   const [bookshelf, setBookshelf] = useState([]);
   const [userTags, setUserTags] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -82,6 +110,10 @@ const UserBookshelf = (props: any) => {
     }
   }, [userTagsList]);
 
+  const handleChangeTab = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setTabValue(newValue);
+  };
+
   if (loading)
     return (
       <div className={classes.loading}>
@@ -92,14 +124,29 @@ const UserBookshelf = (props: any) => {
   return (
     <>
       <UserBanner userId={props.userId}></UserBanner>
-      <SectionBar title="我的書櫃"></SectionBar>
-      <UserBookshelfContainer
-        userTags={userTags}
-        bookshelf={bookshelf}
-        userId={props.userId}
-        handleDeleteUserBook={handleDeleteUserBook}
-        handleChangeReadingStatus={handleChangeReadingStatus}
-      ></UserBookshelfContainer>
+      <Tabs
+        value={tabValue}
+        onChange={handleChangeTab}
+        indicatorColor="primary"
+        textColor="primary"
+      >
+        <Tab label="我的書櫃" />
+        <Tab label="願望清單" />
+      </Tabs>
+
+      <TabPanel value={tabValue} index={0}>
+        <UserBookshelfToolBar />
+        <UserBookshelfContainer
+          userTags={userTags}
+          bookshelf={bookshelf}
+          userId={props.userId}
+          handleDeleteUserBook={handleDeleteUserBook}
+          handleChangeReadingStatus={handleChangeReadingStatus}
+        ></UserBookshelfContainer>
+      </TabPanel>
+      <TabPanel value={tabValue} index={1}>
+        <WishList userId={props.userId} noNeedTitle={true} />
+      </TabPanel>
     </>
   );
 };
