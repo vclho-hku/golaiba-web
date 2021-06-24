@@ -15,6 +15,7 @@ import MyFollower from './MyFollower';
 import SearchFollowee from './SearchFollowee';
 import FolloweeActivity from './FolloweeActivity';
 import { brown } from '@material-ui/core/colors';
+import UserBanner from '../UserBanner';
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
@@ -65,6 +66,7 @@ const FollowerList = (props: any) => {
 
   return (
     <div className={classes.root}>
+      <UserBanner userId={props.userId}></UserBanner>
       <AppBar position="static">
         <Tabs
           value={value}
@@ -75,23 +77,23 @@ const FollowerList = (props: any) => {
           centered
           style={{ backgroundColor: brown[50] }}
         >
-          <Tab label="我的書友" {...a11yProps(0)} />
-          <Tab label="我的粉絲" {...a11yProps(1)} />
-          <Tab label="尋找書友" {...a11yProps(2)} />
-          <Tab label="書友動向" {...a11yProps(3)} />
+          <Tab label="書友動向" {...a11yProps(0)} />
+          <Tab label="我的書友" {...a11yProps(1)} />
+          <Tab label="我的粉絲" {...a11yProps(2)} />
+          <Tab label="尋找書友" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <MyFollowee userId={userId}></MyFollowee>
+        <FolloweeActivity userId={userId}></FolloweeActivity>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <MyFollower userId={userId}></MyFollower>
+        <MyFollowee userId={userId}></MyFollowee>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <SearchFollowee userId={userId}></SearchFollowee>
+        <MyFollower userId={userId}></MyFollower>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <FolloweeActivity userId={userId}></FolloweeActivity>
+        <SearchFollowee userId={userId}></SearchFollowee>
       </TabPanel>
     </div>
   );

@@ -6,6 +6,11 @@ export default gql`
       id
       email
       name
+      avatarImgUrl {
+        small
+        medium
+        large
+      }
     }
   }
 `;

@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
         marginLeft: theme.spacing(2),
       },
     },
+    userItemContainer: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
   }),
 );
 
@@ -67,16 +71,18 @@ const MyFollowee = (props: any) => {
     return (
       <div>
         <Typography variant="h5">我的書友</Typography>
-        {followeeList.map((followee: any, index: any) => {
-          return (
-            <UserItem
-              key={index}
-              user={followee}
-              canRemove={true}
-              handleDeleteFollower={handleDeleteFollower}
-            ></UserItem>
-          );
-        })}
+        <div className={classes.userItemContainer}>
+          {followeeList.map((followee: any, index: any) => {
+            return (
+              <UserItem
+                key={index}
+                user={followee}
+                canRemove={true}
+                handleDeleteFollower={handleDeleteFollower}
+              ></UserItem>
+            );
+          })}
+        </div>
       </div>
     );
   }

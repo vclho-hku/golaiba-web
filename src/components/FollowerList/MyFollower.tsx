@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
         marginLeft: theme.spacing(2),
       },
     },
+    userItemContainer: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
   }),
 );
 
@@ -42,9 +46,11 @@ const MyFollower = (props: any) => {
     return (
       <div>
         <Typography variant="h5">我的粉絲</Typography>
-        {getFollower.getFollower.map((follower: any) => {
-          return <UserItem key={follower.id} user={follower}></UserItem>;
-        })}
+        <div className={classes.userItemContainer}>
+          {getFollower.getFollower.map((follower: any) => {
+            return <UserItem key={follower.id} user={follower}></UserItem>;
+          })}
+        </div>
       </div>
     );
   }
