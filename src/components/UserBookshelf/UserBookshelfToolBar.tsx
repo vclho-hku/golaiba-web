@@ -19,6 +19,9 @@ const useStyles = makeStyles(() =>
       paddingTop: '20px',
       flexWrap: 'wrap',
     },
+    item: {
+      marginBottom: '7px',
+    },
   }),
 );
 
@@ -37,7 +40,7 @@ const UserBookshelfToolBar = (props: any) => {
 
   return (
     <div className={classes.container}>
-      <div>
+      <div className={classes.item}>
         <FormControl variant="outlined">
           <InputLabel htmlFor="outlined-filter-native-simple">篩選</InputLabel>
           <Select
@@ -57,7 +60,7 @@ const UserBookshelfToolBar = (props: any) => {
           </Select>
         </FormControl>
       </div>
-      <div>
+      <div className={classes.item}>
         <FormControl>
           <Input
             id="standard-adornment-weight"
@@ -77,7 +80,7 @@ const UserBookshelfToolBar = (props: any) => {
           />
         </FormControl>
       </div>
-      <div>
+      <div className={classes.item}>
         <FormControl variant="outlined">
           <InputLabel htmlFor="outlined-sorting-native-simple">排序</InputLabel>
           <Select
