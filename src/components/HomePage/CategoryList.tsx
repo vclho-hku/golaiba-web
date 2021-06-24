@@ -34,11 +34,16 @@ library.add(
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    title: {
+    titleContainer: {
       position: 'relative',
       padding: '20px',
       marginTop: '40px',
-      marginDown: '10px',
+    },
+    title: {
+      fontWeight: 'bold',
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '1.2rem',
+      },
     },
     container: {
       display: 'flex',
@@ -46,15 +51,15 @@ const useStyles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
     },
     card: {
-      width: '120px',
-      height: '80px',
-      marginRight: '10px',
-      marginTop: '10px',
-      [theme.breakpoints.up('sm')]: {
-        width: '150px',
-        height: '100px',
-        marginRight: '20px',
-        marginTop: '20px',
+      width: '130px',
+      height: '90px',
+      marginRight: '20px',
+      marginTop: '20px',
+      [theme.breakpoints.down('sm')]: {
+        width: '90px',
+        height: '80px',
+        marginRight: '10px',
+        marginTop: '10px',
       },
     },
     cardContainer: {
@@ -68,15 +73,34 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: 999,
       '&:before': {
         color: theme.palette.primary.main,
-        fontSize: '50px',
+        fontSize: '40px',
         backgroundColor: 'white',
-        borderRadius: '30px',
-        paddingTop: '6px',
+        borderRadius: '25px',
+        paddingTop: '5px',
         paddingLeft: '2px',
         paddingRight: '2px',
         '&:hover': {
           backgroundColor: theme.palette.primary.main,
         },
+      },
+      [theme.breakpoints.down('sm')]: {
+        '&:before': {
+          fontSize: '30px',
+          borderRadius: '35px',
+          paddingTop: '3px',
+          paddingLeft: '2px',
+          paddingRight: '2px',
+        },
+      },
+    },
+    icon: {
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '15px',
+      },
+    },
+    text: {
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '15px',
       },
     },
   }),
@@ -128,7 +152,7 @@ const CategoryList = (props: any) => {
     adaptiveHeight: true,
     variableWidth: true,
     slidesToScroll: 1,
-    slidesToShow: 8,
+    slidesToShow: 9,
     nextArrow: <SlickNextArrow />,
     prevArrow: <SlickPrevArrow />,
     responsive: [
@@ -136,18 +160,25 @@ const CategoryList = (props: any) => {
         breakpoint: 1200,
         settings: {
           slidesToScroll: 1,
-          slidesToShow: 7,
+          slidesToShow: 8,
         },
       },
       {
         breakpoint: 1100,
         settings: {
           slidesToScroll: 1,
-          slidesToShow: 6,
+          slidesToShow: 7,
         },
       },
       {
         breakpoint: 1000,
+        settings: {
+          slidesToScroll: 1,
+          slidesToShow: 6,
+        },
+      },
+      {
+        breakpoint: 900,
         settings: {
           slidesToScroll: 1,
           slidesToShow: 5,
@@ -161,17 +192,10 @@ const CategoryList = (props: any) => {
         },
       },
       {
-        breakpoint: 900,
-        settings: {
-          slidesToScroll: 1,
-          slidesToShow: 3,
-        },
-      },
-      {
         breakpoint: 700,
         settings: {
           slidesToScroll: 1,
-          slidesToShow: 2,
+          slidesToShow: 3,
         },
       },
     ],
@@ -179,9 +203,11 @@ const CategoryList = (props: any) => {
 
   return (
     <div>
-      <div className={classes.title}>
+      <div className={classes.titleContainer}>
         <div style={{ textAlign: 'center' }}>
-          <Typography variant="h4">分類搜尋</Typography>
+          <Typography variant="h5" className={classes.title}>
+            分類搜尋
+          </Typography>
         </div>
         <div>
           <Slider {...settings}>
@@ -190,10 +216,16 @@ const CategoryList = (props: any) => {
                 <Card className={classes.card} elevation={3}>
                   <div className={classes.cardContainer}>
                     <div>
-                      <FontAwesomeIcon icon={['fas', value[1]]} size="lg" />
+                      <FontAwesomeIcon
+                        icon={['fas', value[1]]}
+                        size="lg"
+                        className={classes.icon}
+                      />
                     </div>
                     <div>
-                      <Typography variant="h6">{value[0]}</Typography>
+                      <Typography variant="h6" className={classes.text}>
+                        {value[0]}
+                      </Typography>
                     </div>
                   </div>
                 </Card>

@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import SlickSlide from './SlickSlide';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import classes from '*.module.css';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -10,15 +11,30 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: 999,
       '&:before': {
         color: theme.palette.primary.main,
-        fontSize: '50px',
+        fontSize: '40px',
         backgroundColor: 'white',
-        borderRadius: '30px',
-        paddingTop: '6px',
+        borderRadius: '25px',
+        paddingTop: '5px',
         paddingLeft: '2px',
         paddingRight: '2px',
         '&:hover': {
           backgroundColor: theme.palette.primary.main,
         },
+      },
+      [theme.breakpoints.down('sm')]: {
+        '&:before': {
+          fontSize: '30px',
+          borderRadius: '35px',
+          paddingTop: '3px',
+          paddingLeft: '1px',
+          paddingRight: '1px',
+        },
+      },
+    },
+    container: {
+      margin: '10px',
+      [theme.breakpoints.down('sm')]: {
+        margin: '5px',
       },
     },
   }),
@@ -52,6 +68,7 @@ function SlickNextArrow(props: any) {
 
 const Carousel: FunctionComponent<any> = (props: any) => {
   const booklist = props.data;
+  const classes = useStyles();
   const settings = {
     dots: true,
     infinite: true,
@@ -90,7 +107,7 @@ const Carousel: FunctionComponent<any> = (props: any) => {
     return inTheList;
   }
   return (
-    <div style={{ margin: '20px' }}>
+    <div className={classes.container}>
       <Slider {...settings}>
         {booklist.map((value: any, index: any) => {
           return (

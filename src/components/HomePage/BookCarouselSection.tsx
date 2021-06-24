@@ -13,6 +13,18 @@ const useStyles = makeStyles((theme: Theme) =>
         marginLeft: theme.spacing(2),
       },
     },
+    sectionContainer: {
+      marginTop: '40px',
+      [theme.breakpoints.down('sm')]: {
+        marginTop: '30px',
+      },
+    },
+    title: {
+      fontWeight: 'bold',
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '1.2rem',
+      },
+    },
   }),
 );
 
@@ -36,9 +48,11 @@ const BookCarouselSection = (props: any) => {
   if (error) return <p>系統出現問題 :(</p>;
 
   return (
-    <section style={{ margin: '10px' }}>
-      <div style={{ textAlign: 'center', marginTop: '50px' }}>
-        <Typography variant="h4">{props.title}</Typography>
+    <section>
+      <div className={classes.sectionContainer} style={{ textAlign: 'center' }}>
+        <Typography variant="h5" className={classes.title}>
+          {props.title}
+        </Typography>
       </div>
       <BookCarousel
         data={data.bookPromotionList.books}
