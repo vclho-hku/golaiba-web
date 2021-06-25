@@ -52,10 +52,7 @@ const useStyles = makeStyles(() =>
 
 const BookSlide = (props: any) => {
   const bookInfo = props.data;
-  const author = authorToString(bookInfo.authors);
   const classes = useStyles();
-  const router = useRouter();
-
   return (
     <Card className={classes.root}>
       <Link href={`/book-details/${bookInfo.id}`}>

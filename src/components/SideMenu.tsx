@@ -84,12 +84,14 @@ const SideMenu = (props: SideMenuProps) => {
               <ListItemText primary="名人書櫃" />
             </ListItem>
           </Link>
-          <ListItem button key="經典書籍">
-            <ListItemIcon>
-              <FontAwesomeIcon icon={faHistory} size="lg" />
-            </ListItemIcon>
-            <ListItemText primary="經典書籍" />
-          </ListItem>
+          <Link href={`/classic`}>
+            <ListItem button key="經典書籍" onClick={props.onClose}>
+              <ListItemIcon>
+                <FontAwesomeIcon icon={faHistory} size="lg" />
+              </ListItemIcon>
+              <ListItemText primary="經典書籍" />
+            </ListItem>
+          </Link>
           <Link href={`/good-place`}>
             <ListItem button key="看書好地方" onClick={props.onClose}>
               <ListItemIcon>

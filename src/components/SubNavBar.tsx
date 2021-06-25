@@ -66,7 +66,9 @@ const SubNavBar = (props: any) => {
           <Link href={`/celebrity`}>
             <CustTab label="名人書櫃" />
           </Link>
-          <CustTab label="經典書籍" />
+          <Link href={`/classic`}>
+            <CustTab label="經典書籍" />
+          </Link>
           <Link href={`/good-place`}>
             <CustTab label="看書好地方" />
           </Link>
