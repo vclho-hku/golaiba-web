@@ -198,12 +198,22 @@ const BookReviewContainer = (props: any) => {
       )}
 
       <Divider light style={{ margin: '10px' }} />
-      <BookReviewList
-        bookId={book.id}
-        limit={10}
-        offset={0}
-        userName={userData.name}
-      ></BookReviewList>
+      {userData && (
+        <BookReviewList
+          bookId={book.id}
+          limit={10}
+          offset={0}
+          userName={userData.name}
+        ></BookReviewList>
+      )}
+      {!userData && (
+        <BookReviewList
+          bookId={book.id}
+          limit={10}
+          offset={0}
+          userName={''}
+        ></BookReviewList>
+      )}
     </div>
   );
 };
