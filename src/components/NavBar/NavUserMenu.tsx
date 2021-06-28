@@ -12,6 +12,8 @@ import { grey } from '@material-ui/core/colors';
 import Link from 'next/link';
 import Logout from '../Logout';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import Badge from '@material-ui/core/Badge';
 
 const NavUserMenu = (props: any) => {
   const [open, setOpen] = useState(false);
@@ -53,6 +55,13 @@ const NavUserMenu = (props: any) => {
     <div>
       <div>
         <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+          <Link href={`/user/${props.userId}/follower-list`}>
+            <Button style={{ minWidth: '20px' }}>
+              <Badge color="secondary" variant="dot">
+                <NotificationsIcon style={{ color: 'white' }} />
+              </Badge>
+            </Button>
+          </Link>
           <Link href={`/user/${props.userId}/bookshelf`}>
             <Button style={{ minWidth: '20px' }}>
               <CollectionsBookmarkIcon style={{ color: 'white' }} />
