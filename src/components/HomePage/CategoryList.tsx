@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '90px',
       marginRight: '20px',
       marginTop: '20px',
+      marginBottom: '10px',
       [theme.breakpoints.down('sm')]: {
         width: '90px',
         height: '80px',

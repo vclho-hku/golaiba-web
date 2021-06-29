@@ -8,9 +8,34 @@ import Slider from 'react-slick';
 import Hidden from '@material-ui/core/Hidden';
 import Link from 'next/link';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      zIndex: 999,
+      '&:before': {
+        color: theme.palette.primary.main,
+        fontSize: '0px',
+        backgroundColor: 'white',
+        borderRadius: '25px',
+        paddingTop: '5px',
+        paddingLeft: '2px',
+        paddingRight: '2px',
+        '&:hover': {
+          backgroundColor: theme.palette.primary.main,
+        },
+      },
+      [theme.breakpoints.down('sm')]: {
+        '&:before': {
+          fontSize: '30px',
+          borderRadius: '35px',
+          paddingTop: '3px',
+          paddingLeft: '1px',
+          paddingRight: '1px',
+        },
+      },
+    },
     slideContainer: {
       maxHeight: '400px',
       cursor: 'pointer',
@@ -29,8 +54,40 @@ const useStyles = makeStyles((theme: Theme) =>
       objectFit: 'contain',
       marginLeft: '20px',
     },
+    container: {
+      margin: '10px',
+      [theme.breakpoints.down('sm')]: {
+        margin: '5px',
+      },
+    },
   }),
 );
+
+function SlickPrevArrow(props: any) {
+  const { className, style, onClick } = props;
+  const classes = useStyles();
+
+  return (
+    <div
+      className={clsx(className, classes.root)}
+      style={{ ...style, display: 'block', left: '-5px' }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SlickNextArrow(props: any) {
+  const { className, style, onClick } = props;
+  const classes = useStyles();
+
+  return (
+    <div
+      className={clsx(className, classes.root)}
+      style={{ ...style, display: 'block', right: '15px' }}
+      onClick={onClick}
+    />
+  );
+}
 
 const HeaderBanner = (props: any) => {
   const classes = useStyles();
@@ -45,10 +102,12 @@ const HeaderBanner = (props: any) => {
     autoplay: true,
     autoplaySpeed: 5000,
     centerMode: true,
+    nextArrow: <SlickNextArrow />,
+    prevArrow: <SlickPrevArrow />,
   };
 
   return (
-    <div style={{ margin: '5px' }}>
+    <div className={classes.container}>
       <Hidden smDown>
         <Slider {...settings}>
           <div className={classes.slideContainer}>

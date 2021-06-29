@@ -32,7 +32,7 @@ const CelebrityList = (props: any) => {
   }, [starCelebrityListData]);
 
   return (
-    <div>
+    <div style={{ marginTop: '20px' }}>
       <div className={classes.title}>
         <div style={{ textAlign: 'center' }}>
           <Typography variant="h5">名人推介</Typography>

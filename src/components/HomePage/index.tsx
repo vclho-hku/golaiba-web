@@ -38,6 +38,7 @@ const HomePage = (props: any) => {
         sectionKey={'newPublished'}
         userWishlist={userWishlist}
       ></BookCarouselSection>
+      <div style={{ height: '20px' }}></div>
       <BookCarouselSection
         title={'最多Like'}
         sectionKey={'inspirational'}

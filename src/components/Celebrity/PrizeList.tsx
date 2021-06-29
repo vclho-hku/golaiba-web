@@ -33,7 +33,7 @@ const PrizeList = (props: any) => {
   }, [starPrizeListData]);
 
   return (
-    <div>
+    <div style={{ marginTop: '20px' }}>
       <div className={classes.title}>
         <div style={{ textAlign: 'center' }}>
           <Typography variant="h5">得獎好書</Typography>
