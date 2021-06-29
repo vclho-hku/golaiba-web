@@ -53,6 +53,14 @@ const useStyles = makeStyles((theme: Theme) =>
         marginLeft: theme.spacing(2),
       },
     },
+    outerContainer: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    mainContainer: {
+      width: '100%',
+      maxWidth: '1200px',
+    },
     container: {
       display: 'flex',
     },
@@ -128,41 +136,43 @@ const UserBookshelf = (props: any) => {
     );
 
   return (
-    <>
-      <UserBanner userId={props.userId}></UserBanner>
-      <Tabs
-        value={tabValue}
-        onChange={handleChangeTab}
-        indicatorColor="primary"
-        textColor="primary"
-      >
-        <Tab label="我的書櫃" />
-        <Tab label="願望清單" />
-      </Tabs>
+    <div className={classes.outerContainer}>
+      <div className={classes.mainContainer}>
+        <UserBanner userId={props.userId}></UserBanner>
+        <Tabs
+          value={tabValue}
+          onChange={handleChangeTab}
+          indicatorColor="primary"
+          textColor="primary"
+        >
+          <Tab label="我的書櫃" />
+          <Tab label="願望清單" />
+        </Tabs>
 
-      <TabPanel value={tabValue} index={0}>
-        <div className={classes.container}>
-          <Hidden xsDown implementation="css">
-            <div style={{ marginTop: '30px' }}>
-              <UserBookshelfSideMenu />
+        <TabPanel value={tabValue} index={0}>
+          <div className={classes.container}>
+            <Hidden xsDown implementation="css">
+              <div style={{ marginTop: '30px' }}>
+                <UserBookshelfSideMenu />
+              </div>
+            </Hidden>
+            <div style={{ width: '100%' }}>
+              <UserBookshelfToolBar />
+              <UserBookshelfContainer
+                userTags={userTags}
+                bookshelf={bookshelf}
+                userId={props.userId}
+                handleDeleteUserBook={handleDeleteUserBook}
+                handleChangeReadingStatus={handleChangeReadingStatus}
+              ></UserBookshelfContainer>
             </div>
-          </Hidden>
-          <div style={{ width: '100%' }}>
-            <UserBookshelfToolBar />
-            <UserBookshelfContainer
-              userTags={userTags}
-              bookshelf={bookshelf}
-              userId={props.userId}
-              handleDeleteUserBook={handleDeleteUserBook}
-              handleChangeReadingStatus={handleChangeReadingStatus}
-            ></UserBookshelfContainer>
           </div>
-        </div>
-      </TabPanel>
-      <TabPanel value={tabValue} index={1}>
-        <WishList userId={props.userId} noNeedTitle={true} />
-      </TabPanel>
-    </>
+        </TabPanel>
+        <TabPanel value={tabValue} index={1}>
+          <WishList userId={props.userId} noNeedTitle={true} />
+        </TabPanel>
+      </div>
+    </div>
   );
 };
 

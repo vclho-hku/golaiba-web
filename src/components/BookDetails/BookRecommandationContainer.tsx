@@ -18,7 +18,7 @@ const BookRecommandationContainer = (props: any) => {
   const classes = useStyles();
   return (
     <div>
-      <div style={{ marginLeft: '10px', marginTop: '20px' }}>
+      <div style={{ marginLeft: '15px', marginTop: '20px' }}>
         <Typography variant="h6" component="h6">
           你可能有興趣的書本
         </Typography>

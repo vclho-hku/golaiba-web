@@ -60,6 +60,11 @@ const HeaderBanner = (props: any) => {
             </Link>
           </div>
           <div className={classes.slideContainer}>
+            <Link href={`/classic`}>
+              <img className={classes.slideImage} src="./classic.png"></img>
+            </Link>
+          </div>
+          <div className={classes.slideContainer}>
             <Link href={`/good-place`}>
               <img
                 className={classes.slideImage}
@@ -82,6 +87,14 @@ const HeaderBanner = (props: any) => {
               <img
                 className={classes.slideImageMob}
                 src="./CB_Hero_Mob.jpg"
+              ></img>
+            </Link>
+          </div>
+          <div className={classes.slideContainerMob}>
+            <Link href={`/classic`}>
+              <img
+                className={classes.slideImageMob}
+                src="./classic_mob.jpg"
               ></img>
             </Link>
           </div>

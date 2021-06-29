@@ -15,6 +15,8 @@ const RecommandationTestData = [
         },
       },
     ],
+    rating: 4,
+    ratingCount: 1430,
   },
   {
     id: '5fea03c9a5b57b7bf0b51bcf',
@@ -32,6 +34,8 @@ const RecommandationTestData = [
         },
       },
     ],
+    rating: 3.5,
+    ratingCount: 932,
   },
   {
     id: '5feb30151318349237b31f0e',
@@ -49,6 +53,8 @@ const RecommandationTestData = [
         },
       },
     ],
+    rating: 3,
+    ratingCount: 5212,
   },
   {
     id: '5feb31421318349237b31f12',
@@ -66,6 +72,8 @@ const RecommandationTestData = [
         },
       },
     ],
+    rating: 4.5,
+    ratingCount: 123,
   },
   {
     id: '5feb31d41318349237b31f15',
@@ -83,6 +91,8 @@ const RecommandationTestData = [
         },
       },
     ],
+    rating: 2.5,
+    ratingCount: 1903,
   },
 ];
 

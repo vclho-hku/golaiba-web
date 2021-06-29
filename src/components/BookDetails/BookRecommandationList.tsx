@@ -65,24 +65,38 @@ const BookRecommandationList = (props: any) => {
     infinite: false,
     speed: 500,
     adaptiveHeight: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToShow: 5,
+    slidesToScroll: 2,
     variableWidth: true,
     nextArrow: <SlickNextArrow />,
     prevArrow: <SlickPrevArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1300,
         settings: {
           slidesToScroll: 2,
-          slidesToShow: 2,
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToScroll: 2,
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToScroll: 2,
+          slidesToShow: 3,
         },
       },
       {
         breakpoint: 700,
         settings: {
           slidesToScroll: 1,
-          slidesToShow: 1,
+          slidesToShow: 2,
         },
       },
     ],
