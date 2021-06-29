@@ -64,7 +64,10 @@ const NavUserMenu = (props: any) => {
           </Link>
           <Link href={`/user/${props.userId}/bookshelf`}>
             <Button style={{ minWidth: '20px' }}>
-              <CollectionsBookmarkIcon style={{ color: 'white' }} />
+              <img
+                style={{ width: '24px', color: 'white' }}
+                src="/bookshelf_icon.svg"
+              ></img>
             </Button>
           </Link>
           <Link href={`/user/${props.userId}/wishlist`}>

@@ -5,21 +5,6 @@ import React, {
   useEffect,
 } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import UserItem from './UserItem';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { useQuery } from '@apollo/client';
-import { GET_FOLLOWEE_ACTIVITY } from '../../query/followList';
-import AddToWishlistItem from './FollowActivityItems/AddToWishlistItem';
-import AddToBookshelf from './FollowActivityItems/AddToBookshelf';
-import WrittenBookReview from './FollowActivityItems/WrittenBookReview';
-import ActionVisibility from 'material-ui/svg-icons/action/visibility';
-import {
-  ADD_TO_WISHLIST,
-  ADD_TO_BOOKSHELF,
-  WRITTEN_BOOK_REVIEW,
-  ADD_FOLLOWER,
-} from '../../constant/UserActivityList';
-import AddFollower from './FollowActivityItems/AddFollower';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
@@ -90,9 +75,7 @@ const GeneralActivityItem = (props: any) => {
           </div>
         </div>
         <div className={classes.postContentContainer}>
-          <div
-            style={{ paddingTop: '5px', paddingRight: '5px', flexGrow: '1' }}
-          >
+          <div style={{ paddingTop: '5px', paddingRight: '5px', flexGrow: 1 }}>
             {ReactHtmlParser(props.content)}
           </div>
           <div className={classes.imageContainer}>
