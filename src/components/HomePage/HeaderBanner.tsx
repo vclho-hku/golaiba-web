@@ -60,10 +60,12 @@ const HeaderBanner = (props: any) => {
             </Link>
           </div>
           <div className={classes.slideContainer}>
-            <img
-              className={classes.slideImage}
-              src="./Place_Hero_Dsk.jpg"
-            ></img>
+            <Link href={`/good-place`}>
+              <img
+                className={classes.slideImage}
+                src="./Place_Hero_Dsk.jpg"
+              ></img>
+            </Link>
           </div>
         </Slider>
       </Hidden>
