@@ -25,6 +25,11 @@ const BookDetailsInfoStyle: any = (theme: any) => ({
   },
   bottonContainer: {
     display: 'flex',
+    flexWrap: 'wrap',
+  },
+  botton: {
+    flexGrow: 1,
+    maxWidth: '500px',
   },
 });
 

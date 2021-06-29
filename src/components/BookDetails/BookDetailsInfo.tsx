@@ -127,15 +127,22 @@ const BookDetailsInfo = (props: any) => {
           </div>
 
           <div className={classes.bottonContainer}>
-            <div style={{ margin: '10px' }}>
+            <div style={{ margin: '10px' }} className={classes.botton}>
               {isInWishlist ? (
                 <Tooltip title="已加到想看清單" aria-label="已加到想看清單">
                   <Button
                     variant="contained"
                     color="primary"
+                    fullWidth
                     onClick={handleRemoveFromWishlist}
                   >
-                    <Favorite style={{ color: red[500], fontSize: '15px' }} />
+                    <Favorite
+                      style={{
+                        color: red[500],
+                        fontSize: '15px',
+                        marginRight: '2px',
+                      }}
+                    />
                     已加到想看清單
                   </Button>
                 </Tooltip>
@@ -144,20 +151,30 @@ const BookDetailsInfo = (props: any) => {
                   <Button
                     variant="contained"
                     color="primary"
+                    fullWidth
                     onClick={handleAddToWishlist}
                   >
                     <FavoriteBorder
-                      style={{ color: red[500], fontSize: '15px' }}
+                      style={{
+                        color: red[500],
+                        fontSize: '15px',
+                        marginRight: '2px',
+                      }}
                     />
                     加到想看清單
                   </Button>
                 </Tooltip>
               )}
             </div>
-            <div style={{ margin: '10px' }}>
+            <div style={{ margin: '10px' }} className={classes.botton}>
               {isInBookshelf ? (
                 <Tooltip title="已加到我的書櫃" aria-label="已加到我的書櫃">
-                  <Button variant="contained" color="primary" disabled>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    disabled
+                  >
                     <CollectionsBookmarkIcon style={{ fontSize: '15px' }} />
                     已加到我的書櫃
                   </Button>
@@ -167,6 +184,7 @@ const BookDetailsInfo = (props: any) => {
                   <Button
                     variant="contained"
                     color="primary"
+                    fullWidth
                     onClick={handleAddToBookshelf}
                   >
                     <CollectionsBookmarkOutlinedIcon
