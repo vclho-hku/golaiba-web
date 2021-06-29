@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.down('sm')]: {
         '&:before': {
-          fontSize: '30px',
+          fontSize: '0px',
           borderRadius: '35px',
           paddingTop: '3px',
           paddingLeft: '1px',
