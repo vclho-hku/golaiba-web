@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import NavSearchBar from './NavSearchBar';
 import Link from 'next/link';
 import NavUserMenu from './NavUserMenu';
+import CloseIcon from '@material-ui/icons/Close';
 import { AuthUserContext, UserDataContext } from '../../Session';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -38,7 +39,14 @@ const NavBar = (props: NavBarProps) => {
   const classes = useStyles();
   const authUserContext: any = useContext(AuthUserContext);
   const { userData } = useContext(UserDataContext);
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const { onDrawerToggle } = props;
+  const handleShowSearchBar = () => {
+    setShowSearchBar(true);
+  };
+  const handleShowSearchBarClose = () => {
+    setShowSearchBar(false);
+  };
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -57,17 +65,28 @@ const NavBar = (props: NavBarProps) => {
                     <MenuIcon />
                   </IconButton>
                 </Grid>
+                <Hidden xsDown>
+                  <Grid item>
+                    <Link href="/">
+                      <img src="/Logo.png" className={classes.appIcon}></img>
+                    </Link>
+                  </Grid>
+                </Hidden>
               </Hidden>
-              <Grid item>
-                <Link href="/">
-                  <img src="/Logo.png" className={classes.appIcon}></img>
-                </Link>
-              </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <NavSearchBar></NavSearchBar>
-          </Grid>
+          <Hidden smUp>
+            <Grid item>
+              <Link href="/">
+                <img src="/Logo.png" className={classes.appIcon}></img>
+              </Link>
+            </Grid>
+          </Hidden>
+          <Hidden xsDown>
+            <Grid item xs={6}>
+              <NavSearchBar></NavSearchBar>
+            </Grid>
+          </Hidden>
           <Grid item xs>
             <Grid
               container
@@ -77,7 +96,10 @@ const NavBar = (props: NavBarProps) => {
               justify="flex-end"
             >
               {authUserContext && userData ? (
-                <NavUserMenu userId={userData.id} />
+                <NavUserMenu
+                  userId={userData.id}
+                  handleShowSearchBar={handleShowSearchBar}
+                />
               ) : (
                 <div>
                   <Link href="/login">
@@ -91,6 +113,14 @@ const NavBar = (props: NavBarProps) => {
           </Grid>
         </Grid>
       </Toolbar>
+      <Hidden smUp>
+        {showSearchBar && (
+          <Toolbar>
+            <NavSearchBar></NavSearchBar>
+            <CloseIcon onClick={handleShowSearchBarClose} />
+          </Toolbar>
+        )}
+      </Hidden>
     </AppBar>
   );
 };

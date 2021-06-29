@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 import Drawer from '@material-ui/core/Drawer';
@@ -19,6 +19,12 @@ import { faHistory } from '@fortawesome/free-solid-svg-icons';
 import { faMugHot } from '@fortawesome/free-solid-svg-icons';
 import ForumIcon from '@material-ui/icons/Forum';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+import Hidden from '@material-ui/core/Hidden';
+import { AuthUserContext, UserDataContext } from '../Session';
+import Favorite from '@material-ui/icons/Favorite';
+import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import PeopleIcon from '@material-ui/icons/People';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -54,6 +60,8 @@ interface SideMenuProps {
 
 const SideMenu = (props: SideMenuProps) => {
   const classes = useStyles();
+  const authUserContext: any = useContext(AuthUserContext);
+  const { userData } = useContext(UserDataContext);
   return (
     <Drawer
       className={classes.drawer}
@@ -110,6 +118,45 @@ const SideMenu = (props: SideMenuProps) => {
           </Link>
         </List>
         <Divider />
+        {authUserContext && userData && (
+          <Hidden smUp>
+            <List>
+              <Link href={`/user/${userData.id}/myaccount`}>
+                <ListItem button key="我的帳戶" onClick={props.onClose}>
+                  <ListItemIcon>
+                    <AccountCircleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="我的帳戶" />
+                </ListItem>
+              </Link>
+              <Link href={`/user/${userData.id}/wishlist`}>
+                <ListItem button key="想看清單" onClick={props.onClose}>
+                  <ListItemIcon>
+                    <Favorite />
+                  </ListItemIcon>
+                  <ListItemText primary="想看清單" />
+                </ListItem>
+              </Link>
+              <Link href={`/user/${userData.id}/bookshelf`}>
+                <ListItem button key="我的書櫃" onClick={props.onClose}>
+                  <ListItemIcon>
+                    <CollectionsBookmarkIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="我的書櫃" />
+                </ListItem>
+              </Link>
+              <Link href={`/user/${userData.id}/follower-list`}>
+                <ListItem button key="我的書友" onClick={props.onClose}>
+                  <ListItemIcon>
+                    <PeopleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="我的書友" />
+                </ListItem>
+              </Link>
+            </List>
+            <Divider />
+          </Hidden>
+        )}
         <List>
           {['聯絡我們'].map((text, index) => (
             <ListItem button key={text}>

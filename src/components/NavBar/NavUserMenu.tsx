@@ -14,6 +14,8 @@ import Logout from '../Logout';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Badge from '@material-ui/core/Badge';
+import Hidden from '@material-ui/core/Hidden';
+import SearchIcon from '@material-ui/icons/Search';
 
 const NavUserMenu = (props: any) => {
   const [open, setOpen] = useState(false);
@@ -55,36 +57,47 @@ const NavUserMenu = (props: any) => {
     <div>
       <div>
         <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-          <Link href={`/user/${props.userId}/follower-list`}>
-            <Button style={{ minWidth: '20px' }}>
-              <Badge color="secondary" variant="dot">
-                <NotificationsIcon style={{ color: 'white' }} />
-              </Badge>
+          <Hidden smUp>
+            <Button
+              style={{ minWidth: '20px' }}
+              onClick={props.handleShowSearchBar}
+            >
+              <SearchIcon style={{ color: 'white' }} />
             </Button>
-          </Link>
-          <Link href={`/user/${props.userId}/bookshelf`}>
-            <Button style={{ minWidth: '20px' }}>
-              <img
-                style={{ width: '24px', color: 'white' }}
-                src="/bookshelf_icon.svg"
-              ></img>
+          </Hidden>
+          <Hidden xsDown>
+            <Link href={`/user/${props.userId}/follower-list`}>
+              <Button style={{ minWidth: '20px' }}>
+                <Badge color="secondary" variant="dot">
+                  <NotificationsIcon style={{ color: 'white' }} />
+                </Badge>
+              </Button>
+            </Link>
+            <Link href={`/user/${props.userId}/bookshelf`}>
+              <Button style={{ minWidth: '20px' }}>
+                <img
+                  style={{ width: '24px', color: 'white' }}
+                  src="/bookshelf_icon.svg"
+                ></img>
+              </Button>
+            </Link>
+            <Link href={`/user/${props.userId}/wishlist`}>
+              <Button style={{ minWidth: '20px' }}>
+                <Favorite style={{ color: 'white' }} />
+              </Button>
+            </Link>
+            <Button
+              ref={anchorRef}
+              aria-controls={open ? 'menu-list-grow' : undefined}
+              aria-haspopup="true"
+              onClick={handleToggle}
+              style={{ minWidth: '20px' }}
+            >
+              <AccountCircleIcon style={{ color: 'white' }} />
             </Button>
-          </Link>
-          <Link href={`/user/${props.userId}/wishlist`}>
-            <Button style={{ minWidth: '20px' }}>
-              <Favorite style={{ color: 'white' }} />
-            </Button>
-          </Link>
-          <Button
-            ref={anchorRef}
-            aria-controls={open ? 'menu-list-grow' : undefined}
-            aria-haspopup="true"
-            onClick={handleToggle}
-            style={{ minWidth: '20px' }}
-          >
-            <AccountCircleIcon style={{ color: 'white' }} />
-          </Button>
+          </Hidden>
         </div>
+
         <Popper
           open={open}
           anchorEl={anchorRef.current}
