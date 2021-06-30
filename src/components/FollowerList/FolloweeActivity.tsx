@@ -42,6 +42,8 @@ import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import GeneralActivityItem from './FollowActivityItems/GeneralActivityItem';
 import testFollowerActivityData from './testFollowerActivityData';
+import FollowActivitySideInfo from './FollowActivitySideInfo';
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -56,6 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       width: '100%',
       flexDirection: 'column',
+      flexGrow: 1,
     },
     writePostOuterContainer: {
       width: '100%',
@@ -132,80 +135,85 @@ const FolloweeActivity = (props: any) => {
     );
   }
   return (
-    <div className={classes.mainContainer}>
-      <Paper elevation={3} className={classes.writePostOuterContainer}>
-        <div className={classes.writePostContainer}>
-          <div className={classes.writeTitleContainer}>
-            <div>你的分享</div>
-          </div>
-          <div className={classes.writePostDetailsContainer}>
-            <div>
-              <Box
-                component="fieldset"
-                mb={1}
-                borderColor="transparent"
-                className={classes.inputBox}
-              >
-                <TextareaAutosize
-                  aria-label="review"
-                  rowsMin={5}
-                  placeholder="分享內容"
-                  style={{ width: '100%' }}
-                />
-              </Box>
+    <div style={{ display: 'flex' }}>
+      <div className={classes.mainContainer}>
+        <Paper elevation={3} className={classes.writePostOuterContainer}>
+          <div className={classes.writePostContainer}>
+            <div className={classes.writeTitleContainer}>
+              <div>你的分享</div>
             </div>
-          </div>
-          <div className={classes.toolBarContainer}>
-            <div className={classes.toolBar}>
+            <div className={classes.writePostDetailsContainer}>
               <div>
-                <IconButton aria-label="image">
-                  <CollectionsRoundedIcon />
-                </IconButton>
-              </div>
-              <div className={classes.separator}></div>
-              <div>
-                <IconButton aria-label="color">
-                  <ColorLensRoundedIcon />
-                </IconButton>
-              </div>
-              <div className={classes.separator}></div>
-              <div>
-                <IconButton aria-label="bold">
-                  <FormatBoldRoundedIcon />
-                </IconButton>
-              </div>
-              <div className={classes.separator}></div>
-              <div>
-                <IconButton aria-label="italic">
-                  <FormatItalicRoundedIcon />
-                </IconButton>
-              </div>
-              <div className={classes.separator}></div>
-              <div>
-                <IconButton aria-label="underline">
-                  <FormatUnderlinedRoundedIcon />
-                </IconButton>
+                <Box
+                  component="fieldset"
+                  mb={1}
+                  borderColor="transparent"
+                  className={classes.inputBox}
+                >
+                  <TextareaAutosize
+                    aria-label="review"
+                    rowsMin={5}
+                    placeholder="分享內容"
+                    style={{ width: '100%' }}
+                  />
+                </Box>
               </div>
             </div>
-            <div className={classes.submitContainer}>
-              <Button variant="contained" endIcon={<SendRoundedIcon />}>
-                發表主題
-              </Button>
+            <div className={classes.toolBarContainer}>
+              <div className={classes.toolBar}>
+                <div>
+                  <IconButton aria-label="image">
+                    <CollectionsRoundedIcon />
+                  </IconButton>
+                </div>
+                <div className={classes.separator}></div>
+                <div>
+                  <IconButton aria-label="color">
+                    <ColorLensRoundedIcon />
+                  </IconButton>
+                </div>
+                <div className={classes.separator}></div>
+                <div>
+                  <IconButton aria-label="bold">
+                    <FormatBoldRoundedIcon />
+                  </IconButton>
+                </div>
+                <div className={classes.separator}></div>
+                <div>
+                  <IconButton aria-label="italic">
+                    <FormatItalicRoundedIcon />
+                  </IconButton>
+                </div>
+                <div className={classes.separator}></div>
+                <div>
+                  <IconButton aria-label="underline">
+                    <FormatUnderlinedRoundedIcon />
+                  </IconButton>
+                </div>
+              </div>
+              <div className={classes.submitContainer}>
+                <Button variant="contained" endIcon={<SendRoundedIcon />}>
+                  發表主題
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      </Paper>
-      {testFollowerActivityData.map((post: any, index: any) => {
-        return (
-          <GeneralActivityItem
-            key={index}
-            userName={post.userName}
-            postTime={post.postTime}
-            content={post.content}
-            imageUrl={post.imageUrl}
-          />
-        );
-      })}
+        </Paper>
+        {testFollowerActivityData.map((post: any, index: any) => {
+          return (
+            <GeneralActivityItem
+              key={index}
+              userName={post.userName}
+              postTime={post.postTime}
+              content={post.content}
+              imageUrl={post.imageUrl}
+            />
+          );
+        })}
+      </div>
+      <Hidden smDown>
+        <FollowActivitySideInfo />
+      </Hidden>
     </div>
   );
 };
