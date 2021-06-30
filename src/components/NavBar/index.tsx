@@ -65,13 +65,13 @@ const NavBar = (props: NavBarProps) => {
                     <MenuIcon />
                   </IconButton>
                 </Grid>
-                <Hidden xsDown>
-                  <Grid item>
-                    <Link href="/">
-                      <img src="/Logo.png" className={classes.appIcon}></img>
-                    </Link>
-                  </Grid>
-                </Hidden>
+              </Hidden>
+              <Hidden xsDown>
+                <Grid item>
+                  <Link href="/">
+                    <img src="/Logo.png" className={classes.appIcon}></img>
+                  </Link>
+                </Grid>
               </Hidden>
             </Grid>
           </Grid>
