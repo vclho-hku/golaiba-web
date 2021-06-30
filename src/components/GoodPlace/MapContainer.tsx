@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import WifiRoundedIcon from '@material-ui/icons/WifiRounded';
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
 import FastfoodRoundedIcon from '@material-ui/icons/FastfoodRounded';
+import Hidden from '@material-ui/core/Hidden';
+import MapInfoPanel from './MapInfoPanel';
 
 const HK_CENTER: any = [22.302711, 114.177216];
 const useStyles = makeStyles((theme: Theme) =>
@@ -50,112 +52,36 @@ const MapContainer = (props: any) => {
   const classes = useStyles();
   const placeList = PlacesList;
   return (
-    <div className={classes.container}>
-      <div>
-        <List className={classes.list} subheader={<li />}>
-          {placeList.map((data) => (
-            <li key={`section-${data.id}`} className={classes.listSection}>
-              <ul className={classes.ul}>
-                <ListSubheader
-                  className={classes.sectionHeader}
-                >{`${data.section}`}</ListSubheader>
-                {data.places.map((place) => (
-                  <ListItem key={`${place.name}`}>
-                    <div className={classes.itemContainer}>
-                      <div
-                        style={{
-                          marginBottom: '10px',
-                          fontWeight: 'bold',
-                          fontSize: '18px',
-                        }}
-                      >
-                        {place.name}
-                      </div>
-                      <div style={{ marginBottom: '5px' }}>
-                        <Typography variant="subtitle2">
-                          {place.address}
-                        </Typography>
-                      </div>
-                      <div style={{ marginBottom: '5px' }}>
-                        <Typography variant="subtitle2">
-                          營業時間： {place.openingHour} 至 {place.closingHour}
-                        </Typography>
-                      </div>
-                      <div style={{ display: 'flex', marginBottom: '5px' }}>
-                        <div
-                          style={{
-                            backgroundColor: '#F57C00',
-                            margin: '3px',
-                            borderRadius: '5px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            padding: '2px',
-                          }}
-                        >
-                          <WifiRoundedIcon
-                            fontSize="small"
-                            style={{ color: 'white' }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            backgroundColor: '#FFB74D',
-                            margin: '3px',
-                            borderRadius: '5px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            padding: '2px',
-                          }}
-                        >
-                          <AddShoppingCartRoundedIcon
-                            fontSize="small"
-                            style={{ color: 'white' }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            backgroundColor: '#FF9801',
-                            margin: '3px',
-                            borderRadius: '5px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            padding: '2px',
-                          }}
-                        >
-                          <FastfoodRoundedIcon
-                            fontSize="small"
-                            style={{ color: 'white' }}
-                          />
-                        </div>
-                      </div>
-                      <Divider />
-                    </div>
-                  </ListItem>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </List>
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Hidden smUp>
+          <MapInfoPanel />
+        </Hidden>
       </div>
-      <div style={{ height: '100vh', width: '100%' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{
-            key: 'AIzaSyBDEus5_ytavJIUHfloOiKvRyFSEghoQkI',
-          }}
-          defaultCenter={HK_CENTER}
-          defaultZoom={11}
-        >
-          {placeList.map((data) =>
-            data.places.map((place) => (
-              <MapPointer
-                key={place.id}
-                lat={place.lat}
-                lng={place.lng}
-                name={place.name}
-              />
-            )),
-          )}
-        </GoogleMapReact>
+      <div className={classes.container}>
+        <Hidden xsDown>
+          <MapInfoPanel />
+        </Hidden>
+        <div style={{ height: '100vh', width: '100%' }}>
+          <GoogleMapReact
+            bootstrapURLKeys={{
+              key: 'AIzaSyBDEus5_ytavJIUHfloOiKvRyFSEghoQkI',
+            }}
+            defaultCenter={HK_CENTER}
+            defaultZoom={11}
+          >
+            {placeList.map((data) =>
+              data.places.map((place) => (
+                <MapPointer
+                  key={place.id}
+                  lat={place.lat}
+                  lng={place.lng}
+                  name={place.name}
+                />
+              )),
+            )}
+          </GoogleMapReact>
+        </div>
       </div>
     </div>
   );
