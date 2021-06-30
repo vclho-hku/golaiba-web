@@ -25,6 +25,8 @@ import Favorite from '@material-ui/icons/Favorite';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PeopleIcon from '@material-ui/icons/People';
+import Logout from '../components/Logout';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -153,6 +155,12 @@ const SideMenu = (props: SideMenuProps) => {
                   <ListItemText primary="我的書友" />
                 </ListItem>
               </Link>
+              <ListItem button key="登出" onClick={props.onClose}>
+                <ListItemIcon>
+                  <ExitToAppIcon />
+                </ListItemIcon>
+                <Logout></Logout>
+              </ListItem>
             </List>
             <Divider />
           </Hidden>
