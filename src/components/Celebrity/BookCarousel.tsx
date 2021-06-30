@@ -20,6 +20,15 @@ const useStyles = makeStyles((theme: Theme) =>
           backgroundColor: theme.palette.primary.main,
         },
       },
+      [theme.breakpoints.down('sm')]: {
+        '&:before': {
+          fontSize: '30px',
+          borderRadius: '35px',
+          paddingTop: '3px',
+          paddingLeft: '1px',
+          paddingRight: '1px',
+        },
+      },
     },
   }),
 );
