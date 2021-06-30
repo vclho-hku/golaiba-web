@@ -11,7 +11,7 @@ const testFollowerActivityData = [
     舉止更加關鍵。這就是致富心態，這是現今社會不可或缺的軟實力。
     `,
     imageUrl:
-      'https://books.google.com/books/publisher/content/images/frontcover/haTQDwAAQBAJ?fife=w400-h600',
+      'https://books.google.com/books/content/images/frontcover/ZcqODwAAQBAJ?fife=w400-h600',
   },
   {
     userName: '姜濤',

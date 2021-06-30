@@ -5,9 +5,7 @@ import Link from 'next/link';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    outerContainer: {
-      // backgroundColor: '#757575',
-    },
+    outerContainer: {},
     container: {
       display: 'flex',
       justifyContent: 'center',

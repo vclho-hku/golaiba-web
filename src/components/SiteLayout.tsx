@@ -13,7 +13,7 @@ import Hidden from '@material-ui/core/Hidden';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../constant/theme';
 import { withAuthentication } from '../Session';
-import Footer from '../components/Footer';
+import Footer from './Footer';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {},
