@@ -87,6 +87,12 @@ const useStyles = makeStyles((theme: Theme) =>
     toolBarContainer: {
       display: 'flex',
       justifyContent: 'space-between',
+      flexWrap: 'wrap',
+      [theme.breakpoints.down('xs')]: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        paddingBottom: '5px',
+      },
     },
     toolBar: {
       display: 'flex',

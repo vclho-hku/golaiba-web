@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'relative',
       overflow: 'auto',
       height: '100vh',
-      marginLeft: '20px',
     },
     listSection: {
       backgroundColor: 'inherit',
@@ -53,7 +52,14 @@ const MapContainer = (props: any) => {
   const placeList = PlacesList;
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: '30px',
+          marginTop: '20px',
+        }}
+      >
         <Hidden smUp>
           <MapInfoPanel />
         </Hidden>

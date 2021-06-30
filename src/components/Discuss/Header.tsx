@@ -18,17 +18,18 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-    },
-    leftPanel: {
+      flexWrap: 'wrap',
       padding: '15px',
     },
+    leftPanel: {},
     rightPanel: {
-      padding: '15px',
       display: 'flex',
+      flexWrap: 'wrap',
     },
     button: {
       marginLeft: '10px',
       borderRadius: '20px',
+      marginTop: '10px',
     },
   }),
 );
