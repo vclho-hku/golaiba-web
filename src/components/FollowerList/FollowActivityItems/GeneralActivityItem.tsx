@@ -85,10 +85,14 @@ const GeneralActivityItem = (props: any) => {
       </div>
       <div className={classes.postInfoContainer}>
         <div className={classes.postInfo}>
-          <Link href={`/`}>3 則留言</Link>
+          <div style={{ textDecoration: 'underline', color: '##666666' }}>
+            3 則留言
+          </div>
         </div>
         <div className={classes.postInfo}>
-          <Link href={`/`}>5 次分享</Link>
+          <div style={{ textDecoration: 'underline', color: '##666666' }}>
+            5 次分享
+          </div>
         </div>
       </div>
     </Paper>

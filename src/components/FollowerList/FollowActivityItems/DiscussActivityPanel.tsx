@@ -97,6 +97,7 @@ const DiscussActivityPanel = (props: any) => {
           </div>
         </div>
       </div>
+      <Divider style={{ margin: '10px' }} />
       <div className={classes.itemContainer}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <div>
@@ -141,6 +142,7 @@ const DiscussActivityPanel = (props: any) => {
           </div>
         </div>
       </div>
+      <Divider style={{ margin: '10px' }} />
       <div className={classes.itemContainer}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <div>

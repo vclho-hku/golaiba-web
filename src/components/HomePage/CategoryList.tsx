@@ -153,15 +153,33 @@ const CategoryList = (props: any) => {
     adaptiveHeight: true,
     variableWidth: true,
     slidesToScroll: 1,
-    slidesToShow: 11,
+    slidesToShow: 12,
+    centerMode: true,
     nextArrow: <SlickNextArrow />,
     prevArrow: <SlickPrevArrow />,
     responsive: [
+      {
+        breakpoint: 1928,
+        settings: {
+          slidesToScroll: 1,
+          slidesToShow: 11,
+          centerMode: true,
+        },
+      },
+      {
+        breakpoint: 1780,
+        settings: {
+          slidesToScroll: 1,
+          slidesToShow: 11,
+          centerMode: false,
+        },
+      },
       {
         breakpoint: 1700,
         settings: {
           slidesToScroll: 1,
           slidesToShow: 10,
+          centerMode: false,
         },
       },
       {
@@ -169,6 +187,7 @@ const CategoryList = (props: any) => {
         settings: {
           slidesToScroll: 1,
           slidesToShow: 9,
+          centerMode: false,
         },
       },
       {
@@ -176,6 +195,7 @@ const CategoryList = (props: any) => {
         settings: {
           slidesToScroll: 1,
           slidesToShow: 6,
+          centerMode: false,
         },
       },
       {
@@ -183,6 +203,7 @@ const CategoryList = (props: any) => {
         settings: {
           slidesToScroll: 1,
           slidesToShow: 5,
+          centerMode: false,
         },
       },
       {
@@ -190,6 +211,7 @@ const CategoryList = (props: any) => {
         settings: {
           slidesToScroll: 1,
           slidesToShow: 4,
+          centerMode: false,
         },
       },
       {
@@ -197,6 +219,7 @@ const CategoryList = (props: any) => {
         settings: {
           slidesToScroll: 1,
           slidesToShow: 3,
+          centerMode: false,
         },
       },
     ],
