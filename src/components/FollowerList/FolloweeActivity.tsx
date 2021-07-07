@@ -55,10 +55,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     mainContainer: {
       display: 'flex',
-      alignItems: 'center',
-      width: '100%',
       flexDirection: 'column',
-      flexGrow: 1,
     },
     writePostOuterContainer: {
       width: '100%',
@@ -141,7 +138,7 @@ const FolloweeActivity = (props: any) => {
     );
   }
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <div className={classes.mainContainer}>
         <Paper elevation={3} className={classes.writePostOuterContainer}>
           <div className={classes.writePostContainer}>
@@ -149,7 +146,13 @@ const FolloweeActivity = (props: any) => {
               <div>你的分享</div>
             </div>
             <div className={classes.writePostDetailsContainer}>
-              <div>
+              <div
+                style={{
+                  paddingTop: '10px',
+                  paddingLeft: '5px',
+                  paddingRight: '5px',
+                }}
+              >
                 <Box
                   component="fieldset"
                   mb={1}
