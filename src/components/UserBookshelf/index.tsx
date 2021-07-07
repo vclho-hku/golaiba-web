@@ -69,7 +69,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const UserBookshelf = (props: any) => {
   const classes = useStyles();
-  const [tabValue, setTabValue] = React.useState(0);
+  const tabIndex = props.tab ? props.tab : 0;
+  const [tabValue, setTabValue] = React.useState(tabIndex);
   const [bookshelf, setBookshelf] = useState([]);
   const [userTags, setUserTags] = useState([]);
   const [loading, setLoading] = useState(true);

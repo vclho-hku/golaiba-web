@@ -13,8 +13,6 @@ const useStyles = makeStyles(() =>
   createStyles({
     container: {
       display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
       margin: '15px',
       paddingTop: '20px',
       flexWrap: 'wrap',
@@ -22,13 +20,12 @@ const useStyles = makeStyles(() =>
     item: {
       marginBottom: '7px',
       display: 'flex',
-      justifyContent: 'center',
-      flexGrow: 1,
+      paddingLeft: '10px',
     },
   }),
 );
 
-const UserBookshelfToolBar = (props: any) => {
+const BookSearchToolBar = (props: any) => {
   const classes = useStyles();
   const [filterValue, setFilterValue] = React.useState(null);
   const [sortingValue, setSortingValue] = React.useState(null);
@@ -43,7 +40,7 @@ const UserBookshelfToolBar = (props: any) => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.item} style={{ justifyContent: 'flex-end' }}>
+      <div className={classes.item}>
         <FormControl variant="outlined">
           <InputLabel htmlFor="outlined-filter-native-simple">篩選</InputLabel>
           <Select
@@ -64,26 +61,6 @@ const UserBookshelfToolBar = (props: any) => {
         </FormControl>
       </div>
       <div className={classes.item}>
-        <FormControl>
-          <Input
-            id="standard-adornment-weight"
-            value={searchValue}
-            placeholder="搜尋我的書櫃"
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton aria-label="toggle password visibility" edge="end">
-                  <SearchRoundedIcon />
-                </IconButton>
-              </InputAdornment>
-            }
-            aria-describedby="standard-weight-helper-text"
-            inputProps={{
-              'aria-label': 'weight',
-            }}
-          />
-        </FormControl>
-      </div>
-      <div className={classes.item} style={{ justifyContent: 'flex-start' }}>
         <FormControl variant="outlined">
           <InputLabel htmlFor="outlined-sorting-native-simple">排序</InputLabel>
           <Select
@@ -106,4 +83,4 @@ const UserBookshelfToolBar = (props: any) => {
   );
 };
 
-export default UserBookshelfToolBar;
+export default BookSearchToolBar;

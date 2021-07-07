@@ -16,20 +16,20 @@ import { red, yellow } from '@material-ui/core/colors';
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      width: 300,
+      width: 200,
       margin: '10px',
     },
     cardHeader: {
       cursor: 'pointer',
     },
     cardHeaderText: {
-      width: 290,
+      width: 190,
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
     },
     media: {
-      height: '400px',
+      height: '280px',
       backgroundSize: 'contain',
       paddingTop: '0%', // 16:9
       cursor: 'pointer',

@@ -73,7 +73,8 @@ const UserItem = (props: any) => {
   const classes = useStyles();
   const user = props.user;
   const [followed, setFollowed] = useState(false);
-  const handleDelete = () => {
+  const handleDelete = (event: any) => {
+    event.preventDefault();
     props.handleDeleteFollower(props.user.id);
   };
   const handleFollow = (event: any) => {
