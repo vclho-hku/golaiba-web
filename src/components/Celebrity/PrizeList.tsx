@@ -28,7 +28,6 @@ const PrizeList = (props: any) => {
   useEffect(() => {
     if (starPrizeListData) {
       setStarPrizeList(starPrizeListData.starPrizeList);
-      console.log(starPrizeListData.starPrizeList);
     }
   }, [starPrizeListData]);
 

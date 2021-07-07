@@ -78,7 +78,6 @@ const UserBanner = (props: any) => {
   useEffect(() => {
     if (userDetailsData) {
       setUserDetails(userDetailsData);
-      console.log(userDetails);
       setLoading(false);
     }
   }, [userDetailsData]);

@@ -55,7 +55,6 @@ const VisitMyFollower = (props: any) => {
   if (getFollower.getFollower.length == 0) {
     return <div>暫時沒有粉絲。</div>;
   } else {
-    console.log(getFollower.getFollower);
     return (
       <div>
         <Typography variant="h5">粉絲</Typography>
