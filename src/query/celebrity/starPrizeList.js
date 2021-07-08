@@ -9,6 +9,7 @@ export default gql`
       recommendBooks {
         isKeyRecommend
         book {
+          id
           title
           imageUrl {
             small

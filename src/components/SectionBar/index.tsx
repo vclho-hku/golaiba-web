@@ -11,9 +11,7 @@ const SectionBar = (props: any) => {
 
   return (
     <div>
-      <Toolbar>
-        <Typography variant="h6">{props.title}</Typography>
-      </Toolbar>
+      <Typography variant="h6">{props.title}</Typography>
     </div>
   );
 };

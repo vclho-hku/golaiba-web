@@ -2,7 +2,7 @@ const recommendBooks = [
   {
     isKeyRecommend: true,
     book: {
-      id: '60ab626583221d69bdc3720b',
+      id: '5fe9e569d5dec872bdc44cc6',
       title: '社交天性',
       imageUrl: {
         medium:
