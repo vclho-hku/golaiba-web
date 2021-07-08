@@ -49,9 +49,16 @@ function a11yProps(index: any) {
   };
 }
 const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    flexGrow: 1,
+  outerContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    width: '100%',
     backgroundColor: theme.palette.background.paper,
+  },
+  container: {
+    width: '100%',
+    maxWidth: '1200px',
   },
 }));
 
@@ -65,36 +72,38 @@ const FollowerList = (props: any) => {
   };
 
   return (
-    <div className={classes.root}>
-      <UserBanner userId={props.userId}></UserBanner>
-      <AppBar position="static">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          aria-label="我的書友"
-          centered
-          style={{ backgroundColor: brown[50] }}
-        >
-          <Tab label="書友動向" {...a11yProps(0)} />
-          <Tab label="我的書友" {...a11yProps(1)} />
-          <Tab label="我的粉絲" {...a11yProps(2)} />
-          <Tab label="尋找書友" {...a11yProps(3)} />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0}>
-        <FolloweeActivity userId={userId}></FolloweeActivity>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <MyFollowee userId={userId}></MyFollowee>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <MyFollower userId={userId}></MyFollower>
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <SearchFollowee userId={userId}></SearchFollowee>
-      </TabPanel>
+    <div className={classes.outerContainer}>
+      <div className={classes.container}>
+        <UserBanner userId={props.userId}></UserBanner>
+        <AppBar position="static">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            aria-label="我的書友"
+            centered
+            style={{ backgroundColor: brown[50] }}
+          >
+            <Tab label="書友動向" {...a11yProps(0)} />
+            <Tab label="我的書友" {...a11yProps(1)} />
+            <Tab label="我的粉絲" {...a11yProps(2)} />
+            <Tab label="尋找書友" {...a11yProps(3)} />
+          </Tabs>
+        </AppBar>
+        <TabPanel value={value} index={0}>
+          <FolloweeActivity userId={userId}></FolloweeActivity>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <MyFollowee userId={userId}></MyFollowee>
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <MyFollower userId={userId}></MyFollower>
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <SearchFollowee userId={userId}></SearchFollowee>
+        </TabPanel>
+      </div>
     </div>
   );
 };
