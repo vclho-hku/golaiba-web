@@ -24,16 +24,41 @@ const useStyles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
       marginBottom: '10px',
       padding: '10px',
+      [theme.breakpoints.down('xs')]: {
+        flexDirection: 'column',
+      },
     },
     itemLeft: {
       padding: '10px 20px 10px 10px',
     },
     itemRight: {
       flexGrow: 1,
-      flexShrink: 0,
+      display: 'flex',
+      flexWrap: 'wrap',
     },
     image: {
       width: '200px',
+    },
+    bottomContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    bottom: {
+      paddingTop: '10px',
+    },
+    bookDetails: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    bookDetailsItem: {
+      display: 'flex',
+      marginTop: '3px',
+      marginBottom: '3px',
+    },
+    bookDetailsItemData: {
+      display: 'flex',
+      width: '100%',
+      flexWrap: 'wrap',
     },
   }),
 );
@@ -89,7 +114,7 @@ const WishBook = (props: any) => {
           <img src={book.imageUrl.medium} className={classes.image}></img>
         </div>
         <div className={classes.itemRight}>
-          <div style={{ width: 'auto', minWidth: '400px' }}>
+          <div style={{ width: '100%', maxWidth: '350px' }}>
             <Typography variant="h5">{book.title}</Typography>
             <div
               style={{
@@ -106,24 +131,37 @@ const WishBook = (props: any) => {
               />
               <Typography variant="body1">({book.ratingCount})</Typography>
             </div>
-            <Grid container spacing={5}>
-              <Grid item xs={'auto'} spacing={5}>
-                <Grid>作者:</Grid>
-                <Grid>出版日期:</Grid>
-                <Grid>出版社:</Grid>
-              </Grid>
-              <Grid item xs={'auto'}>
-                <Grid>{authorToString(book.authors)}</Grid>
-                <Grid>{book.publishDate}</Grid>
-                <Grid>{book.publisher.name.zh_hk}</Grid>
-              </Grid>
-            </Grid>
+            <div className={classes.bookDetails}>
+              <div className={classes.bookDetailsItem}>
+                <div style={{ width: '100px' }}>作者:</div>
+                <div className={classes.bookDetailsItemData}>
+                  {authorToString(book.authors)}
+                </div>
+              </div>
+              <div className={classes.bookDetailsItem}>
+                <div style={{ width: '100px' }}>出版日期:</div>
+                <div className={classes.bookDetailsItemData}>
+                  {book.publishDate}
+                </div>
+              </div>
+              <div className={classes.bookDetailsItem}>
+                <div style={{ width: '100px' }}>出版社:</div>
+                <div className={classes.bookDetailsItemData}>
+                  {book.publisher.name.zh_hk}
+                </div>
+              </div>
+            </div>
 
-            <Grid container xs={12} className={classes.container} spacing={3}>
-              <Grid item xs={'auto'}>
+            <div className={classes.bottomContainer}>
+              <div className={classes.bottom}>
                 {isInBookshelf ? (
                   <Tooltip title="已加到我的書櫃" aria-label="已加到我的書櫃">
-                    <Button variant="outlined" color="primary" disabled>
+                    <Button
+                      fullWidth
+                      variant="outlined"
+                      color="primary"
+                      disabled
+                    >
                       <CollectionsBookmarkIcon style={{ fontSize: '15px' }} />
                       已加到我的書櫃
                     </Button>
@@ -131,6 +169,7 @@ const WishBook = (props: any) => {
                 ) : (
                   <Tooltip title="加到我的書櫃" aria-label="加到我的書櫃">
                     <Button
+                      fullWidth
                       variant="outlined"
                       color="primary"
                       onClick={handleAddToBookshelf}
@@ -142,10 +181,11 @@ const WishBook = (props: any) => {
                     </Button>
                   </Tooltip>
                 )}
-              </Grid>
-              <Grid item xs={'auto'}>
+              </div>
+              <div className={classes.bottom}>
                 <Tooltip title="加到想看清單" aria-label="加到想看清單">
                   <Button
+                    fullWidth
                     variant="outlined"
                     color="primary"
                     onClick={handleRemoveFromWishlist}
@@ -154,8 +194,8 @@ const WishBook = (props: any) => {
                     在「想看清單」移除
                   </Button>
                 </Tooltip>
-              </Grid>
-            </Grid>
+              </div>
+            </div>
           </div>
         </div>
       </div>
