@@ -68,7 +68,7 @@ const UserBookshelfToolBar = (props: any) => {
           <Input
             id="standard-adornment-weight"
             value={searchValue}
-            placeholder="搜尋我的書櫃"
+            placeholder="搜尋"
             endAdornment={
               <InputAdornment position="end">
                 <IconButton aria-label="toggle password visibility" edge="end">

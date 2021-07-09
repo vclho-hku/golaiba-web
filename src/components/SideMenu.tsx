@@ -142,7 +142,10 @@ const SideMenu = (props: SideMenuProps) => {
               <Link href={`/user/${userData.id}/bookshelf`}>
                 <ListItem button key="我的書櫃" onClick={props.onClose}>
                   <ListItemIcon>
-                    <CollectionsBookmarkIcon />
+                    <img
+                      style={{ width: '24px', color: 'white' }}
+                      src="/bookshelf_grey.svg"
+                    ></img>
                   </ListItemIcon>
                   <ListItemText primary="我的書櫃" />
                 </ListItem>

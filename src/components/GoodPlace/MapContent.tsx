@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const MapContent = (props: any) => {
   const classes = useStyles();
   const [selectedRegion, setSelectedRegion] = useState(null);
+  const [selectedFilterPlace, setSelectedFilterPlace] = useState('');
   const placeFilterList: string[] = PlaceFilterList;
   const regionList: {
     id: number;
@@ -67,6 +68,10 @@ const MapContent = (props: any) => {
     setSelectedRegion(region);
   };
 
+  const filterItemOnClick = (event: any) => {
+    event.stopPropagation();
+    setSelectedFilterPlace('abc');
+  };
   return (
     <div>
       <div className={classes.selectorContainer}>
@@ -92,6 +97,7 @@ const MapContent = (props: any) => {
             label="篩選地方特色"
             select
             variant="outlined"
+            value={selectedFilterPlace}
             className={classes.selectItem}
           >
             <List>
@@ -106,6 +112,7 @@ const MapContent = (props: any) => {
                         tabIndex={-1}
                         disableRipple
                         inputProps={{ 'aria-labelledby': labelId }}
+                        onClick={filterItemOnClick}
                       />
                     </ListItemIcon>
                     <ListItemText id={labelId} primary={`${value}`} />
@@ -140,6 +147,7 @@ const MapContent = (props: any) => {
                       <ListItem
                         key={`item-${list.section}-${region}`}
                         onClick={() => clickedRegion(region)}
+                        style={{ cursor: 'pointer' }}
                       >
                         <ListItemText primary={`${region}`} />
                       </ListItem>

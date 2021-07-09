@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Link from 'next/link';
 import UserBanner from '../UserBanner';
+import UserBookshelfToolBar from '../UserBookshelf/UserBookshelfToolBar';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -52,6 +53,7 @@ const VisitBookshelfContainer = (props: any) => {
               <Typography variant="body1">還未有任何書本在書櫃</Typography>
             </NoBook>
           )}
+          <UserBookshelfToolBar />
           <div className={classes.bookContainer}>
             {bookshelf.map((bookshelf: any, index: any) => {
               return (
