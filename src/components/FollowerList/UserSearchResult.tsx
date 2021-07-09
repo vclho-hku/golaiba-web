@@ -50,9 +50,7 @@ const UserSearchResult = (props: any) => {
             key={data.getUserBySearch[0]._id}
             userId={props.userId}
             userFound={data.getUserBySearch[0]}
-            avatarImgUrl={
-              'https://qodebrisbane.com/wp-content/uploads/2019/07/This-is-not-a-person-2-1.jpeg'
-            }
+            avatarImgUrl={'https://dev.golaiba.com/vincent.jpg'}
           ></UserSearchResultItem>
         </div>
       );
