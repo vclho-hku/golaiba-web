@@ -49,7 +49,7 @@ const VisitBookshelf = (props: any) => {
 
   return (
     <div>
-      <VisitBookshelfContainer bookshelf={bookshelf} />
+      <VisitBookshelfContainer bookshelf={bookshelf} userId={props.userId} />
     </div>
   );
 };

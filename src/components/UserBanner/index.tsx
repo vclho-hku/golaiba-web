@@ -60,6 +60,9 @@ const UserBanner = (props: any) => {
       bookCount: '',
       followeeCount: '',
       followerCount: '',
+      avatarImgUrl: {
+        small: '',
+      },
     },
   });
   const [getUserDetails, { data: userDetailsData }] = useLazyQuery(
@@ -96,7 +99,10 @@ const UserBanner = (props: any) => {
           <div className={classes.bannerInfo}>
             <div style={{ display: 'flex', marginLeft: '20px' }}>
               <div>
-                <Avatar className={classes.avatar}></Avatar>
+                <Avatar
+                  src={userDetails.user.avatarImgUrl.small}
+                  className={classes.avatar}
+                ></Avatar>
               </div>
               <div
                 style={{
