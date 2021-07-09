@@ -19,11 +19,12 @@ import { Theme } from '@material-ui/core/styles';
 import { red, blue } from '@material-ui/core/colors';
 import { withFirebase } from '../../Firebase';
 import { useRouter } from 'next/router';
-import { CREATE_USER } from '../../query/user';
+import { CREATE_USER, GET_USER_BY_UID } from '../../query/user';
 import { useMutation } from '@apollo/client';
 import LoadingBackdrop from '../LoadingBackdrop';
 import * as ROUTES from '../../constant/routes';
 import { UserDataContext } from '../../Session';
+import { useLazyQuery } from '@apollo/client';
 
 const translateErrorMessage = (error: any) => {
   let msg = '';
@@ -76,6 +77,14 @@ const LoginForm: FunctionComponent = (props: any) => {
   const { email, password, error } = state;
   const router = useRouter();
   const { updateUserData } = useContext(UserDataContext);
+  const [getUserByUID] = useLazyQuery(GET_USER_BY_UID, {
+    fetchPolicy: 'network-only',
+    onCompleted: (data) => {
+      updateUserData(data.userByUID);
+      router.push(ROUTES.HOME);
+    },
+  });
+
   const [createUser, { loading }] = useMutation(CREATE_USER, {
     onCompleted: (data) => {
       updateUserData(data.createUser);
@@ -111,9 +120,13 @@ const LoginForm: FunctionComponent = (props: any) => {
   const onSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      await props.firebase.doSignInWithEmailAndPassword(email, password);
+      const loginData = await props.firebase.doSignInWithEmailAndPassword(
+        email,
+        password,
+      );
       setState({ ...INITIAL_STATE });
-      router.push(ROUTES.HOME);
+      console.log(loginData.user.uid);
+      getUserByUID({ variables: { uid: loginData.user.uid } });
     } catch (error) {
       const errorMsg = translateErrorMessage(error);
       setState({ ...state, error: errorMsg });

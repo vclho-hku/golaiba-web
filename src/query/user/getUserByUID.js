@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export default gql`
-  query getUser($id: ID!) {
-    user(id: $id) {
+  query userByUID($uid: String!) {
+    userByUID(uid: $uid) {
       id
       uid
       name
