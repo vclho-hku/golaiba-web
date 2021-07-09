@@ -51,8 +51,12 @@ const UserSearchResultItem = (props: any) => {
       {isInFolloweeList ? (
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              R
+            <Avatar
+              src={props.avatarImgUrl}
+              aria-label="recipe"
+              className={classes.avatar}
+            >
+              {!props.avatarImgUrl && userFound.name.charAt(0)}
             </Avatar>
           }
           action={
@@ -65,8 +69,12 @@ const UserSearchResultItem = (props: any) => {
       ) : (
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              R
+            <Avatar
+              src={props.avatarImgUrl}
+              aria-label="recipe"
+              className={classes.avatar}
+            >
+              {!props.avatarImgUrl && userFound.name.charAt(0)}
             </Avatar>
           }
           action={

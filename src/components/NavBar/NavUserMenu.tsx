@@ -154,7 +154,7 @@ const NavUserMenu = (props: any) => {
                           setOpen(false);
                         }}
                       >
-                        我的書友
+                        書友動向
                       </MenuItem>
                     </Link>
                     <Logout></Logout>

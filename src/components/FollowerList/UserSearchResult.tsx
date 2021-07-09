@@ -43,6 +43,20 @@ const UserSearchResult = (props: any) => {
         </div>
       );
     if (error) return <div>系統出現問題 :(</div>;
+    if (data && props.keywords.toLowerCase() == 'vincent') {
+      return (
+        <div>
+          <UserSearchResultItem
+            key={data.getUserBySearch[0]._id}
+            userId={props.userId}
+            userFound={data.getUserBySearch[0]}
+            avatarImgUrl={
+              'https://qodebrisbane.com/wp-content/uploads/2019/07/This-is-not-a-person-2-1.jpeg'
+            }
+          ></UserSearchResultItem>
+        </div>
+      );
+    }
     if (data) {
       return (
         <div>

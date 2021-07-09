@@ -88,7 +88,7 @@ const FollowerList = (props: any) => {
             <Tab label="書友動向" {...a11yProps(0)} />
             <Tab label="我的書友" {...a11yProps(1)} />
             <Tab label="我的粉絲" {...a11yProps(2)} />
-            <Tab label="尋找書友" {...a11yProps(3)} />
+            {/* <Tab label="尋找書友" {...a11yProps(3)} /> */}
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
@@ -100,9 +100,9 @@ const FollowerList = (props: any) => {
         <TabPanel value={value} index={2}>
           <MyFollower userId={userId}></MyFollower>
         </TabPanel>
-        <TabPanel value={value} index={3}>
+        {/* <TabPanel value={value} index={3}>
           <SearchFollowee userId={userId}></SearchFollowee>
-        </TabPanel>
+        </TabPanel> */}
       </div>
     </div>
   );

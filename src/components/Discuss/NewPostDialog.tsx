@@ -34,10 +34,11 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: '15px',
       display: 'flex',
       alignItems: 'center',
+      flexWrap: 'wrap',
     },
     separator: {
       borderRight: '2px solid black',
-      paddingLeft: '3px',
+      paddingLeft: '0px',
       height: '15px',
     },
     buttonContainer: {
@@ -53,7 +54,6 @@ const titleStyles = (theme: Theme) =>
       padding: theme.spacing(2),
       backgroundColor: theme.palette.primary.main,
       height: '60px',
-      width: '800px',
     },
     closeButton: {
       position: 'absolute',

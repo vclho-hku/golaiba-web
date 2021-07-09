@@ -86,6 +86,14 @@ const SideMenu = (props: SideMenuProps) => {
               <ListItemText primary="最新精選" />
             </ListItem>
           </Link>
+          <Link href={`/discuss`}>
+            <ListItem button key="討論區" onClick={props.onClose}>
+              <ListItemIcon>
+                <ForumIcon />
+              </ListItemIcon>
+              <ListItemText primary="討論區" />
+            </ListItem>
+          </Link>
           <Link href={`/celebrity`}>
             <ListItem button key="名人書櫃" onClick={props.onClose}>
               <ListItemIcon>
@@ -108,14 +116,6 @@ const SideMenu = (props: SideMenuProps) => {
                 <FontAwesomeIcon icon={faMugHot} size="lg" />
               </ListItemIcon>
               <ListItemText primary="看書好地方" />
-            </ListItem>
-          </Link>
-          <Link href={`/discuss`}>
-            <ListItem button key="討論區" onClick={props.onClose}>
-              <ListItemIcon>
-                <ForumIcon />
-              </ListItemIcon>
-              <ListItemText primary="討論區" />
             </ListItem>
           </Link>
         </List>
@@ -148,11 +148,11 @@ const SideMenu = (props: SideMenuProps) => {
                 </ListItem>
               </Link>
               <Link href={`/user/${userData.id}/follower-list`}>
-                <ListItem button key="我的書友" onClick={props.onClose}>
+                <ListItem button key="書友動向" onClick={props.onClose}>
                   <ListItemIcon>
                     <PeopleIcon />
                   </ListItemIcon>
-                  <ListItemText primary="我的書友" />
+                  <ListItemText primary="書友動向" />
                 </ListItem>
               </Link>
               <ListItem button key="登出" onClick={props.onClose}>

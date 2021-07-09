@@ -10,6 +10,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { GET_FOLLOWEE, REMOVE_FOLLOWEE } from '../../query/followList';
 import Typography from '@material-ui/core/Typography';
+import SearchFollowee from './SearchFollowee';
+import Divider from '@material-ui/core/Divider';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     loading: {
@@ -70,6 +73,9 @@ const MyFollowee = (props: any) => {
   } else {
     return (
       <div>
+        <Typography variant="h5">尋找書友</Typography>
+        <SearchFollowee userId={props.userId} />
+        <Divider style={{ margin: '20px' }} />
         <Typography variant="h5">我的書友</Typography>
         <div className={classes.userItemContainer}>
           {followeeList.map((followee: any, index: any) => {

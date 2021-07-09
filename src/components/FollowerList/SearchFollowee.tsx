@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: '2px 4px',
       display: 'flex',
       alignItems: 'center',
-      width: 'auto',
+      maxWidth: '500px',
     },
     input: {
       marginLeft: theme.spacing(1),
