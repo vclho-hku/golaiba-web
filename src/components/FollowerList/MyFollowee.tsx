@@ -12,6 +12,7 @@ import { GET_FOLLOWEE, REMOVE_FOLLOWEE } from '../../query/followList';
 import Typography from '@material-ui/core/Typography';
 import SearchFollowee from './SearchFollowee';
 import Divider from '@material-ui/core/Divider';
+import MyFolloweeList from './MyFolloweeList';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,69 +30,22 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const MyFollowee = (props: any) => {
-  const classes = useStyles();
-  const [loading, setLoading] = useState(true);
-  const [followeeList, setFolloweeList] = useState([]);
-  const [getFollowee, { data: getFolloweeList }] = useLazyQuery(GET_FOLLOWEE, {
-    variables: { userId: props.userId },
-    fetchPolicy: 'network-only',
-  });
-
-  const [removeFollowee] = useMutation(REMOVE_FOLLOWEE);
-
-  const handleDeleteFollower = (followeeId: string) => {
-    removeFollowee({
-      variables: {
-        userId: props.userId,
-        followeeId: followeeId,
-      },
-    });
-    setFolloweeList(followeeList.filter((user: any) => user.id !== followeeId));
+  const [reload, setReloading] = useState(false);
+  const refreshFolloweeList = () => {
+    setReloading(!reload);
   };
 
-  useEffect(() => {
-    if (props.userId) {
-      getFollowee();
-    }
-  }, [props.userId]);
-
-  useEffect(() => {
-    if (getFolloweeList) {
-      setFolloweeList(getFolloweeList.getFollowee);
-      setLoading(false);
-    }
-  }, [getFolloweeList]);
-
-  if (loading)
-    return (
-      <div className={classes.loading}>
-        <CircularProgress />
-      </div>
-    );
-  if (followeeList.length == 0) {
-    return <div>暫時還沒有書友。</div>;
-  } else {
-    return (
-      <div>
-        <Typography variant="h5">尋找書友</Typography>
-        <SearchFollowee userId={props.userId} />
-        <Divider style={{ margin: '20px' }} />
-        <Typography variant="h5">我的書友</Typography>
-        <div className={classes.userItemContainer}>
-          {followeeList.map((followee: any, index: any) => {
-            return (
-              <UserItem
-                key={index}
-                user={followee}
-                canRemove={true}
-                handleDeleteFollower={handleDeleteFollower}
-              ></UserItem>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Typography variant="h5">尋找書友</Typography>
+      <SearchFollowee
+        userId={props.userId}
+        refreshFolloweeList={refreshFolloweeList}
+      />
+      <Divider style={{ margin: '20px' }} />
+      <MyFolloweeList userId={props.userId} reload={reload} />
+    </div>
+  );
 };
 
 export default MyFollowee;

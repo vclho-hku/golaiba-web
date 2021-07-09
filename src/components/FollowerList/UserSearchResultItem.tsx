@@ -36,7 +36,9 @@ const UserSearchResultItem = (props: any) => {
   const userFound = props.userFound;
   const classes = useStyles();
   const [isInFolloweeList, setInFolloweeList] = useState(false);
-  const [addFollowee] = useMutation(ADD_FOLLOWEE);
+  const [addFollowee, { loading: addFolloweeLoading }] = useMutation(
+    ADD_FOLLOWEE,
+  );
   const addFriend = (followeeId: any) => {
     addFollowee({
       variables: {
@@ -46,6 +48,13 @@ const UserSearchResultItem = (props: any) => {
     });
     setInFolloweeList(true);
   };
+
+  useEffect(() => {
+    if (addFolloweeLoading == false) {
+      props.refreshFolloweeList();
+    }
+  }, [addFolloweeLoading]);
+
   return (
     <Card className={classes.root}>
       {isInFolloweeList ? (

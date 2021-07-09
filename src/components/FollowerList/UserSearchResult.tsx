@@ -51,6 +51,7 @@ const UserSearchResult = (props: any) => {
             userId={props.userId}
             userFound={data.getUserBySearch[0]}
             avatarImgUrl={'https://dev.golaiba.com/vincent.jpg'}
+            refreshFolloweeList={props.refreshFolloweeList}
           ></UserSearchResultItem>
         </div>
       );
@@ -64,6 +65,7 @@ const UserSearchResult = (props: any) => {
                 key={userFound._id}
                 userId={props.userId}
                 userFound={userFound}
+                refreshFolloweeList={props.refreshFolloweeList}
               ></UserSearchResultItem>
             );
           })}

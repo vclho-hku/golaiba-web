@@ -62,6 +62,7 @@ const SearchFollowee = (props: any) => {
         <UserSearchResult
           keywords={keywords}
           userId={props.userId}
+          refreshFolloweeList={props.refreshFolloweeList}
         ></UserSearchResult>
       </div>
     </div>
