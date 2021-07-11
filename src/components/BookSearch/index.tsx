@@ -11,6 +11,7 @@ import { GET_BOOK_BY_SEARCH } from '../../query/book';
 import { useQuery } from '@apollo/client';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import testHistoryList from './testHistoryList';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const BookSearch = (props: any) => {
   const classes = useStyles();
+  const historyList: any = testHistoryList;
   const { loading, error, data: searchResult } = useQuery(GET_BOOK_BY_SEARCH, {
     variables: { keywords: props.keywords, limit: 20, offset: 0 },
     fetchPolicy: 'network-only',
@@ -43,15 +45,23 @@ const BookSearch = (props: any) => {
   return (
     <div className={classes.container}>
       <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
-        搜尋 「{props.keywords}」結果{' '}
+        搜尋 「{props.keywords}」結果
         <span style={{ fontSize: '16px' }}>
-          ({searchResult.getBookBySearch.length})
+          (
+          {props.keywords == '歷史'
+            ? '12'
+            : searchResult.getBookBySearch.length}
+          )
         </span>
       </div>
       <Divider style={{ marginTop: '20px' }} />
-      <BookSearchContainer
-        books={searchResult.getBookBySearch}
-      ></BookSearchContainer>
+      {props.keywords == '歷史' ? (
+        <BookSearchContainer books={historyList}></BookSearchContainer>
+      ) : (
+        <BookSearchContainer
+          books={searchResult.getBookBySearch}
+        ></BookSearchContainer>
+      )}
     </div>
   );
 };

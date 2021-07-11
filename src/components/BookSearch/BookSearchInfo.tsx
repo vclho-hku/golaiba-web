@@ -27,6 +27,7 @@ const useStyles = makeStyles(() =>
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
+      fontSize: '20px',
     },
     media: {
       height: '280px',

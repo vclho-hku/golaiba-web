@@ -27,9 +27,11 @@ const BookSearchContainer = (props: any) => {
   return (
     <div className={classes.outerContainer}>
       <BookSearchToolBar />
-      {books.map((book: any, index: any) => {
-        return <BookSearchInfo key={book._id} book={book}></BookSearchInfo>;
-      })}
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {books.map((book: any, index: any) => {
+          return <BookSearchInfo key={book._id} book={book}></BookSearchInfo>;
+        })}
+      </div>
     </div>
   );
 };
