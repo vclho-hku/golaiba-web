@@ -17,6 +17,7 @@ import { faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { faHistory } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 import clsx from 'clsx';
 
 library.add(
@@ -237,22 +238,27 @@ const CategoryList = (props: any) => {
           <Slider {...settings}>
             {categoryList.map((value: any, index) => (
               <div key={index}>
-                <Card className={classes.card} elevation={3}>
-                  <div className={classes.cardContainer}>
-                    <div>
-                      <FontAwesomeIcon
-                        icon={['fas', value[1]]}
-                        size="lg"
-                        className={classes.icon}
-                      />
+                <Link href={`/book/search/歷史`}>
+                  <Card className={classes.card} elevation={3}>
+                    <div className={classes.cardContainer}>
+                      <div>
+                        <FontAwesomeIcon
+                          icon={['fas', value[1]]}
+                          size="lg"
+                          className={classes.icon}
+                        />
+                      </div>
+                      <div>
+                        <Typography
+                          variant="subtitle1"
+                          className={classes.text}
+                        >
+                          {value[0]}
+                        </Typography>
+                      </div>
                     </div>
-                    <div>
-                      <Typography variant="h6" className={classes.text}>
-                        {value[0]}
-                      </Typography>
-                    </div>
-                  </div>
-                </Card>
+                  </Card>
+                </Link>
               </div>
             ))}
           </Slider>
